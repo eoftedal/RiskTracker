@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @risk_configuration.name %>
+</p>
+
+
+<h1>Consequences</h1>
+<table>
+<% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.reverse().each do |risk_consequence| %>
+  <tr>
+    <td><%= risk_consequence.name %></td>
+    <td><%= risk_consequence.weight %></td>
+    <td><%= link_to 'Edit', edit_risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence) %></td>
+    <td><%= link_to 'Destroy', risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence) , :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New Risk consequence', new_risk_configuration_risk_consequence_path(@risk_configuration) %>
+
+
+<h1>Probabilities</h1>
+<table>
+<% @risk_configuration.risk_probabilities.sort_by{|p| p.weight}.reverse().each do |risk_probability| %>
+  <tr>
+    <td><%= risk_probability.name %></td>
+    <td><%= risk_probability.weight %></td>
+    <td><%= link_to 'Edit', edit_risk_configuration_risk_probability_path(@risk_configuration, risk_probability) %></td>
+    <td><%= link_to 'Destroy', risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New Risk probability', new_risk_configuration_risk_probability_path(@risk_configuration) %>
+
+
+<h1>Risk levels</h1>
+<table>
+
+<% @risk_configuration.risk_levels.sort_by{|p| p.weight}.reverse().each do |risk_level| %>
+  <tr>
+    <td><%= risk_level.name %></td>
+    <td><%= risk_level.weight %></td>
+    <td><%= link_to 'Edit', edit_risk_configuration_risk_level_path(@risk_configuration, risk_level) %></td>
+    <td><%= link_to 'Destroy', risk_configuration_risk_level_path(@risk_configuration, risk_level), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New Risk level', new_risk_configuration_risk_level_path(@risk_configuration) %>
+
+<h1>Categories</h1>
+<table>
+
+<% @risk_configuration.categories.sort_by{|c| c.name}.each do |category| %>
+  <tr>
+    <td><%= category.name %></td>
+    <td><%= category.risk_level.name %></td>
+    <td><%= link_to 'Edit', edit_risk_configuration_category_path(@risk_configuration, category) %></td>
+    <td><%= link_to 'Destroy', risk_configuration_category_path(@risk_configuration, category), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New category', new_risk_configuration_category_path(@risk_configuration) %>
+
+<br />
+<br />
+<%= link_to 'Edit', edit_risk_configuration_path(@risk_configuration) %> |
+<%= link_to 'Back', risk_configurations_path %>

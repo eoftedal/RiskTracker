@@ -1,0 +1,25 @@
+<%= form_for([current_risk_configuration, @risk_consequence]) do |f| %>
+  <% if @risk_consequence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@risk_consequence.errors.count, "error") %> prohibited this consequence from being saved:</h2>
+
+      <ul>
+      <% @risk_consequence.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

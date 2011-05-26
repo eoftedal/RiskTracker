@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  weight: 
+  risk_configuration: 
+
+two:
+  name: MyString
+  weight: 
+  risk_configuration: 

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <%= @project.name %>
+</h1>
+
+<p>
+  <b>Risk configuration:</b>
+  <%= link_to @project.risk_configuration.name, @project.risk_configuration %>
+</p>
+
+<table>
+	<tr>
+		<th>Category</th>
+		<th>Title</th>
+		<th>Consequence</th>
+		<th>Probability</th>
+		<th>Risk level</th>
+	</tr>
+<% @project.risks.sort_by{|r| [r.category.name, r.title]}.each do |risk| %>
+  <tr>
+    <td><%= risk.category.name %></td>
+    <td><%= risk.title %></td>
+    <td><%= risk.risk_consequence.name %></td>
+    <td><%= risk.risk_probability.name %></td>
+    <td class="<%= risk.risk_level.weight > risk.category.risk_level.weight ? "tooHigh" : "" %>"><%= risk.risk_level.name %></td>
+    <td><%= link_to 'Edit', edit_project_risk_path(@project, risk) %></td>
+    <td><%= link_to 'Destroy', project_risk_path(@project, risk), :confirm => 'Are you sure?', :method => :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+<%= link_to 'New risk', new_project_risk_path(@project) %>
+
+<br />
+<br />
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

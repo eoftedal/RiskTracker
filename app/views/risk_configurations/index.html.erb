@@ -1,0 +1,25 @@
+<% content_for :title, " - Configurations" %>
+
+<h1>Risk Configurations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @risk_configurations.each do |risk_configuration| %>
+  <tr>
+    <td><%= risk_configuration.name %></td>
+    <td><%= link_to 'Show', risk_configuration %></td>
+    <td><%= link_to 'Edit', edit_risk_configuration_path(risk_configuration) %></td>
+    <td><%= link_to 'Destroy', risk_configuration, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Risk configuration', new_risk_configuration_path %>

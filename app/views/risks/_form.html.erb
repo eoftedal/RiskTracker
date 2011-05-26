@@ -1,0 +1,42 @@
+<%= form_for([current_project, @risk]) do |f| %>
+  <% if @risk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@risk.errors.count, "error") %> prohibited this risk from being saved:</h2>
+
+      <ul>
+      <% @risk.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :category %><br />
+	<%= select("risk", "category_id", current_project.risk_configuration.categories.sort_by{|c| c.name }.collect{|c| [c.name, c.id] } ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :risk_consequence %><br />
+	<%= select("risk", "risk_consequence_id", current_project.risk_configuration.risk_consequences.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
+  </div>
+  <div class="field">
+    <%= f.label :risk_probability %><br />
+	<%= select("risk", "risk_probability_id", current_project.risk_configuration.risk_probabilities.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
+  </div>
+  <div class="field">
+    <%= f.label :risk_level %><br />
+	<%= select("risk", "risk_level_id", current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

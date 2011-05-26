@@ -1,0 +1,34 @@
+<% content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
+<p id="notice"><%= notice %></p>
+
+<%= link_to @risk.project.name, project_path(current_project) %>  &gt; Risk-<%= @risk.id %>
+<h1><%= @risk.title %></h1>
+
+<p>
+  <b>Category:</b>
+  <%= @risk.category.name %>
+</p>
+
+
+<p>
+  <b>Description:</b>
+  <%= @risk.description %>
+</p>
+
+<p>
+  <b>Risk level:</b>
+  <%= @risk.risk_level.name %>
+</p>
+
+<p>
+  <b>Risk consequence:</b>
+  <%= @risk.risk_consequence.name %>
+</p>
+
+<p>
+  <b>Risk probability:</b>
+  <%= @risk.risk_probability.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_risk_path(current_project, @risk) %>
