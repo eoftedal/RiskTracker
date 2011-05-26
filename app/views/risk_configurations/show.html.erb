@@ -1,12 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @risk_configuration.name %>
-</p>
+<h1><b>Configuration:</b> <%= @risk_configuration.name %></h1>
 
 
-<h1>Consequences</h1>
+<h2>Consequences</h2>
 <table>
 <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.reverse().each do |risk_consequence| %>
   <tr>
@@ -20,7 +17,7 @@
 <%= link_to 'New Risk consequence', new_risk_configuration_risk_consequence_path(@risk_configuration) %>
 
 
-<h1>Probabilities</h1>
+<h2>Probabilities</h2>
 <table>
 <% @risk_configuration.risk_probabilities.sort_by{|p| p.weight}.reverse().each do |risk_probability| %>
   <tr>
@@ -34,7 +31,7 @@
 <%= link_to 'New Risk probability', new_risk_configuration_risk_probability_path(@risk_configuration) %>
 
 
-<h1>Risk levels</h1>
+<h2>Risk levels</h2>
 <table>
 
 <% @risk_configuration.risk_levels.sort_by{|p| p.weight}.reverse().each do |risk_level| %>
@@ -48,7 +45,7 @@
 </table>
 <%= link_to 'New Risk level', new_risk_configuration_risk_level_path(@risk_configuration) %>
 
-<h1>Categories</h1>
+<h2>Categories</h2>
 <table>
 
 <% @risk_configuration.categories.sort_by{|c| c.name}.each do |category| %>
