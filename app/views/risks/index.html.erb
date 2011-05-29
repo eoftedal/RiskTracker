@@ -19,6 +19,7 @@ Risks
 <table>
 	<tr>
 		<th>Category</th>
+		<th>Id</th>
 		<th>Title</th>
 		<th>Consequence</th>
 		<th>Probability</th>
@@ -27,6 +28,7 @@ Risks
 <% current_project.risks.sort_by{|r| [r.category.name, r.title]}.each do |risk| %>
   <tr>
     <td><%= risk.category.name %></td>
+    <td><%= risk.id %></td>
     <td><%= link_to risk.title, project_risk_path(current_project, risk) %></td>
     <td><%= risk.risk_consequence.name %></td>
     <td><%= risk.risk_probability.name %></td>
@@ -37,7 +39,7 @@ Risks
   </tr>
 <% end %>
 </table>
-<%= link_to 'New risk', new_project_risk_path(current_project) %>
+<%= button_to 'New risk', new_project_risk_path(current_project), :method => :get %>
 
 <br />
 <br />

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528202704) do
+ActiveRecord::Schema.define(:version => 20110529103200) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20110528202704) do
     t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "accepted_override"
   end
 
   create_table "versions", :force => true do |t|

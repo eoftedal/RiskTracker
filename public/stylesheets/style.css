@@ -127,6 +127,9 @@ td , th{
 	border-right: 1px solid #999;
 }
 
+.risk_list td span{
+	color: #009900;
+}
 
 
 .risk_list th.category {

@@ -11,7 +11,7 @@ module ProjectsHelper
 		days = @project.days_since_creation 
 		risk_at_date = []
 		days.times do |i| 
-			risk_at_date.push @project.risks_at(Date.today - (days - i)).select{|rr| rr != NIL}
+			risk_at_date.push @project.risks_at(Date.today - (days - i) + 1).select{|rr| rr != NIL}
 		end
 		risk_at_date.push @project.risks	
 	end

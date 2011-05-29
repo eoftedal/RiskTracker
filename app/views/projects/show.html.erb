@@ -47,9 +47,15 @@ MochiKit.DOM.addLoadEvent(drawGraph);
 	<tr>
 		<th><%= category.name %></th>
 		<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
-			<% count =  @project.risks.select{|r| r.category == category && r.risk_level == risk_level}.count() %>
-			<td class="<%= count > 0 && risk_level.weight > category.risk_level.weight ? "tooHigh" : "" %>">
-				<%= count %>
+			<% 
+			 count =  @project.risks.select{|r| r.category == category && r.risk_level == risk_level}.count()
+			 count_overridden = @project.risks.select{|r| r.category == category && r.risk_level == risk_level && r.accepted_override }.count() 
+			%>
+			<td class="<%= (count - count_overridden) > 0 && risk_level.weight > category.risk_level.weight ? "tooHigh" : "" %>">
+				<%= count - count_overridden %>
+				<% if (count_overridden > 0)  %>
+					+ <span><%= count_overridden %></span>
+				<% end %>
 			</td>
 		<% end %>
 	</tr>

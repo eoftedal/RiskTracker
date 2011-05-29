@@ -7,7 +7,7 @@ class Risk < ActiveRecord::Base
   has_paper_trail :only => [:risk_level, :risk_level_id]
 	
   def accepted
-	 risk_level.weight <= category.risk_level.weight
+	 risk_level.weight <= category.risk_level.weight || accepted_override
   end
   
 end

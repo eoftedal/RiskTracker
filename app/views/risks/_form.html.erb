@@ -36,6 +36,11 @@
     <%= f.label :risk_level %><br />
 	<%= select("risk", "risk_level_id", current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
   </div>
+  <div class="field">
+    <%= f.label :accepted_override, "Mark as accepted" %><br />
+	<%= f.check_box :accepted_override %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

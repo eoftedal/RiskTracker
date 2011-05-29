@@ -3,7 +3,7 @@ class Project < ActiveRecord::Base
   has_many :risks
   
   def days_since_creation
-	(Date.today - created_at.to_date).to_i
+	(Date.today - created_at.to_date).to_i + 1
   end
   
   def risks_at(date)
