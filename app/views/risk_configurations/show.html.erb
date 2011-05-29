@@ -9,12 +9,16 @@
   <tr>
     <td><%= risk_consequence.name %></td>
     <td><%= risk_consequence.weight %></td>
-    <td><%= link_to 'Edit', edit_risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence) %></td>
-    <td><%= link_to 'Destroy', risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence) , :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Edit', edit_risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence), :method => :get %></td>
+    <td><%= button_to 'Delete', risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+  <tr>
+	<td>
+		<%= button_to 'Add', new_risk_configuration_risk_consequence_path(@risk_configuration), :method => :get %>
+	</td>
+  </tr>	
 </table>
-<%= link_to 'New Risk consequence', new_risk_configuration_risk_consequence_path(@risk_configuration) %>
 
 
 <h2>Probabilities</h2>
@@ -23,13 +27,13 @@
   <tr>
     <td><%= risk_probability.name %></td>
     <td><%= risk_probability.weight %></td>
-    <td><%= link_to 'Edit', edit_risk_configuration_risk_probability_path(@risk_configuration, risk_probability) %></td>
-    <td><%= link_to 'Destroy', risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Edit', edit_risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :method => :get %></td>
+    <td><%= button_to 'Delete', risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
   <tr>
 	<td>
-		<%= link_to 'Add', new_risk_configuration_risk_probability_path(@risk_configuration) %>
+		<%= button_to 'Add', new_risk_configuration_risk_probability_path(@risk_configuration), :method => :get %>
 	</td>
   </tr>
 </table>
@@ -42,13 +46,13 @@
   <tr>
     <td><%= risk_level.name %></td>
     <td><%= risk_level.weight %></td>
-    <td><%= link_to 'Edit', edit_risk_configuration_risk_level_path(@risk_configuration, risk_level) %></td>
-    <td><%= link_to 'Destroy', risk_configuration_risk_level_path(@risk_configuration, risk_level), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Edit', edit_risk_configuration_risk_level_path(@risk_configuration, risk_level), :method => :get %></td>
+    <td><%= button_to 'Delete', risk_configuration_risk_level_path(@risk_configuration, risk_level), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
   <tr>
 	<td>
-		<%= link_to 'Add', new_risk_configuration_risk_level_path(@risk_configuration) %>
+		<%= button_to 'Add', new_risk_configuration_risk_level_path(@risk_configuration), :method => :get %>
 	</td>
   </tr>
 </table>
@@ -60,18 +64,14 @@
   <tr>
     <td><%= category.name %></td>
     <td><%= category.risk_level.name %></td>
-    <td><%= link_to 'Edit', edit_risk_configuration_category_path(@risk_configuration, category) %></td>
-    <td><%= link_to 'Destroy', risk_configuration_category_path(@risk_configuration, category), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Edit', edit_risk_configuration_category_path(@risk_configuration, category), :method => :get %></td>
+    <td><%= button_to 'Delete', risk_configuration_category_path(@risk_configuration, category), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
   <tr>
 	<td>
-		<%= link_to 'Add', new_risk_configuration_category_path(@risk_configuration) %>
+		<%= button_to 'Add', new_risk_configuration_category_path(@risk_configuration), :method => :get %>
 	</td>
   </tr>
 </table>
 
-<br />
-<br />
-<%= link_to 'Edit', edit_risk_configuration_path(@risk_configuration) %> |
-<%= link_to 'Back', risk_configurations_path %>

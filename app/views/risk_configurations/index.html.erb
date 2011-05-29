@@ -12,14 +12,13 @@
 
 <% @risk_configurations.each do |risk_configuration| %>
   <tr>
-    <td><%= risk_configuration.name %></td>
-    <td><%= link_to 'Show', risk_configuration %></td>
-    <td><%= link_to 'Edit', edit_risk_configuration_path(risk_configuration) %></td>
-    <td><%= link_to 'Destroy', risk_configuration, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to risk_configuration.name, risk_configuration %></td>
+    <td><%= button_to 'Rename', edit_risk_configuration_path(risk_configuration), :method => :get %></td>
+    <td><%= button_to 'Delete', risk_configuration, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Risk configuration', new_risk_configuration_path %>
+<%= button_to 'New Risk configuration', new_risk_configuration_path, :method => :get %>

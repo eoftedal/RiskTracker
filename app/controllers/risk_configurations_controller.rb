@@ -44,6 +44,10 @@ class RiskConfigurationsController < ApplicationController
 
     respond_to do |format|
       if @risk_configuration.save
+		create_defaults(RiskLevel, @risk_configuration)
+		create_defaults(RiskProbability, @risk_configuration)
+		create_defaults(RiskConsequence, @risk_configuration)
+		
         format.html { redirect_to(@risk_configuration, :notice => 'Risk configuration was successfully created.') }
         format.xml  { render :xml => @risk_configuration, :status => :created, :location => @risk_configuration }
       else
@@ -53,6 +57,17 @@ class RiskConfigurationsController < ApplicationController
     end
   end
 
+  def create_defaults(itemspec, config) 
+	default_values = [["High", 100], ["Medium", 50], ["Low", 10]]
+	default_values.each do |name, weight|
+		item = itemspec.new
+		item.name = name
+		item.weight = weight
+		item.risk_configuration = config
+		item.save
+	end
+  end
+  
   # PUT /risk_configurations/1
   # PUT /risk_configurations/1.xml
   def update

@@ -138,3 +138,6 @@ td , th{
 	min-width: 55px;
 	padding-right:45px;
 }
+h2 {
+	margin-bottom: 0px;
+}
