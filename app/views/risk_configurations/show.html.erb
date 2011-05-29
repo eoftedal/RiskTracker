@@ -7,7 +7,7 @@
 <table>
 <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.reverse().each do |risk_consequence| %>
   <tr>
-    <td><%= risk_consequence.name %></td>
+    <th><%= risk_consequence.name %></th>
     <td><%= risk_consequence.weight %></td>
     <td><%= button_to 'Edit', edit_risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence), :method => :get %></td>
     <td><%= button_to 'Delete', risk_configuration_risk_consequence_path(@risk_configuration, risk_consequence), :confirm => 'Are you sure?', :method => :delete %></td>
@@ -25,7 +25,7 @@
 <table>
 <% @risk_configuration.risk_probabilities.sort_by{|p| p.weight}.reverse().each do |risk_probability| %>
   <tr>
-    <td><%= risk_probability.name %></td>
+    <th><%= risk_probability.name %></th>
     <td><%= risk_probability.weight %></td>
     <td><%= button_to 'Edit', edit_risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :method => :get %></td>
     <td><%= button_to 'Delete', risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :confirm => 'Are you sure?', :method => :delete %></td>
@@ -44,7 +44,7 @@
 
 <% @risk_configuration.risk_levels.sort_by{|p| p.weight}.reverse().each do |risk_level| %>
   <tr>
-    <td><%= risk_level.name %></td>
+    <th><%= risk_level.name %></th>
     <td><%= risk_level.weight %></td>
     <td><%= button_to 'Edit', edit_risk_configuration_risk_level_path(@risk_configuration, risk_level), :method => :get %></td>
     <td><%= button_to 'Delete', risk_configuration_risk_level_path(@risk_configuration, risk_level), :confirm => 'Are you sure?', :method => :delete %></td>
@@ -62,7 +62,7 @@
 
 <% @risk_configuration.categories.sort_by{|c| c.name}.each do |category| %>
   <tr>
-    <td><%= category.name %></td>
+    <th><%= category.name %></th>
     <td><%= category.risk_level.name %></td>
     <td><%= button_to 'Edit', edit_risk_configuration_category_path(@risk_configuration, category), :method => :get %></td>
     <td><%= button_to 'Delete', risk_configuration_category_path(@risk_configuration, category), :confirm => 'Are you sure?', :method => :delete %></td>
