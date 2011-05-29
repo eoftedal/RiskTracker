@@ -1,7 +1,11 @@
 <% content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to @risk.project.name, project_path(current_project) %>  &gt; Risk-<%= @risk.id %>
+<%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
+<%= link_to "Risks", project_risks_path(@project) %> &gt;
+Risk-<%= @risk.id %>
+
+
 <h1><%= @risk.title %></h1>
 
 <p>
@@ -31,4 +35,15 @@
 </p>
 
 
-<%= link_to 'Edit', edit_project_risk_path(current_project, @risk) %>
+<%= button_to 'Edit', edit_project_risk_path(current_project, @risk), :method => :get %>
+
+
+
+<table class="versions">
+<tr>
+	<th>Version date</th><th>Risk level</th>
+</tr>
+<% @risk.versions.each do |v| %>
+	<tr><td><%= v.created_at %></td><td><%= @risk.version_at(v.created_at).risk_level.name %></td></tr>
+<% end %>
+</table>

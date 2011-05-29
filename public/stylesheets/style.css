@@ -1,0 +1,140 @@
+/* Custom */
+a {
+        text-decoration: none;
+}
+a:hover {
+        text-decoration: underline;
+}
+
+body {
+        background: rgb(252,252,253);
+        padding-bottom: 50px;
+		margin:0;
+		padding:0;
+}
+
+
+
+div#main, nav ul, header h1 {
+        margin: 0 auto;
+        width: 800px;
+        padding: 10px 30px 10px 30px;
+}
+
+header.main {
+        color: #ddd;
+        border: 1px solid #ddd;
+        xpadding-top:   10px;
+        xpadding-bottom: 10px;
+        background: rgb(143,16,16);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(16,16,143)), color-stop(0.75, rgb(36,36,171))) ;
+        background: -moz-linear-gradient(center bottom, rgb(16,16,143) 0%, rgb(36,36,171) 75%);
+}
+header.main h1 {
+        font-size: 2em;
+        margin-bottom: -1px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+}
+header.main h1 a, header.main h1 a, header.main h1 a:visited {
+        color: #fff;
+        display: block;
+}
+header.main h1 strong {
+        font-size: 0.75em;
+}
+
+nav {
+        padding: 0px 0px 0px 0px;
+        display: block:
+        clear: both;
+        font-weight: bold;
+}
+
+nav, nav ul, .pseudo {
+        background: rgb(238,238,238);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(242,238,238)), color-stop(0.75,
+rgb(252,248,248)));
+        background: -moz-linear-gradient(center bottom, rgb(242,238,238) 0%, rgb(252,248,248) 75%);
+
+}
+
+nav ul {
+        height: 1.2em;
+        border-bottom: 1px solid #eee;
+        clear: both;
+		list-style:none;
+}
+
+nav li {
+        width: 25%;
+        float: left;
+        padding: 0;
+        text-align: center;
+        font-size: 1.2em;
+		list-style:none;
+}
+
+p {
+        margin-bottom: 0.5em;
+}
+
+div#main, nav ul, header h1 {
+        z-index: 20;
+        position: relative;
+        clear: both;
+        -moz-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+        box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+}
+
+div#main {
+        background-color: #fff;
+        padding-top: 10px;
+        padding-bottom: 40px;
+        min-height: 400px;
+}
+
+h2 {
+        font-size: 1.5em;
+        padding: 20px 0px 10px 0px;
+}
+.tooHigh {
+	color: #dd0000;
+}
+th {
+	text-align: left;
+}
+td , th{
+	padding-right: 10px;
+}
+
+.versions , .versions td, .versions th{
+	margin-top: 20px;
+	color: #888;
+	font-size: 90%;
+}
+
+.risk_list {
+	margin: 30px 0px 20px 30px;
+	border-collapse: collapse;
+}
+
+.risk_list tr:first-child th{
+	border-bottom: 1px solid #999;
+}
+.risk_list tr th:first-child{
+	border-right: 1px solid #999;
+}
+
+
+
+.risk_list th.category {
+	text-align: center;
+}
+
+.risk_list td {
+	text-align: right;
+	min-width: 55px;
+	padding-right:45px;
+}

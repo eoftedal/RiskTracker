@@ -1,5 +1,12 @@
 class RisksController < ApplicationController
 
+	def index
+		respond_to do |format|
+			format.html # show.html.erb
+			format.xml  { render :xml => current_project.risks }
+		end
+	end
+
   # GET /risks/1
   # GET /risks/1.xml
   def show

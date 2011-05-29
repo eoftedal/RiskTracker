@@ -27,8 +27,12 @@
     <td><%= link_to 'Destroy', risk_configuration_risk_probability_path(@risk_configuration, risk_probability), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+  <tr>
+	<td>
+		<%= link_to 'Add', new_risk_configuration_risk_probability_path(@risk_configuration) %>
+	</td>
+  </tr>
 </table>
-<%= link_to 'New Risk probability', new_risk_configuration_risk_probability_path(@risk_configuration) %>
 
 
 <h2>Risk levels</h2>
@@ -42,8 +46,12 @@
     <td><%= link_to 'Destroy', risk_configuration_risk_level_path(@risk_configuration, risk_level), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+  <tr>
+	<td>
+		<%= link_to 'Add', new_risk_configuration_risk_level_path(@risk_configuration) %>
+	</td>
+  </tr>
 </table>
-<%= link_to 'New Risk level', new_risk_configuration_risk_level_path(@risk_configuration) %>
 
 <h2>Categories</h2>
 <table>
@@ -56,8 +64,12 @@
     <td><%= link_to 'Destroy', risk_configuration_category_path(@risk_configuration, category), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+  <tr>
+	<td>
+		<%= link_to 'Add', new_risk_configuration_category_path(@risk_configuration) %>
+	</td>
+  </tr>
 </table>
-<%= link_to 'New category', new_risk_configuration_category_path(@risk_configuration) %>
 
 <br />
 <br />

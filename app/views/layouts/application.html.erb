@@ -7,8 +7,27 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+  <div id="container">
+    <header class="main">
+        <h1>
+                <a href=".">Risk Manager</a>
+        </h1>
+    </header>
+       <nav>
+                <ul>
+                        <li><%= link_to "Configurations", risk_configurations_path %></li>
+                        <li><%= link_to "Projects", projects_path %></li>
 
-<%= yield %>
+                </ul>
+        </nav>
 
+		<div id="main">
+			<%= yield %>
+		</div>
+
+    <footer>
+
+    </footer>
+  </div>
 </body>
 </html>
