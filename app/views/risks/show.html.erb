@@ -1,4 +1,4 @@
-<% content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
+<%= content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
 <p id="notice"><%= notice %></p>
 
 <%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
@@ -9,41 +9,60 @@ Risk-<%= @risk.id %>
 <h1><%= @risk.title %></h1>
 
 <p>
-  <b>Category:</b>
+  <%= @risk.description.presence || "-" %>
+</p>
+
+<p>
+  <label>Category:</label>
   <%= @risk.category.name %>
 </p>
 
-
 <p>
-  <b>Description:</b>
-  <%= @risk.description %>
-</p>
-
-<p>
-  <b>Risk level:</b>
+  <label>Risk level:</label>
   <%= @risk.risk_level.name %>
 </p>
 
 <p>
-  <b>Risk consequence:</b>
+  <label>Risk consequence:</label>
   <%= @risk.risk_consequence.name %>
 </p>
 
 <p>
-  <b>Risk probability:</b>
+  <label>Risk probability:</label>
   <%= @risk.risk_probability.name %>
 </p>
 
 
 <%= button_to 'Edit', edit_project_risk_path(current_project, @risk), :method => :get %>
 
+<h3>Activity</h3>
+<% form_tag(polymorphic_path([current_project, @risk, Comment.new]), {:class => "comment"}) do -%>
+  <%= text_area_tag 'body' %>
+  <%= submit_tag "Add comment" %>
+<% end %>
+
+<% @risk.root_comments.each do |c| %>
+  <div class="comment">
+    <img src="<%= c.user.gravatar_url(40) %>">
+
+    <div class="author"><%= c.user.full_name %></div>
+
+    <%= c.body %>
+    <div class="date"><%= c.created_at %></div>
+  </div>
+<% end %>
+
 
 
 <table class="versions">
 <tr>
-	<th>Version date</th><th>Risk level</th>
+	<th>Version date</th><th>Risk level</th><th>Changed by</th>
 </tr>
 <% @risk.versions.each do |v| %>
-	<tr><td><%= v.created_at %></td><td><%= @risk.version_at(v.created_at).risk_level.name %></td></tr>
+	<tr>
+    <td><%= v.created_at %></td>
+    <td><%= @risk.version_at(v.created_at).risk_level.name %></td>
+    <td><%= User.find(@risk.version_at(v.created_at).originator).full_name %></td>
+  </tr>
 <% end %>
 </table>

@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
-  def index
-  end
+	before_filter :ensure_signed_in
+	
+  	def index
+  	end
 
 end

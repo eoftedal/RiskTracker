@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_filter :ensure_signed_in
+
   # GET /categories/new
   # GET /categories/new.xml
   def new

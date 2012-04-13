@@ -1,4 +1,5 @@
 class RiskProbabilitiesController < ApplicationController
+  before_filter :ensure_signed_in
 
   # GET /risk_probabilities/new
   # GET /risk_probabilities/new.xml

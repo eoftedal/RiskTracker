@@ -43,6 +43,15 @@ header.main h1 a, header.main h1 a, header.main h1 a:visited {
 header.main h1 strong {
         font-size: 0.75em;
 }
+header.main h1 .userinfo {
+        float: right;
+        font-size: 10px;
+
+}
+header.main h1 .userinfo img{
+        vertical-align: middle;
+        margin-left: 16px;
+}
 
 nav {
         padding: 0px 0px 0px 0px;
@@ -144,3 +153,38 @@ td , th{
 h2 {
 	margin-bottom: 0px;
 }
+
+div.comment {
+        margin: 5px 0px 10px 0px;
+        padding-left: 50px;
+}
+.comment img {
+        float: left;
+        margin-left: -50px;
+}
+
+.comment .author {
+        font-weight: bold;
+        font-size: 110%;
+}
+.comment .date {
+        font-style: italic;
+        color: #999;
+}
+
+h3 {
+        margin-top: 20px;
+}
+
+form.comment {
+        margin: 0px 0px 20px 0px;
+}
+form.comment textarea {
+        display: block;
+        width: 80%;
+        height: 50px;
+}
+label {
+        font-weight: bold;
+}
+

@@ -1,4 +1,4 @@
-<h1>Editing risk configuration</h1>
+<h1>Editing risk_configuration</h1>
 
 <%= render 'form' %>
 

@@ -7,9 +7,17 @@ gem 'rails', '3.0.3'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'rake', '0.8.7'
+gem 'rake', '>=0.9.2.2'
 
 gem 'paper_trail'
+
+gem 'acts-as-taggable-on', '~> 2.2.2'
+
+gem 'acts_as_commentable_with_threading'
+
+gem 'ruby-openid'
+gem 'rack-openid'
+
 
 # Use unicorn as the web server
 # gem 'unicorn'

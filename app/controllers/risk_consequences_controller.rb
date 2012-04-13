@@ -1,5 +1,6 @@
 class RiskConsequencesController < ApplicationController
-
+  before_filter :ensure_signed_in
+  
   # GET /risk_consequences/new
   # GET /risk_consequences/new.xml
   def new

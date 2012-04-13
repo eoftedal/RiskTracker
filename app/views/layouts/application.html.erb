@@ -9,7 +9,11 @@
 <body>
   <div id="container">
     <header class="main">
+
         <h1>
+        <div class="userinfo">
+            <%= current_user.full_name %><img src="<%= current_user.gravatar_url(32) %>">
+        </div>
                 <a href=".">Risk tracker</a>
         </h1>
     </header>

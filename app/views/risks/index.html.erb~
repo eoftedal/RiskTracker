@@ -24,7 +24,6 @@ Risks
 		<th>Consequence</th>
 		<th>Probability</th>
 		<th>Risk level</th>
-		<th>Threat agent</th>
 	</tr>
 <% current_project.risks.sort_by{|r| [r.category.name, r.title]}.each do |risk| %>
   <tr>
@@ -34,7 +33,6 @@ Risks
     <td><%= risk.risk_consequence.name %></td>
     <td><%= risk.risk_probability.name %></td>
     <td class="<%= risk.accepted ? "" : "tooHigh" %>"><%= risk.risk_level.name %></td>
-    <td><%= risk.threat_agent %></td>
     <td><%= button_to 'Edit', edit_project_risk_path(current_project, risk), :method => :get %></td>
     <td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td>
 

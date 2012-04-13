@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110529103200) do
+ActiveRecord::Schema.define(:version => 20120413072146) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,23 @@ ActiveRecord::Schema.define(:version => 20110529103200) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "commentable_id",   :default => 0
+    t.string   "commentable_type", :default => ""
+    t.string   "title",            :default => ""
+    t.text     "body",             :default => ""
+    t.string   "subject",          :default => ""
+    t.integer  "user_id",          :default => 0,  :null => false
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -68,7 +85,38 @@ ActiveRecord::Schema.define(:version => 20110529103200) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "accepted_override"
+    t.string   "threat_agent"
+    t.text     "note"
+    t.string   "comment"
   end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "identifier_url"
+  end
+
+  add_index "users", ["identifier_url"], :name => "index_users_on_identifier_url", :unique => true
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false

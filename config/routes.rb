@@ -3,7 +3,9 @@ Riskmanager::Application.routes.draw do
 
 
   resources :projects do
-	resources :risks
+	resources :risks do
+  resources :comments
+  end
   end
 
 
@@ -13,6 +15,8 @@ Riskmanager::Application.routes.draw do
 	resources :risk_probabilities
 	resources :risk_levels
   end
+
+  resource :session
 
   root :to => "home#index"
 

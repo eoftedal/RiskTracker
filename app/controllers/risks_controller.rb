@@ -1,4 +1,5 @@
 class RisksController < ApplicationController
+  before_filter :ensure_signed_in
 
 	def index
 		respond_to do |format|
@@ -11,7 +12,6 @@ class RisksController < ApplicationController
   # GET /risks/1.xml
   def show
     @risk = Risk.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @risk }

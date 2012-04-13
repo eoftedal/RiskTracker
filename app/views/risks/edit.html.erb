@@ -11,3 +11,15 @@ Edit
 <%= render 'form' %>
 
 
+<table class="versions">
+<tr>
+	<th>Version date</th><th>Risk level</th><th>Changed by</th>
+</tr>
+<% @risk.versions.each do |v| %>
+	<tr>
+    <td><%= v.created_at %></td>
+    <td><%= @risk.version_at(v.created_at).risk_level.name %></td>
+    <td><%= User.find(@risk.version_at(v.created_at).originator).full_name %></td>
+  </tr>
+<% end %>
+</table>
