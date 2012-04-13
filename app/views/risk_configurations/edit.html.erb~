@@ -1,6 +1,0 @@
-<h1>Editing risk_configuration</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @risk_configuration %> |
-<%= link_to 'Back', risk_configurations_path %>

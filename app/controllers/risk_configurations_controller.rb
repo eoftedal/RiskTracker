@@ -1,5 +1,6 @@
 class RiskConfigurationsController < ApplicationController
   before_filter :ensure_signed_in
+  before_filter :ensure_approved
   
   # GET /risk_configurations
   # GET /risk_configurations.xml

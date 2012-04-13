@@ -11,6 +11,8 @@ body {
         padding-bottom: 50px;
 		margin:0;
 		padding:0;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Open Sans', verdana, Arial, sans-serif;
 }
 
 
@@ -154,22 +156,25 @@ h2 {
 	margin-bottom: 0px;
 }
 
-div.comment {
+.action {
         margin: 5px 0px 10px 0px;
         padding-left: 50px;
 }
-.comment img {
+.action img {
         float: left;
         margin-left: -50px;
 }
 
-.comment .author {
+.action .author {
         font-weight: bold;
         font-size: 110%;
 }
-.comment .date {
+.action .date {
         font-style: italic;
         color: #999;
+}
+.action .comment {
+        font-style: italic;
 }
 
 h3 {

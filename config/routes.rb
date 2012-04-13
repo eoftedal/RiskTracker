@@ -17,6 +17,8 @@ Riskmanager::Application.routes.draw do
   end
 
   resource :session
+  resource :additional_infos
+  resource :not_approved
 
   root :to => "home#index"
 

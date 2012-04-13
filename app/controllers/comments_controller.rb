@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
   before_filter :ensure_signed_in
+  before_filter :ensure_approved
+
+  
 	# POST
   def create
     @comment = Comment.build_from(current_risk, session[:user_id], params[:body])

@@ -1,5 +1,6 @@
 class RiskConsequencesController < ApplicationController
   before_filter :ensure_signed_in
+  before_filter :ensure_approved  
   
   # GET /risk_consequences/new
   # GET /risk_consequences/new.xml
@@ -40,7 +41,7 @@ class RiskConsequencesController < ApplicationController
 
     respond_to do |format|
       if @risk_consequence.update_attributes(params[:risk_consequence])
-        format.html { redirect_to(@risk_consequence, :notice => 'Risk consequence was successfully updated.') }
+        format.html { redirect_to(current_risk_configuration, :notice => 'Risk consequence was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

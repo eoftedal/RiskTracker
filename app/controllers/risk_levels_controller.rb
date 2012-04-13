@@ -1,5 +1,6 @@
 class RiskLevelsController < ApplicationController
   before_filter :ensure_signed_in
+  before_filter :ensure_approved  
   
   # GET /risk_levels/new
   # GET /risk_levels/new.xml

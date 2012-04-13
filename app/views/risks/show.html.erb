@@ -41,28 +41,26 @@ Risk-<%= @risk.id %>
   <%= submit_tag "Add comment" %>
 <% end %>
 
-<% @risk.root_comments.each do |c| %>
-  <div class="comment">
-    <img src="<%= c.user.gravatar_url(40) %>">
 
-    <div class="author"><%= c.user.full_name %></div>
 
-    <%= c.body %>
-    <div class="date"><%= c.created_at %></div>
+<% @risk.feed.each do |c| %>
+  <div class="action">
+    <img src="<%= c[:user].gravatar_url(40) %>">
+
+    <div class="author"><%= c[:user].full_name %></div>
+    <div class="<%= c[:type] %>">
+      <% if c[:description].size == 1 then %>
+        <%= c[:description][0] %>
+      <% else %>
+        <% c[:description].each do |a| %>
+          <li><%= a %></li>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="date"><%= c[:created_at] %></div>
   </div>
 <% end %>
 
 
 
-<table class="versions">
-<tr>
-	<th>Version date</th><th>Risk level</th><th>Changed by</th>
-</tr>
-<% @risk.versions.each do |v| %>
-	<tr>
-    <td><%= v.created_at %></td>
-    <td><%= @risk.version_at(v.created_at).risk_level.name %></td>
-    <td><%= User.find(@risk.version_at(v.created_at).originator).full_name %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'versions' %>

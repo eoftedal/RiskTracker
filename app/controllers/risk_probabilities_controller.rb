@@ -1,5 +1,6 @@
 class RiskProbabilitiesController < ApplicationController
   before_filter :ensure_signed_in
+  before_filter :ensure_approved  
 
   # GET /risk_probabilities/new
   # GET /risk_probabilities/new.xml
@@ -40,7 +41,7 @@ class RiskProbabilitiesController < ApplicationController
 
     respond_to do |format|
       if @risk_probability.update_attributes(params[:risk_probability])
-        format.html { redirect_to(@risk_probability, :notice => 'Risk probability was successfully updated.') }
+        format.html { redirect_to(current_risk_configuration, :notice => 'Risk probability was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

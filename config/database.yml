@@ -16,9 +16,9 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: mysql2
   encoding: utf8
-  database: ENV['risktracker_db']
-  username: ENV['risktracker_username']
-  password: ENV['risktracker_password']
-  host: ENV['risktracker_host']
+  database: <%= ENV['risktracker_db'] %>
+  username: <%= ENV['risktracker_username'] %>
+  password: <%= ENV['risktracker_password'] %>
+  host: <%= ENV['risktracker_host'] %>
