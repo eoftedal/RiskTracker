@@ -20,7 +20,11 @@
        <nav>
                 <ul>
                       <li><%= link_to "Projects", projects_path %></li>
+                      <% if current_user.is_admin? then %>
                       <li><%= link_to "Configurations", risk_configurations_path %></li>
+                      <li><%= link_to "Users", users_path %></li>
+                      <li><%= link_to "Changes", changes_path %></li>
+                      <% end %>
   
                 </ul>
         </nav>

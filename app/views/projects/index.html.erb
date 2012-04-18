@@ -3,24 +3,30 @@
 <h1>Projects</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Risk configuration</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <% if current_user.is_admin? then %>
+    <tr>
+      <th>Name</th>
+        <th>Risk configuration</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+  <% end %>
 
 <% @projects.each do |project| %>
   <tr>
     <td><%= link_to project.name, project %></td>
-    <td><%= project.risk_configuration.name %></td>
-    <td><%= button_to 'Edit', edit_project_path(project), :method => :get %></td>
-    <td><%= button_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if current_user.is_admin? then %>
+      <td><%= project.risk_configuration.name %></td>
+      <td><%= button_to 'Edit', edit_project_path(project), :method => :get %></td>
+      <td><%= button_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= button_to 'New Project', new_project_path, :method => :get %>
+<% if current_user.is_admin? then %>
+  <%= button_to 'New Project', new_project_path, :method => :get %>
+<% end %>

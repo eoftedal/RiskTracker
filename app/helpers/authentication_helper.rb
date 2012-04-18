@@ -6,6 +6,11 @@ module AuthenticationHelper
   def approved?
     signed_in? && User.find(session[:user_id]).approved
   end
+
+  def is_admin?
+    signed_in? && User.find(session[:user_id]).is_admin?
+  end
+
   
   def current_user
     @current_user ||= User.find(session[:user_id])
@@ -19,6 +24,13 @@ module AuthenticationHelper
   end
   def ensure_approved
     unless approved?
+      session[:redirect_to] = request.request_uri
+      redirect_to(not_approved_path)
+    end
+  end
+
+  def ensure_admin
+    unless is_admin?
       session[:redirect_to] = request.request_uri
       redirect_to(not_approved_path)
     end

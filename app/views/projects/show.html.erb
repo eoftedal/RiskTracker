@@ -13,10 +13,13 @@
   <%= @project.name %>
 </h1>
 
+
+<% if current_user.is_admin? then %>
 <p>
   <b>Risk configuration:</b>
   <%= link_to @project.risk_configuration.name, @project.risk_configuration %>
 </p>
+<% end %>
 
 <div>
 <canvas class="demo" id="graph" width="600"></canvas>
@@ -67,4 +70,6 @@ MochiKit.DOM.addLoadEvent(drawGraph);
 <br />
 <br />
 
+<% if current_user.is_admin? then %>
 <%= button_to 'Edit', edit_project_path(@project), :method => :get %>
+<% end %>

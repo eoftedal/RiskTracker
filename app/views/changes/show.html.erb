@@ -1,0 +1,11 @@
+<table>
+	<% Version.find(:all).reverse().each do |v| %>
+		<tr>
+			<td><%= v.created_at %></td>
+			<td><%= to_user(v) ? to_user(v).full_name : "-" %></td>
+			<td><%= v.event %></td>
+			<td><%= v.item_type %></td>
+			<td><%= v.changeset.to_json %></td>
+		</tr>
+	<% end %>
+</table>

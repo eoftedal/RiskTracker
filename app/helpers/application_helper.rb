@@ -18,4 +18,10 @@ module ApplicationHelper
 			User.find(session[:user_id])
 		end
 	end
+
+	def to_user(version)
+		if (version.originator || version.whodunnit) then
+			User.find(version.originator || version.whodunnit)
+		end
+	end
 end

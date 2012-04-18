@@ -23,8 +23,9 @@ class SessionsController < ApplicationController
                               :first_name => ax.get_single('http://axschema.org/namePerson/first'),
                               :last_name => ax.get_single('http://axschema.org/namePerson/last'))
         session[:user_id] = user.id
+        user.save
         if user.first_name.blank? || user.time_zone.blank?
-          redirect_to(user_additional_info_path(user))
+          redirect_to(additional_infos_path())
         else
           redirect_to(session[:redirect_to] || root_path)
         end

@@ -1,0 +1,12 @@
+<h1>Users</h1>
+<table>
+	<% Users.find(:all).each do |u| %>
+		<tr>
+			<td><img src="<%= c[:user].gravatar_url(40) %>"></td>
+			<td><%= u.full_name %></td>
+			<td><%= u.approved? ? "approved" : "not approved" %></td>
+
+		</tr>
+
+	<% end %>
+</table>

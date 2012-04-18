@@ -11,45 +11,46 @@ Risk-<%= @risk.id %>
 <div id="description">
   <%= raw @risk.description.blank? ? "<em>Click to edit description</em>" : @risk.description_html %>
 </div>
+
+<div class="infocontainer">
+  <p>
+    <label>Category:</label>
+    <%= select("risk", "category_id", 
+          current_project.risk_configuration.categories.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
+          {},
+          {:class => "saveOnChange", "data-name" => "risk[category_id]"}) %>
+  </p>
+
+
+  <p>
+    <label>Risk consequence:</label>
+    <%= select("risk", "risk_consequence_id", 
+          current_project.risk_configuration.risk_consequences.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
+          {},
+          {:class => "saveOnChange", "data-name" => "risk[risk_consequence_id]"}) %>
+  </p>
+
+  <p>
+    <label>Risk probability:</label>
+      <%= select("risk", "risk_probability_id", 
+          current_project.risk_configuration.risk_probabilities.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] }, 
+          {},
+          {:class => "saveOnChange", "data-name" => "risk[risk_probability_id]"}) %>
+
+  </p>
+  <p>
+    <label>Risk level:</label>
+      <%= select("risk", "risk_level_id", 
+          current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
+          {},
+          {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %>
+  </p>
+</div>
+
 <div id="descriptioneditor" style="display: none">
   <textarea data-name="risk[description]"><%= @risk.description %>
   </textarea>
 </div>
-
-
-<p>
-  <label>Category:</label>
-  <%= select("risk", "category_id", 
-        current_project.risk_configuration.categories.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
-        {},
-        {:class => "saveOnChange", "data-name" => "risk[category_id]"}) %>
-</p>
-
-
-<p>
-  <label>Risk consequence:</label>
-  <%= select("risk", "risk_consequence_id", 
-        current_project.risk_configuration.risk_consequences.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
-        {},
-        {:class => "saveOnChange", "data-name" => "risk[risk_consequence_id]"}) %>
-</p>
-
-<p>
-  <label>Risk probability:</label>
-    <%= select("risk", "risk_probability_id", 
-        current_project.risk_configuration.risk_probabilities.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] }, 
-        {},
-        {:class => "saveOnChange", "data-name" => "risk[risk_probability_id]"}) %>
-
-</p>
-<p>
-  <label>Risk level:</label>
-    <%= select("risk", "risk_level_id", 
-        current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
-        {},
-        {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %>
-</p>
-
 
 <%= button_to 'Edit', edit_project_risk_path(current_project, @risk), :method => :get %>
 

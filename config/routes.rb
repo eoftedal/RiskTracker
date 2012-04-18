@@ -19,9 +19,11 @@ Riskmanager::Application.routes.draw do
   	resources :risk_levels
   end
 
+  resource :changes
+  resource :users
   resource :session
-  resource :additional_infos
   resource :not_approved
+  resource :additional_infos
 
   root :to => "home#index"
 

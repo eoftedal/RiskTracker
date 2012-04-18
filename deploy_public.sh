@@ -1,0 +1,1 @@
+scp -r public/* bekk@bonnyrigg.os.ergo.no:risktracker/public/

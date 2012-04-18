@@ -152,6 +152,8 @@ td , th{
 	min-width: 55px;
 	padding-right:45px;
 }
+
+
 h2 {
 	margin-bottom: 0px;
 }
@@ -197,7 +199,7 @@ form.comment {
 }
 form.comment textarea {
         display: block;
-        width: 80%;
+        width: 78%;
         height: 50px;
 }
 label {
@@ -224,7 +226,7 @@ button.edit:active, button.active:focus {
         display: block;
 }
 #descriptioneditor textarea {
-        width: 80%;
+        width: 78%;
         height: 6em;
 }
 
@@ -240,13 +242,13 @@ h1 button.edit {
 }
 
 .checklist {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
 }
 .checklist h4 {
         margin-bottom: 0px;
 }
 .checklist ul {
-        margin: 0px 0px 0px 10px;
+        margin: 3px 0px 3px 10px;
         padding: 0;
         list-style: none;
 }
@@ -254,9 +256,26 @@ h1 button.edit {
         margin: 0;
         padding: 0;        
 }
+.checklist ul li .add, .checklist ul li form {
+        margin: 3px 0px 0px 0px;
+        
+}
 .checklist input[type="checkbox"]:checked + span{
         font-style: italic;
         text-decoration: line-through;
         color: #999;
 }
 
+.risks {
+        border-collapse: collapse;
+}
+.risks tr:nth-child(2n) {
+        background: #eeeeee;       
+}
+.infocontainer {
+        float: right;        
+        width: 150px;
+}
+.infocontainer label {
+        display: block;
+}

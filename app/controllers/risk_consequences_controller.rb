@@ -1,7 +1,8 @@
 class RiskConsequencesController < ApplicationController
   before_filter :ensure_signed_in
   before_filter :ensure_approved  
-  
+  before_filter :ensure_admin  
+
   # GET /risk_consequences/new
   # GET /risk_consequences/new.json
   def new

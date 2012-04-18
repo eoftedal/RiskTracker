@@ -1,6 +1,8 @@
 class RiskProbabilitiesController < ApplicationController
   before_filter :ensure_signed_in
-  before_filter :ensure_approved  
+  before_filter :ensure_approved
+  before_filter :ensure_admin  
+   
 
   # GET /risk_probabilities/new
   # GET /risk_probabilities/new.json
