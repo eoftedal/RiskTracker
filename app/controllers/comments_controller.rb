@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to(project_risk_path(current_project, current_risk), :notice => 'Comment was successfully added.') }
-        format.xml  { render :xml => @comment, :status => :created, :location => current_risk }
+        format.json  { render :json => @comment, :status => :created, :location => current_risk }
       else
         format.html { redirect_to(project_risk_path(current_project, current_risk), :notice => @comment.errors) }
-        format.xml  { render :xml => @comment.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @comment.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -24,10 +24,10 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @risk.update_attributes(params[:risk])
         format.html { redirect_to(project_risk_path(current_project, @risk), :notice => 'Risk was successfully updated.') }
-        format.xml  { head :ok }
+        format.json  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @risk.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @risk.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -39,7 +39,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(current_project) }
-      format.xml  { head :ok }
+      format.json  { head :ok }
     end
   end
 end

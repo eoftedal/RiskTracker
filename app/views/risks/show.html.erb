@@ -6,34 +6,79 @@
 Risk-<%= @risk.id %>
 
 
-<h1><%= @risk.title %></h1>
+<h1><span contenteditable class="editable" data-name="risk[title]"><%= @risk.title %></span></h1>
 
-<p>
-  <%= @risk.description.presence || "-" %>
-</p>
+<div id="description">
+  <%= raw @risk.description.blank? ? "<em>Click to edit description</em>" : @risk.description_html %>
+</div>
+<div id="descriptioneditor" style="display: none">
+  <textarea data-name="risk[description]"><%= @risk.description %>
+  </textarea>
+</div>
+
 
 <p>
   <label>Category:</label>
-  <%= @risk.category.name %>
+  <%= select("risk", "category_id", 
+        current_project.risk_configuration.categories.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
+        {},
+        {:class => "saveOnChange", "data-name" => "risk[category_id]"}) %>
 </p>
 
-<p>
-  <label>Risk level:</label>
-  <%= @risk.risk_level.name %>
-</p>
 
 <p>
   <label>Risk consequence:</label>
-  <%= @risk.risk_consequence.name %>
+  <%= select("risk", "risk_consequence_id", 
+        current_project.risk_configuration.risk_consequences.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
+        {},
+        {:class => "saveOnChange", "data-name" => "risk[risk_consequence_id]"}) %>
 </p>
 
 <p>
   <label>Risk probability:</label>
-  <%= @risk.risk_probability.name %>
+    <%= select("risk", "risk_probability_id", 
+        current_project.risk_configuration.risk_probabilities.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] }, 
+        {},
+        {:class => "saveOnChange", "data-name" => "risk[risk_probability_id]"}) %>
+
+</p>
+<p>
+  <label>Risk level:</label>
+    <%= select("risk", "risk_level_id", 
+        current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
+        {},
+        {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %>
 </p>
 
 
 <%= button_to 'Edit', edit_project_risk_path(current_project, @risk), :method => :get %>
+
+<div id="checklists">
+  <h3>Checklists</h3>
+  <% @risk.checklists.each do |c| %>  
+    <div class="checklist">
+        <h4><%= c.title %></h4>
+        <ul>
+          <% c.checklist_items.each do |item| %>
+            <li class="item">
+              <input type="checkbox" value="1" class="saveOnChange" data-name="checklist_item[done]"<%= item.done? ? " checked" : ""%> data-uri="<%= polymorphic_path([current_project, @risk, c, item]) %>">
+              <span><%= item.title %></span>
+            </li>
+          <% end %>
+          <li>
+            <% form_tag(polymorphic_path([current_project, @risk, c, ChecklistItem.new]), {:class => "add_button", "data-add-name" => "Add item"}) do  -%>
+              <%= text_field_tag 'checklist_item[title]' %>
+              <%= submit_tag "Save item" %>
+            <% end %>
+          </li>
+        </ul>
+    </div>
+  <% end %>
+  <% form_tag(polymorphic_path([current_project, @risk, Checklist.new]), {:class => "add_button", "data-add-name" => "Add checklist"}) do  -%>
+    <%= text_field_tag 'checklist[title]' %>
+    <%= submit_tag "Save checklist" %>
+  <% end %>
+</div>
 
 <h3>Activity</h3>
 <% form_tag(polymorphic_path([current_project, @risk, Comment.new]), {:class => "comment"}) do -%>
@@ -49,13 +94,7 @@ Risk-<%= @risk.id %>
 
     <div class="author"><%= c[:user].full_name %></div>
     <div class="<%= c[:type] %>">
-      <% if c[:description].size == 1 then %>
-        <%= c[:description][0] %>
-      <% else %>
-        <% c[:description].each do |a| %>
-          <li><%= a %></li>
-        <% end %>
-      <% end %>
+      <%= raw c[:description] %>
     </div>
     <div class="date"><%= c[:created_at] %></div>
   </div>

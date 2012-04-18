@@ -12,7 +12,7 @@
     <td><%= @risk.version_at(v.created_at).risk_level.name %></td>
     <td><%= @risk.version_at(v.created_at).risk_probability.name %></td>
     <td><%= @risk.version_at(v.created_at).risk_consequence.name %></td>
-    <td><%= User.find(@risk.version_at(v.created_at).originator).full_name %></td>
+    <td><%= @risk.to_user(v).full_name %></td>
   </tr>
 <% end %>
 </table>

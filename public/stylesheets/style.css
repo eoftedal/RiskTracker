@@ -176,6 +176,17 @@ h2 {
 .action .comment {
         font-style: italic;
 }
+.action .change p, .action .change ul, .action .comment p {
+        margin: 0;
+        padding: 0;
+}
+.action .change ul {
+        margin-left: 20px;
+}
+.action .change ul li {
+        padding: 0;
+        margin: 0;
+}
 
 h3 {
         margin-top: 20px;
@@ -191,5 +202,61 @@ form.comment textarea {
 }
 label {
         font-weight: bold;
+}
+
+p[contenteditable] {
+        margin: 0;
+        padding: 1em;
+}
+
+
+[contenteditable]:active,[contenteditable]:focus, textarea {
+        border: 1px solid #999;
+        padding: 3px;
+        outline: none;
+
+}
+[contenteditable] + button.edit {
+        display: none;
+}
+[contenteditable]:active + button.edit, [contenteditable]:focus + button.edit,
+button.edit:active, button.active:focus {
+        display: block;
+}
+#descriptioneditor textarea {
+        width: 80%;
+        height: 6em;
+}
+
+#descriptioneditor button {
+        display: block;
+}
+h1 button.edit {
+        margin-top: 5px;
+
+}
+.add_button.visible + button.add {
+        display: none;
+}
+
+.checklist {
+        margin-bottom: 10px;
+}
+.checklist h4 {
+        margin-bottom: 0px;
+}
+.checklist ul {
+        margin: 0px 0px 0px 10px;
+        padding: 0;
+        list-style: none;
+}
+.checklist ul li {
+        margin: 0;
+        padding: 0;        
+}
+.checklist input[type="checkbox"]:checked + span{
+        font-style: italic;
+        text-decoration: line-through;
+        color: #999;
 }
 

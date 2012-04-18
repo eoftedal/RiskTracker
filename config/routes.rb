@@ -3,17 +3,20 @@ Riskmanager::Application.routes.draw do
 
 
   resources :projects do
-	resources :risks do
-  resources :comments
-  end
+    resources :risks do
+      resources :comments
+      resources :checklists do
+        resources :checklist_items
+      end
+    end
   end
 
 
   resources :risk_configurations do
-	resources :categories
-	resources :risk_consequences
-	resources :risk_probabilities
-	resources :risk_levels
+  	resources :categories
+  	resources :risk_consequences
+  	resources :risk_probabilities
+  	resources :risk_levels
   end
 
   resource :session

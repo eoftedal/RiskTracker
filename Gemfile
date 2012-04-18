@@ -23,6 +23,8 @@ gem 'acts_as_commentable_with_threading'
 gem 'ruby-openid'
 gem 'rack-openid'
 
+gem 'jquery-rails'
+gem 'bluecloth'
 
 # Use unicorn as the web server
 # gem 'unicorn'

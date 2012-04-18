@@ -9,6 +9,10 @@ module ApplicationHelper
 		Risk.find(params[:risk_id])
 	end
 
+	def current_checklist
+		Checklist.find(params[:checklist_id])
+	end
+
 	def current_user 
 		if(session[:user_id]) then
 			User.find(session[:user_id])

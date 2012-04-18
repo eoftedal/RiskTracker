@@ -10,12 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413150047) do
+ActiveRecord::Schema.define(:version => 20120418070839) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "risk_level_id"
     t.integer  "risk_configuration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "checklist_items", :force => true do |t|
+    t.string   "title"
+    t.boolean  "done"
+    t.integer  "checklist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "checklists", :force => true do |t|
+    t.string   "title"
+    t.integer  "risk_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
