@@ -19,8 +19,9 @@ Riskmanager::Application.routes.draw do
   	resources :risk_levels
   end
 
+  resources :users
+
   resource :changes
-  resource :users
   resource :session
   resource :not_approved
   resource :additional_infos

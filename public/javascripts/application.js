@@ -3,13 +3,14 @@
 $(function() {
 	function addEditButton(editable, success) {
 		$("<button>").addClass("edit").text("Save").bind('mousedown', function() {
-			var data = {};
-			data[editable.attr("data-name")] = extractValue(editable);
-			doUpdate(editable.attr("data-uri") || document.location.href, data, success);
+			doUpdate(editable, success);
 		}).insertAfter(editable);
 
 	}
-	function doUpdate(uri, data, success) {
+	function doUpdate(elm, success) {
+			var uri = elm.attr("data-uri") || document.location.href
+			var data = {};
+			data[elm.attr("data-name")] = extractValue(elm);
 			$.ajax({ 
 				"url" 		: uri, 
 				"data" 		: data,
@@ -34,12 +35,12 @@ $(function() {
 
 	$(".saveOnChange").change(function(evt) {
 		elm = $(evt.currentTarget);
-		var data = {};
-		data[elm.attr("data-name")] = extractValue(elm);
-		doUpdate(elm.attr("data-uri") || document.location.href, data, function() {});
+		doUpdate(elm, function() {});
 	});
 	function extractValue(editable) {
-		if (editable.is(":checkbox")) {
+		if (editable.attr("data-value")) {
+			return editable.attr("data-value");
+		} else if (editable.is(":checkbox")) {
 			return editable.attr("checked") ? 1 : 0;
 		} else if(editable.is("input") || editable.is("textarea") || editable.is("select")) {
 			return editable.val();
@@ -59,4 +60,15 @@ $(function() {
 		var elm = $(e);
 		addButton(elm, elm.attr("data-add-name"));
 	});
+	$(".xhrButton").each(function(i,e) { 
+		$(e).click(function() {
+			doUpdate($(e), function(data) {
+				$(e).attr("data-value", data.user.approved ? "0" : "1")
+					.text(data.user.approved ? "Revoke access" : "Grant access");
+
+			})
+		});
+	});
+
+
 })

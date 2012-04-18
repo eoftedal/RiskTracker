@@ -1,11 +1,21 @@
 <h1>Users</h1>
 <table>
-	<% Users.find(:all).each do |u| %>
+	<% User.find(:all).each do |u| %>
 		<tr>
-			<td><img src="<%= c[:user].gravatar_url(40) %>"></td>
-			<td><%= u.full_name %></td>
-			<td><%= u.approved? ? "approved" : "not approved" %></td>
-
+			<td><img src="<%= u.gravatar_url(40) %>"></td>
+			<td><strong><%= u.full_name %></strong></td>
+			<td><%= u.role.presence || "regular user" %></td>
+			<% if (u != current_user) then %>
+			<td>
+				<% if (u.approved?) then %>
+					<button class="xhrButton" data-name="user[approved]" data-value="0"
+						data-uri="<%= polymorphic_path(u) %>"%>Revoke access</button>
+				<% else %>
+					<button class="xhrButton" data-name="user[approved]" data-value="1"
+						data-uri="<%= polymorphic_path(u) %>"%>Grant access</button>
+				<% end %> 
+			</td>
+			<% end %>
 		</tr>
 
 	<% end %>
