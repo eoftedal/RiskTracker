@@ -27,7 +27,7 @@ class Risk < ActiveRecord::Base
   end
 
   def to_user(version)
-    User.find(version.originator || version.whodunnit)
+    User.find(version.whodunnit || version.originator)
   end
   
   def to_action(version) 

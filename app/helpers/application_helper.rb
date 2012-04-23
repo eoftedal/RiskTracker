@@ -20,8 +20,8 @@ module ApplicationHelper
 	end
 
 	def to_user(version)
-		if (version.originator || version.whodunnit) then
-			User.find(version.originator || version.whodunnit)
+		if (version.whodunnit || version.originator) then
+			User.find(version.whodunnit || version.originator)
 		end
 	end
 end
