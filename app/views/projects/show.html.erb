@@ -43,18 +43,18 @@ MochiKit.DOM.addLoadEvent(drawGraph);
 	<tr>
 		<th></th>
 		<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
-			<th class="category"><%= risk_level.name %></th>
+			<th class="impact"><%= risk_level.name %></th>
 		<% end %>
 	</tr>
-<% @project.risk_configuration.categories.sort_by(&:name).each do |category| %>
+<% @project.risk_configuration.impacts.sort_by(&:name).each do |impact| %>
 	<tr>
-		<th><%= category.name %></th>
+		<th><%= impact.name %></th>
 		<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
 			<% 
-			 count =  @project.risks.select{|r| r.category == category && r.risk_level == risk_level}.count()
-			 count_overridden = @project.risks.select{|r| r.category == category && r.risk_level == risk_level && r.accepted_override }.count() 
+			 count =  @project.risks.select{|r| r.impact == impact && r.risk_level == risk_level}.count()
+			 count_overridden = @project.risks.select{|r| r.impact == impact && r.risk_level == risk_level && r.accepted_override }.count() 
 			%>
-			<td class="<%= (count - count_overridden) > 0 && risk_level.weight > category.risk_level.weight ? "tooHigh" : "" %>">
+			<td class="<%= (count - count_overridden) > 0 && risk_level.weight > impact.risk_level.weight ? "tooHigh" : "" %>">
 				<%= count - count_overridden %>
 				<% if (count_overridden > 0)  %>
 					+ <span><%= count_overridden %></span>

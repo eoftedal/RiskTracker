@@ -75,7 +75,7 @@ class RisksController < ApplicationController
     @risk.destroy
 
     respond_to do |format|
-      format.html { redirect_to(current_project) }
+      format.html { redirect_to(project_risks_path(current_project)) }
       format.json  { head :ok }
     end
   end

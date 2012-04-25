@@ -18,16 +18,16 @@ Risks
 
 <table class="risks">
 	<tr>
-		<th>Category</th>
+		<th>Impact</th>
 		<th>Id</th>
 		<th>Title</th>
 		<th>Consequence</th>
 		<th>Probability</th>
 		<th>Risk level</th>
 	</tr>
-<% current_project.risks.sort_by{|r| [r.category.name, r.title]}.each do |risk| %>
+<% current_project.risks.sort_by{|r| [r.impact.name, r.title]}.each do |risk| %>
   <tr>
-    <td><%= risk.category.name %></td>
+    <td><%= risk.impact.name %></td>
     <td><%= risk.id %></td>
     <td><%= link_to risk.title, project_risk_path(current_project, risk) %></td>
     <td><%= risk.risk_consequence.name %></td>

@@ -10,11 +10,11 @@ Risk-<%= @risk.id %>
 
 <div class="infocontainer">
   <p>
-    <label>Category:</label>
-    <%= select("risk", "category_id", 
-          current_project.risk_configuration.categories.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
+    <label>Impact:</label>
+    <%= select("risk", "impact_id", 
+          current_project.risk_configuration.impacts.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
           {},
-          {:class => "saveOnChange", "data-name" => "risk[category_id]"}) %>
+          {:class => "saveOnChange", "data-name" => "risk[impact_id]"}) %>
   </p>
 
 

@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :category %><br />
-	<%= select("risk", "category_id", current_project.risk_configuration.categories.sort_by{|c| c.name }.collect{|c| [c.name, c.id] } ) %>
+    <%= f.label :impact %><br />
+	<%= select("risk", "impact_id", current_project.risk_configuration.impacts.sort_by{|c| c.name }.collect{|c| [c.name, c.id] } ) %>
   </div>
 
   <div class="field">

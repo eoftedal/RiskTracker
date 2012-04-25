@@ -57,20 +57,20 @@
   </tr>
 </table>
 
-<h2>Categories</h2>
+<h2>Impacts</h2>
 <table>
 
-<% @risk_configuration.categories.sort_by{|c| c.name}.each do |category| %>
+<% @risk_configuration.impacts.sort_by{|c| c.name}.each do |impact| %>
   <tr>
-    <th><%= category.name %></th>
-    <td><%= category.risk_level.name %></td>
-    <td><%= button_to 'Edit', edit_risk_configuration_category_path(@risk_configuration, category), :method => :get %></td>
-    <td><%= button_to 'Delete', risk_configuration_category_path(@risk_configuration, category), :confirm => 'Are you sure?', :method => :delete %></td>
+    <th><%= impact.name %></th>
+    <td><%= impact.risk_level.name %></td>
+    <td><%= button_to 'Edit', edit_risk_configuration_impact_path(@risk_configuration, impact), :method => :get %></td>
+    <td><%= button_to 'Delete', risk_configuration_impact_path(@risk_configuration, impact), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
   <tr>
 	<td>
-		<%= button_to 'Add', new_risk_configuration_category_path(@risk_configuration), :method => :get %>
+		<%= button_to 'Add', new_risk_configuration_impact_path(@risk_configuration), :method => :get %>
 	</td>
   </tr>
 </table>

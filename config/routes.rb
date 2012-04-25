@@ -13,7 +13,7 @@ Riskmanager::Application.routes.draw do
 
 
   resources :risk_configurations do
-  	resources :categories
+  	resources :impacts
   	resources :risk_consequences
   	resources :risk_probabilities
   	resources :risk_levels

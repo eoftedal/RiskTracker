@@ -4,14 +4,14 @@ class Risk < ActiveRecord::Base
   belongs_to :risk_level
   belongs_to :risk_consequence
   belongs_to :risk_probability
-  belongs_to :category
-  has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :category_id, :risk_level_id]
+  belongs_to :impact
+  has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :impact_id, :risk_level_id]
   acts_as_taggable
   acts_as_commentable
   has_many :checklists
 	
   def accepted
-	 risk_level.weight <= category.risk_level.weight || accepted_override
+	 risk_level.weight <= impact.risk_level.weight || accepted_override
   end
 
   def feed
@@ -42,8 +42,8 @@ class Risk < ActiveRecord::Base
           s += " risk probability from \"" + RiskProbability.find(changeset[0]).name + "\" to \"" + RiskProbability.find(changeset[1]).name + "\". "
         elsif (k == "risk_consequence_id") then
           s += " risk consequence from \"" + RiskConsequence.find(changeset[0]).name + "\" to \"" + RiskConsequence.find(changeset[1]).name + "\". "
-        elsif (k == "category_id") then
-          s += " category from \"" + Category.find(changeset[0]).name + "\" to \"" + Category.find(changeset[1]).name + "\". "
+        elsif (k == "impact_id" || k == "category_id") then
+          s += " impact from \"" + Impact.find(changeset[0]).name + "\" to \"" + Impact.find(changeset[1]).name + "\". "
         else
           s += k + ". "
         end

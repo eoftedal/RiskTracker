@@ -10,15 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418100022) do
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "risk_level_id"
-    t.integer  "risk_configuration_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120423093304) do
 
   create_table "checklist_items", :force => true do |t|
     t.string   "title"
@@ -51,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20120418100022) do
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "impacts", :force => true do |t|
+    t.string   "name"
+    t.integer  "risk_level_id"
+    t.integer  "risk_configuration_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(:version => 20120418100022) do
     t.integer  "risk_level_id"
     t.integer  "risk_consequence_id"
     t.integer  "risk_probability_id"
-    t.integer  "category_id"
+    t.integer  "impact_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "accepted_override"
