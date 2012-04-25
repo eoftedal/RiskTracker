@@ -29,12 +29,15 @@
 <script>
 
 function drawGraph() {
-    var layout = new PlotKit.Layout("line", {yTickPrecision: 0});
+    var xTicks = [<%=x_ticks %>];
+    var layout = new PlotKit.Layout("line", {yTickPrecision: 0, xTicks: xTicks });
     layout.addDataset("Too high", [<%=total_risk %>]);
-    layout.addDataset("sqrt2", [<%=accepted_risk %>]);
+    layout.addDataset("Accepted", [<%=accepted_risk %>]);
     layout.evaluate();
     var canvas = MochiKit.DOM.getElement("graph");
-    var plotter = new PlotKit.SweetCanvasRenderer(canvas, layout, {colorScheme: [Color.fromRGB(1, 0.0, 0.0, 0.5), Color.fromRGB(0.0, 1, 0.0, 0.5)] });
+    var plotter = new PlotKit.SweetCanvasRenderer(canvas, layout, {
+    	"colorScheme": [Color.fromRGB(1, 0.0, 0.0, 0.5), Color.fromRGB(0.0, 1, 0.0, 0.5)]
+    });
     plotter.render();
 }
 MochiKit.DOM.addLoadEvent(drawGraph);
