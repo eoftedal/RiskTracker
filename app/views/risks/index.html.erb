@@ -1,12 +1,5 @@
 <% content_for :title, " - " << current_project.name %>
 
-<script type="text/javascript" src="/javascripts/mochikit/MochiKit.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/Base.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/Layout.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/Canvas.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/SweetCanvas.js"></script>
-
-
 <p id="notice"><%= notice %></p>
 
 <%= link_to current_project.name, project_path(current_project) %>  &gt; 

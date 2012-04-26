@@ -1,11 +1,10 @@
 <% content_for :title, " - " << @project.name %>
-
 <script type="text/javascript" src="/javascripts/mochikit/MochiKit.js"></script>
 <script type="text/javascript" src="/javascripts/plotkit/Base.js"></script>
 <script type="text/javascript" src="/javascripts/plotkit/Layout.js"></script>
 <script type="text/javascript" src="/javascripts/plotkit/Canvas.js"></script>
 <script type="text/javascript" src="/javascripts/plotkit/SweetCanvas.js"></script>
-
+<%= javascript_include_tag :defaults %>
 
 <p id="notice"><%= notice %></p>
 
