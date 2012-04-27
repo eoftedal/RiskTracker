@@ -2,8 +2,10 @@
 <html>
 <head>
 	  <%= stylesheet_link_tag "export.css" %>
+	  <title><%= @project.name %></title>
 </head>
 <body>
+	<header class="date"><%= Date.today %> - <%= current_user.full_name %></header>
 	<h1><%= @project.name %></h1>
 
 	<table class="risk_list">
@@ -33,7 +35,7 @@
 	</table>
 
 	<% @risks.each do |r| %>
-		<h2><%= r.title %></h2>
+		<h3><%= r.title %></h3>
 	  <div class="risk">
 		<table>
 			<thead>

@@ -1,3 +1,14 @@
+body {
+	font-family: helvetica, arial;
+}
+header {
+	font-size: 90%;
+}
+h1 {
+	font-size: 200%;
+	border-bottom: 1px solid #000;
+}
+
 label {
 	font-weight: bold;
 }
@@ -12,6 +23,7 @@ table.risk_list {
 	width: auto;
 	border-collapse: collapse;
 	border: 1px solid #000;
+	margin-bottom: 40px;
 }
 .risk_list th.impact {
 	border-bottom: 1px solid #000;
@@ -54,10 +66,13 @@ div.risk p, div.comment p {
 td {
 	padding: 5px;
 }
-h2 {
+h3 {
 	margin: 20px 0px 5px 0px;
 }
 
 ul {
 	margin: 0px;
+}
+* {
+	border-color: #999 !important;
 }
