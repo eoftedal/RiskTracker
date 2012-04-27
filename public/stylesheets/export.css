@@ -1,0 +1,63 @@
+label {
+	font-weight: bold;
+}
+.risk table {
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+	border-bottom: 1px solid #000;
+}
+
+table.risk_list {
+	width: auto;
+	border-collapse: collapse;
+	border: 1px solid #000;
+}
+.risk_list th.impact {
+	border-bottom: 1px solid #000;
+	border-right: none;
+	text-align: center;
+}
+.risk_list th, .risk_list th:first-child {
+	border-right: 1px solid #000;
+}
+.risk_list th {
+	text-align: left;
+	padding: 3px 10px 3px 5px;
+}
+
+.risk_list tr td {
+	min-width: 50px;
+	text-align: center;
+}
+.risk_list tr td:fist-child {
+	width: auto;
+}
+
+.risk  table thead td:first-child {
+	width: 12%;
+}
+.risk table thead td {
+	width: 22%;
+}
+div.risk {
+	border: 1px solid #000;
+}
+div.risk div.description, div.risk div.comment {
+	padding: 5px;
+	margin-top: 0px;
+}
+div.risk p, div.comment p {
+	margin: 0px 0px 3px 0px;
+}
+
+td {
+	padding: 5px;
+}
+h2 {
+	margin: 20px 0px 5px 0px;
+}
+
+ul {
+	margin: 0px;
+}

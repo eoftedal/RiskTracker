@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <%= stylesheet_link_tag "export.css" %>
+</head>
+<body>
+	<h1><%= @project.name %></h1>
+
+	<table class="risk_list">
+		<tr>
+			<th class="impact"></th>
+			<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
+				<th class="impact"><%= risk_level.name %></th>
+			<% end %>
+		</tr>
+	<% @project.risk_configuration.impacts.sort_by(&:name).each do |impact| %>
+		<tr>
+			<th><%= impact.name %></th>
+			<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
+				<% 
+				 count =  @risks.select{|r| r.impact == impact && r.risk_level == risk_level}.count()
+				 count_overridden = @risks.select{|r| r.impact == impact && r.risk_level == risk_level && r.accepted_override }.count() 
+				%>
+				<td class="<%= (count - count_overridden) > 0 && risk_level.weight > impact.risk_level.weight ? "tooHigh" : "" %>">
+					<%= count - count_overridden %>
+					<% if (count_overridden > 0)  %>
+						+ <span><%= count_overridden %></span>
+					<% end %>
+				</td>
+			<% end %>
+		</tr>
+	<% end %>
+	</table>
+
+	<% @risks.each do |r| %>
+		<h2><%= r.title %></h2>
+	  <div class="risk">
+		<table>
+			<thead>
+				<tr>
+					<td><label>ID:</label> <%= r.id %></td>
+					<td><label>Probability:</label> <%= r.risk_probability.name %></td>
+					<td><label>Consequence:</label> <%= r.risk_consequence.name %></td>
+					<td><label>Level:</label> <%= r.risk_level.name %></td>
+					<td><label>Impact:</label> <%= r.impact.name %></td>
+				</tr>
+			</thead>
+		</table>
+		<div class="description">
+			<label>Description:</label>
+			<%= r.description_html.html_safe %>
+		</div>
+		<%  r.root_comments.sort_by{ |f1| f1[:created_at] }.reverse.each do |c| %>
+			<div class="comment">
+				<label><%=c.user.full_name %> - <%= c.created_at.strftime("%d.%m %H:%M") %> :</label>
+				<%= c.body_html.html_safe %>
+			</div>
+		<% end %>
+	  </div>
+	<% end %>
+</body>
+</html>
