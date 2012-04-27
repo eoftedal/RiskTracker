@@ -268,9 +268,14 @@ h1 button.edit {
 
 .risks {
         border-collapse: collapse;
+        margin-bottom: 5px;
+        margin-left: 0px;
+}
+.risks tr :first-child {
+        padding-left: 5px;
 }
 .risks tr:nth-child(2n) {
-        background: #eeeeee;       
+        background: #f4f4f4;       
 }
 .infocontainer {
         float: right;        
@@ -279,3 +284,64 @@ h1 button.edit {
 .infocontainer label {
         display: block;
 }
+.riskbody {
+        margin-right: 160px;
+}
+.riskbody ul {
+        margin: 0px 0px 3px 0px;
+        padding-left: 20px;
+}
+.riskbody p {
+        margin: 0px 0px 2px 0px;
+}
+
+li.tag {
+        display: block;
+        padding: 2px 6px 2px 6px;
+        border: 1px solid #999;
+        margin: 1px 1px 1px 1px;
+        border-radius: 3px;
+        background: rgb(200,200,255);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(180,180,255)), color-stop(0.75, rgb(230,230,255))) ;
+        background: -moz-linear-gradient(center bottom, rgb(180,180,255) 0%, rgb(230,230,255) 75%);
+}
+.tags li.tag:hover {
+        background: rgb(10,10,10);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(10,10,10)), color-stop(0.75, rgb(50,50,50))) ;
+        background: -moz-linear-gradient(center bottom, rgb(10,10,10) 0%, rgb(30,30,30) 75%);
+        cursor: pointer;
+}
+.tags li.tag:hover a, .tags li.tag:hover {
+        color: rgb(250,250,250);
+}
+li.tag a.delete {
+        xfloat: right;
+}
+.tags li.tag {
+        float: left;
+}
+li.tag a {
+        text-decoration: none;
+        background: none;
+        color: #000;
+}
+.tags {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+}
+#tag_field {
+        margin: 3px 1px 1px 1px;
+        width: 120px;
+}
+.tagFilter {
+        font-style: italic;
+        margin: 5px 0px 15px 10px;
+}
+.tagFilter li.tag {
+        display: inline;
+}
+li.tag a {
+        margin-left: 10px;
+}
+

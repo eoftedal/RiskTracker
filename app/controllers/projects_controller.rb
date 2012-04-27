@@ -83,4 +83,21 @@ class ProjectsController < ApplicationController
       format.json  { head :ok }
     end
   end
+
+
+
+  def export
+    @project = Project.find(params[:id])    
+    @tag = params[:tag]    
+    if (@tag) then
+      @risks = @project.risks.tagged_with(params[:tag])
+    else 
+      @risks = @project.risks
+    end
+    respond_to do |format|
+      format.html { render :layout => 'export_layout' }
+    end
+  end
+
+
 end

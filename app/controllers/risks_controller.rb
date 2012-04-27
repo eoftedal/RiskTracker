@@ -3,11 +3,21 @@ class RisksController < ApplicationController
   before_filter :ensure_approved  
 
 	def index
+    @tag = params[:tag]    
+    if (@tag) then
+      @risks = current_project.risks.tagged_with(params[:tag])
+    else 
+      @risks = current_project.risks
+    end
 		respond_to do |format|
 			format.html # show.html.erb
-      format.json  { render :json => current_project.risks }
+      format.json  { render :json => @risks }
 		end
 	end
+
+  def export
+
+  end
 
   # GET /risks/1
   # GET /risks/1.json

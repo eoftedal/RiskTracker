@@ -9,6 +9,9 @@ Risks
   <%= current_project.name %>
 </h1>
 
+<% if (@tag) then %>
+  <div class="tagFilter">Showing risks with tag: <li class="tag"><%= @tag %><a href="<%= project_risks_path(current_project) %>">x</a></li></div>
+<% end %>
 <table class="risks">
 	<tr>
 		<th>Impact</th>
@@ -18,7 +21,7 @@ Risks
 		<th>Probability</th>
 		<th>Risk level</th>
 	</tr>
-<% current_project.risks.sort_by{|r| [r.impact.name, r.title]}.each do |risk| %>
+<% @risks.sort_by{|r| [r.impact.name, r.title]}.each do |risk| %>
   <tr>
     <td><%= risk.impact.name %></td>
     <td><%= risk.id %></td>

@@ -16,7 +16,7 @@ class Risk < ActiveRecord::Base
 
   def feed
     comments_feed = root_comments.map { |c| 
-                {:user => c.user, :description => BlueCloth.new(c.body).to_html, :created_at => c.created_at, :type => "comment" }
+                {:user => c.user, :description => c.body_html, :created_at => c.created_at, :type => "comment" }
               }
     changes_feed = versions.select { |v| 
                 v.changeset != NIL && v.changeset.empty? == false
@@ -63,7 +63,7 @@ class Risk < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:methods => [:feed, :description_html])
+    super(:methods => [:feed, :description_html, :tag_list])
   end
 
 end

@@ -41,8 +41,15 @@ Risk-<%= @risk.id %>
           {},
           {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %>
   </p>
+  <p>
+    <label>Labels:</label>
+    <ul class="tags">
+    </ul>
+    <input type="text" id="tag_field" />
+    <%= javascript_include_tag "risk.js" %>
+  </p>
 </div>
-
+<div class="riskbody">
 <div id="description">
   <%= raw @risk.description.blank? ? "<em>Click to edit description</em>" : @risk.description_html %>
 </div>
@@ -105,3 +112,4 @@ Risk-<%= @risk.id %>
 
 
 <%= render 'versions' %>
+</div>

@@ -30,6 +30,10 @@ class Comment < ActiveRecord::Base
     self.children.size > 0
   end
 
+  def body_html
+    BlueCloth.new(body).to_html
+  end
+
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.
   scope :find_comments_by_user, lambda { |user|
