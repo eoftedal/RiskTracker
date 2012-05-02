@@ -271,7 +271,7 @@ h1 button.edit {
         margin-bottom: 5px;
         margin-left: 0px;
 }
-.risks tr :first-child {
+.risks tr > *:first-child {
         padding-left: 5px;
 }
 .risks tr:nth-child(2n) {
@@ -343,5 +343,5 @@ li.tag a {
 }
 li.tag a {
         margin-left: 10px;
+        font-weight: bold;
 }
-
