@@ -76,3 +76,6 @@ ul {
 * {
 	border-color: #999 !important;
 }
+table, .risk, .riskContainer { page-break-inside: avoid; }
+
+

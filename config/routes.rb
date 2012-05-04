@@ -4,6 +4,7 @@ Riskmanager::Application.routes.draw do
 
   resources :projects do
     get 'export', :on => :member
+    get 'tags', :on => :member
     resources :risks do
       resources :comments
       resources :checklists do

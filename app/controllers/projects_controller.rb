@@ -84,7 +84,9 @@ class ProjectsController < ApplicationController
     end
   end
 
-
+  def tags
+    render :json => Project.find(params[:id]).risks.tag_counts.map{ |t| t.name }
+  end
 
   def export
     @project = Project.find(params[:id])    

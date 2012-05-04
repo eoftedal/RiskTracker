@@ -345,3 +345,7 @@ li.tag a {
         margin-left: 10px;
         font-weight: bold;
 }
+
+.buttonBar div, .buttonBar form {
+        display: inline;
+}

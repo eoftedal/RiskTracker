@@ -72,6 +72,9 @@ MochiKit.DOM.addLoadEvent(drawGraph);
 <br />
 <br />
 
+<div class="buttonBar">
 <% if current_user.is_admin? then %>
 <%= button_to 'Edit', edit_project_path(@project), :method => :get %>
+<%= button_to 'Export', export_project_path(@project), :method => :get %>
 <% end %>
+</div>

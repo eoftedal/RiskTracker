@@ -5,10 +5,13 @@
 <%= link_to current_project.name, project_path(current_project) %>  &gt; 
 Risks
 
+<div style="float: right">
+<%= button_to 'New risk', new_project_risk_path(current_project), :method => :get %>
+</div>
+<div style="clear: both;"></div>
 <h1>
   <%= current_project.name %>
 </h1>
-
 <% if (@tag) then %>
   <div class="tagFilter">Showing risks with tag: <li class="tag"><%= @tag %><a href="<%= project_risks_path(current_project) %>">x</a></li></div>
 <% end %>
@@ -35,8 +38,6 @@ Risks
   </tr>
 <% end %>
 </table>
-<%= button_to 'New risk', new_project_risk_path(current_project), :method => :get %>
-
 <br />
 <br />
 

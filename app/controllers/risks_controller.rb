@@ -15,8 +15,8 @@ class RisksController < ApplicationController
 		end
 	end
 
-  def export
-
+  def tags
+    render :json => current_project.risks.tag_counts.map{ |t| t.name }
   end
 
   # GET /risks/1

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	  <%= stylesheet_link_tag "export.css" %>
-	  <title><%= @project.name %></title>
+<style>
+<%= File.read "#{RAILS_ROOT}/public/stylesheets/export.css" %>
+</style>
+<title><%= @project.name %></title>
 </head>
 <body>
 	<header class="date"><%= Date.today %> - <%= current_user.full_name %> <% if (@tag) then %> - tag: <%= @tag %> <% end %></header>
@@ -34,30 +36,32 @@
 	</table>
 
 	<% @risks.each do |r| %>
-		<h3><%= r.title %></h3>
-	  <div class="risk">
-		<table>
-			<thead>
-				<tr>
-					<td><label>ID:</label> <%= r.id %></td>
-					<td><label>Probability:</label> <%= r.risk_probability.name %></td>
-					<td><label>Consequence:</label> <%= r.risk_consequence.name %></td>
-					<td><label>Level:</label> <%= r.risk_level.name %></td>
-					<td><label>Impact:</label> <%= r.impact.name %></td>
-				</tr>
-			</thead>
-		</table>
-		<div class="description">
-			<label>Description:</label>
-			<%= r.description_html.html_safe %>
-		</div>
-		<%  r.root_comments.sort_by{ |f1| f1[:created_at] }.reverse.each do |c| %>
-			<div class="comment">
-				<label><%=c.user.full_name %> - <%= c.created_at.strftime("%d.%m %H:%M") %> :</label>
-				<%= c.body_html.html_safe %>
+	 <div class="riskContainer">
+      	<h3><%= r.title %></h3>
+	  	<div class="risk">
+			<table>
+				<thead>
+					<tr>
+						<td><label>ID:</label> <%= r.id %></td>
+						<td><label>Probability:</label> <%= r.risk_probability.name %></td>
+						<td><label>Consequence:</label> <%= r.risk_consequence.name %></td>
+						<td><label>Level:</label> <%= r.risk_level.name %></td>
+						<td><label>Impact:</label> <%= r.impact.name %></td>
+					</tr>
+				</thead>
+			</table>
+			<div class="description">
+				<label>Description:</label>
+				<%= r.description_html.html_safe %>
 			</div>
-		<% end %>
-	  </div>
+			<%  r.root_comments.sort_by{ |f1| f1[:created_at] }.reverse.each do |c| %>
+				<div class="comment">
+					<label><%=c.user.full_name %> - <%= c.created_at.strftime("%d.%m %H:%M") %> :</label>
+					<%= c.body_html.html_safe %>
+				</div>
+			<% end %>
+	  	</div>
+	 </div>
 	<% end %>
 </body>
 </html>
