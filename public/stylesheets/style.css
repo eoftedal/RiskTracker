@@ -348,6 +348,7 @@ li.tag a {
 .ui-autocomplete {
         margin: 0;
         padding: 0;
+        width: 150px;
 }
 .ui-autocomplete li {
         width: 100px;
