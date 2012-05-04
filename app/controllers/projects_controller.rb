@@ -85,7 +85,9 @@ class ProjectsController < ApplicationController
   end
 
   def tags
-    render :json => Project.find(params[:id]).risks.tag_counts.map{ |t| t.name }
+    @term = params[:term].downcase
+    @tags = Project.find(params[:id]).risks.tag_counts.map{ |t| t.name }.select{ |t| t.downcase.start_with? @term }
+    render :json => @tags
   end
 
   def export

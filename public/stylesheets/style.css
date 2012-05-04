@@ -295,7 +295,7 @@ h1 button.edit {
         margin: 0px 0px 2px 0px;
 }
 
-li.tag {
+li.tag, .ui-autocomplete li { 
         display: block;
         padding: 2px 6px 2px 6px;
         border: 1px solid #999;
@@ -305,7 +305,7 @@ li.tag {
         background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(180,180,255)), color-stop(0.75, rgb(230,230,255))) ;
         background: -moz-linear-gradient(center bottom, rgb(180,180,255) 0%, rgb(230,230,255) 75%);
 }
-.tags li.tag:hover {
+.tags li.tag:hover,  .ui-autocomplete li:hover {
         background: rgb(10,10,10);
         background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(10,10,10)), color-stop(0.75, rgb(50,50,50))) ;
         background: -moz-linear-gradient(center bottom, rgb(10,10,10) 0%, rgb(30,30,30) 75%);
@@ -344,6 +344,17 @@ li.tag a {
 li.tag a {
         margin-left: 10px;
         font-weight: bold;
+}
+.ui-autocomplete {
+        margin: 0;
+        padding: 0;
+}
+.ui-autocomplete li {
+        width: 100px;
+        box-shadow: 5px 5px 5px rgba(0,0,0,0,0.5);
+}
+.ui-autocomplete li a {
+        display: block;
 }
 
 .buttonBar div, .buttonBar form {

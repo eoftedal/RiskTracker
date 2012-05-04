@@ -52,4 +52,13 @@ $(function() {
 			saveTags(function() { $("#tag_field").val(""); },  newTag);
 		}
 	});
+	$("#tag_field").autocomplete({
+		source: "../tags",
+		minLength: 1,
+		select: function(event, ui) {
+			if (ui.item) {
+				saveTags(function() { $("#tag_field").val(""); },  ui.item.value);
+			}
+		}
+	});
 });
