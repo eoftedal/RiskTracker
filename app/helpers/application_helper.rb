@@ -1,3 +1,4 @@
+require 'bluecloth'
 module ApplicationHelper
   	def current_risk_configuration 
 		RiskConfiguration.find(params[:risk_configuration_id])
@@ -23,5 +24,9 @@ module ApplicationHelper
 		if (version.whodunnit || version.originator) then
 			User.find(version.whodunnit || version.originator)
 		end
+	end
+
+	def markdown_to_html(markdown)
+		BlueCloth.new(markdown).to_html
 	end
 end

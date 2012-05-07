@@ -9,10 +9,10 @@ a:hover {
 body {
         background: rgb(252,252,253);
         padding-bottom: 50px;
-		margin:0;
-		padding:0;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'Open Sans', verdana, Arial, sans-serif;
+	margin:0;
+	padding:0;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Open Sans', verdana, Arial, sans-serif;
 }
 
 

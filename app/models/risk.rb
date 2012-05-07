@@ -1,4 +1,4 @@
-require 'bluecloth'
+
 class Risk < ActiveRecord::Base
   belongs_to :project
   belongs_to :risk_level
@@ -9,6 +9,7 @@ class Risk < ActiveRecord::Base
   acts_as_taggable
   acts_as_commentable
   has_many :checklists
+  include RisksHelper
 	
   def accepted
 	 risk_level.weight <= impact.risk_level.weight || accepted_override
@@ -21,7 +22,7 @@ class Risk < ActiveRecord::Base
     changes_feed = versions.select { |v| 
                 v.changeset != NIL && v.changeset.empty? == false
               }.map { |v| 
-                {:user => to_user(v), :description => BlueCloth.new(to_action(v)).to_html, :created_at => v.created_at, :type => "change" }
+                {:user => to_user(v), :description => markdown_to_html(to_action(v)), :created_at => v.created_at, :type => "change" }
               }
     (comments_feed | changes_feed).sort_by{ |f1| f1[:created_at] }.reverse
   end
@@ -59,8 +60,10 @@ class Risk < ActiveRecord::Base
     end
   end
   def description_html
-    BlueCloth.new(description).to_html
+    markdown_to_html(description)
   end
+
+
 
   def as_json(options={})
     super(:methods => [:feed, :description_html, :tag_list])
