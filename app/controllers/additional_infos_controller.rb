@@ -6,7 +6,7 @@ class AdditionalInfosController < ApplicationController
   end
   
   def user_params 
-	params[:user].slice(:fist_name, :last_name, :time_zone)
+	params[:user].slice(:first_name, :last_name, :time_zone)
   end
   def update
     @user = User.find(session[:user_id])
