@@ -28,7 +28,7 @@ header.main {
         border: 1px solid #ddd;
         xpadding-top:   10px;
         xpadding-bottom: 10px;
-        background: rgb(143,16,16);
+        background: rgb(16,16, 143);
         background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(16,16,143)), color-stop(0.75, rgb(36,36,171))) ;
         background: -moz-linear-gradient(center bottom, rgb(16,16,143) 0%, rgb(36,36,171) 75%);
 }
@@ -296,6 +296,7 @@ h1 button.edit {
 }
 
 li.tag, .ui-autocomplete li { 
+        font-style: normal;
         display: block;
         padding: 2px 6px 2px 6px;
         border: 1px solid #999;
@@ -361,3 +362,23 @@ li.tag a {
 .buttonBar div, .buttonBar form {
         display: inline;
 }
+
+
+
+/*
+.low {
+        background: rgba(16,143,16, 0.5);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(16,143,16, 0.5)), color-stop(0.75, rgba(36,171,36, 0.5))) ;
+        background: -moz-linear-gradient(center bottom, rgba(16,143,16, 0.5) 0%, rgba(36,171,36, 0.5) 75%);
+}
+.medium {
+        background: rgba(143,143,16, 0.5);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(143,143,16, 0.5)), color-stop(0.75, rgb(171,171,36, 0.5))) ;
+        background: -moz-linear-gradient(center bottom, rgba(143,143,16, 0.5) 0%, rgba(171,171,36, 0.5) 75%);
+}
+.high {
+        background: rgba(143,16,16, 0.5);
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(143,16,16, 0.5)), color-stop(0.75, rgb(171,36,36, 0.5))) ;
+        background: -moz-linear-gradient(center bottom, rgba(143,16,16, 0.5) 0%, rgba(171,36,36, 0.5) 75%);
+}
+*/

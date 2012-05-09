@@ -31,7 +31,7 @@ class Risk < ActiveRecord::Base
     User.find(version.whodunnit || version.originator)
   end
   
-  def to_action(version) 
+  def to_action(version)
     result = []
     version.changeset.keys.each{|k| 
       changeset = version.changeset[k];

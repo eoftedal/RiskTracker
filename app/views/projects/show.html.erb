@@ -55,8 +55,16 @@ MochiKit.DOM.addLoadEvent(drawGraph);
 			<% 
 			 count =  @project.risks.select{|r| r.impact == impact && r.risk_level == risk_level}.count()
 			 count_overridden = @project.risks.select{|r| r.impact == impact && r.risk_level == risk_level && r.accepted_override }.count() 
+			 weightclass = "low"
+			 if (risk_level.weight > impact.risk_level.weight) then
+			 	weightclass = "medium"
+			 end
+			 if (impact.risk_level.above != NIL && risk_level.weight > impact.risk_level.above.weight ) then
+			 	weightclass = "high"
+			 end
+
 			%>
-			<td class="<%= (count - count_overridden) > 0 && risk_level.weight > impact.risk_level.weight ? "tooHigh" : "" %>">
+			<td class="<%= weightclass %> <%= (count - count_overridden) > 0 && (risk_level.weight > impact.risk_level.weight ? "tooHigh" : "") %>">
 				<%= count - count_overridden %>
 				<% if (count_overridden > 0)  %>
 					+ <span><%= count_overridden %></span>
