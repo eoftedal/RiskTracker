@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Risk manager<%= yield(:title) %></title>
-  <%= stylesheet_link_tag ["scaffold", "style"] %>
-  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag "scaffold", "style" %>
+  <%= yield(:pre_head) %>
+  <%= javascript_include_tag "application" %>
+  <%= yield(:head) %>
   <%= csrf_meta_tag %>
 </head>
 <body>

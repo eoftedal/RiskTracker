@@ -1,5 +1,12 @@
 require 'bluecloth'
 module ApplicationHelper
+	def javascript(*files)
+		content_for(:head) { javascript_include_tag(*files) }
+	end
+	def pre_javascript(*files)
+		content_for(:pre_head) { javascript_include_tag(*files) }
+	end
+
   	def current_risk_configuration 
 		RiskConfiguration.find(params[:risk_configuration_id])
 	end

@@ -18,20 +18,20 @@ module AuthenticationHelper
   
   def ensure_signed_in
     unless signed_in?
-      session[:redirect_to] = request.request_uri
+      session[:redirect_to] = request.url
       redirect_to(new_session_path)
     end
   end
   def ensure_approved
     unless approved?
-      session[:redirect_to] = request.request_uri
+      session[:redirect_to] = request.url
       redirect_to(not_approved_path)
     end
   end
 
   def ensure_admin
     unless is_admin?
-      session[:redirect_to] = request.request_uri
+      session[:redirect_to] = request.url
       redirect_to(not_approved_path)
     end
   end

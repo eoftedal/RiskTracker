@@ -1,4 +1,6 @@
 <%= content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
+<% javascript 'risk' %>
+
 <p id="notice"><%= notice %></p>
 
 <%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
@@ -46,7 +48,6 @@ Risk-<%= @risk.id %>
     <ul class="tags">
     </ul>
     <input type="text" id="tag_field" />
-    <%= javascript_include_tag "risk.js" %>
   </p>
 </div>
 <div class="riskbody">

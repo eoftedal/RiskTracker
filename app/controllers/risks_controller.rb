@@ -23,7 +23,6 @@ class RisksController < ApplicationController
   # GET /risks/1.json
   def show
     @risk = Risk.find(params[:id])
-    @risk.risk_consequence = RiskConsequence.find(1)
     respond_to do |format|
       format.html # show.html.erb
       format.json  { render :json => @risk }

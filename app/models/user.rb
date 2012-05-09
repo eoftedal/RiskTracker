@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
 		role == "admin"
 	end
 
+	def as_json(options={})
+    	super(:only => [], :methods => [:full_name, :gravatar_url])
+  	end
 end

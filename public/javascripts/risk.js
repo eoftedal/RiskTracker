@@ -42,7 +42,7 @@ $(function() {
 
 
 	$.getJSON(document.location.href, function(data) {
-		setupTagList(data.risk.tag_list);
+		setupTagList(data.tag_list);
 	});
 
 	$("#tag_field").keydown(function(evt) {

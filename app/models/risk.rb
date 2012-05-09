@@ -66,7 +66,7 @@ class Risk < ActiveRecord::Base
 
 
   def as_json(options={})
-    super(:methods => [:feed, :description_html, :tag_list])
+    super(:only => [:description, :title, :id, :risk_consequence_id], :methods => [:feed, :description_html, :tag_list])
   end
 
 end

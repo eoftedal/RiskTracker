@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423093304) do
+ActiveRecord::Schema.define(:version => 20120509074555) do
 
   create_table "checklist_items", :force => true do |t|
     t.string   "title"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(:version => 20120423093304) do
     t.text     "object_changes"
   end
 
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
   add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end
