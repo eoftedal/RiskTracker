@@ -162,9 +162,12 @@ h2 {
         margin: 5px 0px 10px 0px;
         padding-left: 50px;
 }
-.action img {
+.action img.avatar {
         float: left;
         margin-left: -50px;
+}
+.action .attachment img {
+        display: block;
 }
 
 .action .author {
@@ -225,12 +228,12 @@ p[contenteditable] {
 button.edit:active, button.active:focus {
         display: block;
 }
-#descriptioneditor textarea {
+#descriptioneditor textarea, #mitigationeditor textarea {
         width: 78%;
         height: 6em;
 }
 
-#descriptioneditor button {
+#descriptioneditor button, #mitigationeditor button {
         display: block;
 }
 h1 button.edit {
@@ -284,6 +287,11 @@ h1 button.edit {
 .infocontainer label {
         display: block;
 }
+.infocontainer input[type="file"] {
+        width: 150px;
+}
+
+
 .riskbody {
         margin-right: 160px;
 }

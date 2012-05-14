@@ -10,6 +10,7 @@ Riskmanager::Application.routes.draw do
       resources :checklists do
         resources :checklist_items
       end
+      resources :attachments
     end
   end
 
@@ -20,6 +21,8 @@ Riskmanager::Application.routes.draw do
   	resources :risk_probabilities
   	resources :risk_levels
   end
+
+  resources :attachments
 
   resources :users
 

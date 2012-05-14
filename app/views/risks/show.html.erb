@@ -3,13 +3,6 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
-<%= link_to "Risks", project_risks_path(@project) %> &gt;
-Risk-<%= @risk.id %>
-
-
-<h1><div contenteditable class="editable" data-name="risk[title]"><%= @risk.title %></div></h1>
-
 <div class="infocontainer">
   <p>
     <label>Impact:</label>
@@ -43,6 +36,8 @@ Risk-<%= @risk.id %>
           {},
           {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %>
   </p>
+
+
   <p>
     <label>Labels:</label>
     <ul class="tags">
@@ -51,6 +46,13 @@ Risk-<%= @risk.id %>
   </p>
 </div>
 <div class="riskbody">
+
+<%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
+<%= link_to "Risks", project_risks_path(@project) %> &gt;
+Risk-<%= @risk.id %>
+
+<h1><div contenteditable class="editable" data-name="risk[title]"><%= @risk.title %></div></h1>
+
 <div id="description">
   <%= raw @risk.description.blank? ? "<em>Click to edit description</em>" : @risk.description_html %>
 </div>
@@ -62,6 +64,15 @@ Risk-<%= @risk.id %>
 <!--
 <%= button_to 'Edit', edit_project_risk_path(current_project, @risk), :method => :get %>
 -->
+
+<h3>Mitigation</h3>
+<div id="mitigation">
+  <%= raw @risk.mitigation.blank? ? "<em>Click to edit mitigation</em>" : @risk.mitigation_html %>
+</div>
+<div id="mitigationeditor" style="display: none">
+  <textarea data-name="risk[mitigation]"><%= @risk.mitigation %>
+  </textarea>
+</div>
 
 <div id="checklists">
   <h3>Checklists</h3>
@@ -76,7 +87,7 @@ Risk-<%= @risk.id %>
             </li>
           <% end %>
           <li>
-            <% form_tag(polymorphic_path([current_project, @risk, c, ChecklistItem.new]), {:class => "add_button", "data-add-name" => "Add item"}) do  -%>
+            <%= form_tag(polymorphic_path([current_project, @risk, c, ChecklistItem.new]), {:class => "add_button", "data-add-name" => "Add item"}) do  -%>
               <%= text_field_tag 'checklist_item[title]' %>
               <%= submit_tag "Save item" %>
             <% end %>
@@ -84,23 +95,38 @@ Risk-<%= @risk.id %>
         </ul>
     </div>
   <% end %>
-  <% form_tag(polymorphic_path([current_project, @risk, Checklist.new]), {:class => "add_button", "data-add-name" => "Add checklist"}) do  -%>
+  <%= form_tag(polymorphic_path([current_project, @risk, Checklist.new]), {:class => "add_button", "data-add-name" => "Add checklist"}) do  -%>
     <%= text_field_tag 'checklist[title]' %>
     <%= submit_tag "Save checklist" %>
   <% end %>
 </div>
 
+
+  <div class="attachments">
+    <h3>Attachments:</h3>
+    <ul>
+      <% @risk.attachment_links.each do |al| %>
+        <li><a href="<%= al.attachment.file.url %>"><%= al.attachment.file_file_name %></a></li>
+      <% end %>        
+    </ul>
+    <%= form_for([current_project, @risk, Attachment.new]) do |f| %>
+      <%= f.file_field :file %>
+      <%= f.submit "Upload" %>
+    <% end %>
+  </div>
+
+
+
 <h3>Activity</h3>
-<% form_tag(polymorphic_path([current_project, @risk, Comment.new]), {:class => "comment"}) do -%>
+<%= form_tag(polymorphic_path([current_project, @risk, Comment.new]), {:class => "comment"}) do -%>
   <%= text_area_tag 'body' %>
   <%= submit_tag "Add comment" %>
 <% end %>
 
 
-
 <% @risk.feed.each do |c| %>
   <div class="action">
-    <img src="<%= c[:user].gravatar_url(40) %>">
+    <img src="<%= c[:user].gravatar_url(40) %>" class="avatar">
 
     <div class="author"><%= c[:user].full_name %></div>
     <div class="<%= c[:type] %>">

@@ -33,13 +33,22 @@ $(function() {
 	$(".editable").each(function(i, elm) {
 		addEditButton($(elm), function() {});
 	});
-	$("#description").bind("click", function() {
-		$("#descriptioneditor").show();
-		$("#description").hide();
+	function initializeEditor(id, dataLoader) {
+		$(id).bind("click", function() {
+			$(id + "editor").show();
+			$(id).hide();
+		});
+		addEditButton($(id + "editor textarea"), function(data) {
+			$(id + "editor").hide();
+			$(id).show().html(dataLoader(data));
+		});
+
+	}
+	initializeEditor("#description", function(data) { 
+		return data.description_html 
 	});
-	addEditButton($("#descriptioneditor textarea"), function(data) {
-		$("#descriptioneditor").hide();
-		$("#description").show().html(data.risk.description_html);
+	initializeEditor("#mitigation", function(data) { 
+		return data.mitigation_html 
 	});
 
 	$(".saveOnChange").change(function(evt) {

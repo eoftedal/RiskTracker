@@ -4,3 +4,5 @@ log/*.log
 tmp/**/*
 deploy.sh
 TODOS.txt
+uploads/**
+public/system/**

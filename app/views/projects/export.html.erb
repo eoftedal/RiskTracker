@@ -2,7 +2,7 @@
 <html>
 <head>
 <style>
-<%= File.read "#{RAILS_ROOT}/public/stylesheets/export.css" %>
+<%= File.read "#{Rails.root}/public/stylesheets/export.css" %>
 </style>
 <title><%= @project.name %></title>
 </head>
@@ -53,6 +53,11 @@
 			<div class="description">
 				<label>Description:</label>
 				<%= r.description_html.html_safe %>
+			</div>
+			<div class="description">
+				<label>Mitigation:</label>
+				<%= r.mitigation_html.html_safe %>
+
 			</div>
 			<%  r.root_comments.sort_by{ |f1| f1[:created_at] }.reverse.each do |c| %>
 				<div class="comment">

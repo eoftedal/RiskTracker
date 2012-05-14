@@ -5,15 +5,32 @@ class Risk < ActiveRecord::Base
   belongs_to :risk_consequence
   belongs_to :risk_probability
   belongs_to :impact
-  has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :impact_id, :risk_level_id, :title, :description]
+  has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :impact_id, :risk_level_id, :title, :description, :mitigation]
   acts_as_taggable
   acts_as_commentable
   has_many :checklists
+  has_many :attachment_links
   include RisksHelper
-	
+
+
+  def as_json(options={})
+    super(:only => [:description, :mitigation, :title, :id, :risk_consequence_id], 
+      :methods => [:feed, :description_html, :mitigation_html, :tag_list])
+  end
+
+  
+  def description_html
+    markdown_to_html(description)
+  end
+  def mitigation_html
+    markdown_to_html(mitigation)
+  end
+
   def accepted
 	 risk_level.weight <= impact.risk_level.weight || accepted_override
   end
+
+
 
   def feed
     comments_feed = root_comments.map { |c| 
@@ -24,7 +41,12 @@ class Risk < ActiveRecord::Base
               }.map { |v| 
                 {:user => to_user(v), :description => markdown_to_html(to_action(v)), :created_at => v.created_at, :type => "change" }
               }
-    (comments_feed | changes_feed).sort_by{ |f1| f1[:created_at] }.reverse
+    attachments_feed = attachment_links.map { |l| 
+                {:user => l.user, :description => "Attachment uploaded: \"<a href=\"" + l.attachment.file.url() + "\">" + 
+                  l.attachment.file_file_name + "\"" +
+                  "<img src=\"" + l.attachment.file.url(:thumb) + "\"></a>", :created_at => l.created_at, :type => "attachment" }
+              }
+    (comments_feed | changes_feed | attachments_feed).sort_by{ |f1| f1[:created_at] }.reverse
   end
 
   def to_user(version)
@@ -59,14 +81,6 @@ class Risk < ActiveRecord::Base
       result[0]
     end
   end
-  def description_html
-    markdown_to_html(description)
-  end
 
-
-
-  def as_json(options={})
-    super(:only => [:description, :title, :id, :risk_consequence_id], :methods => [:feed, :description_html, :tag_list])
-  end
 
 end

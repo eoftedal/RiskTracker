@@ -59,6 +59,13 @@ div.risk div.description, div.risk div.comment {
 	padding: 5px;
 	margin-top: 0px;
 }
+div.risk div.description {
+	min-height: 2em;
+}
+div.description label {
+	display: block;
+}
+
 div.risk p, div.comment p {
 	margin: 0px 0px 3px 0px;
 }

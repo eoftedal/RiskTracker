@@ -38,6 +38,8 @@ gem 'rack-openid'
 gem 'jquery-rails'
 gem 'bluecloth'
 
+gem 'paperclip', '~> 2.7'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
