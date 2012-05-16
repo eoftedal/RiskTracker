@@ -86,4 +86,22 @@ $(function() {
 			});
 		});
 	});
+
+	$("#search").keydown(function(evt) {
+		if (evt.which == 13) {	
+			evt.preventDefault();
+			var url = document.location.href;
+			var parts = url.split("?");
+			var base = parts[0];
+			document.location = base + "?search=" + escape($("#search").val());
+		}
+	});
+
+
+
+	$("table").tablesorter();
+
+
+
+
 });

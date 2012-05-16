@@ -57,8 +57,7 @@ Risk-<%= @risk.id %>
   <%= raw @risk.description.blank? ? "<em>Click to edit description</em>" : @risk.description_html %>
 </div>
 <div id="descriptioneditor" style="display: none">
-  <textarea data-name="risk[description]"><%= @risk.description %>
-  </textarea>
+  <textarea data-name="risk[description]"><%= @risk.description %></textarea>
 </div>
 
 <!--
@@ -70,8 +69,7 @@ Risk-<%= @risk.id %>
   <%= raw @risk.mitigation.blank? ? "<em>Click to edit mitigation</em>" : @risk.mitigation_html %>
 </div>
 <div id="mitigationeditor" style="display: none">
-  <textarea data-name="risk[mitigation]"><%= @risk.mitigation %>
-  </textarea>
+  <textarea data-name="risk[mitigation]"><%= @risk.mitigation %></textarea>
 </div>
 
 <div id="checklists">
@@ -132,7 +130,11 @@ Risk-<%= @risk.id %>
     <div class="<%= c[:type] %>">
       <%= raw c[:description] %>
     </div>
-    <div class="date"><%= c[:created_at] %></div>
+    <div class="date"><%= c[:created_at] %>
+      <% if c[:type] == "comment" then %>
+        <a data-method="delete" href="<%= polymorphic_path([current_project, @risk, Comment.find(c[:id])]) %>">Delete</a>
+      <% end %>
+    </div>
   </div>
 <% end %>
 

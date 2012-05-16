@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120509194445) do
+ActiveRecord::Schema.define(:version => 20120514122959) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -51,12 +51,13 @@ ActiveRecord::Schema.define(:version => 20120509194445) do
     t.string   "title",            :default => ""
     t.text     "body",             :default => ""
     t.string   "subject",          :default => ""
-    t.integer  "user_id",          :default => 0,  :null => false
+    t.integer  "user_id",          :default => 0,     :null => false
     t.integer  "parent_id"
     t.integer  "lft"
     t.integer  "rgt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "deleted",          :default => false
   end
 
   add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"

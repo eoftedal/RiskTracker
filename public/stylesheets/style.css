@@ -6,6 +6,8 @@ a:hover {
         text-decoration: underline;
 }
 
+
+
 body {
         background: rgb(252,252,253);
         padding-bottom: 50px;
@@ -112,6 +114,7 @@ h2 {
 }
 .tooHigh {
 	color: #dd0000;
+        font-weight: bold;
 }
 th {
 	text-align: left;
@@ -343,10 +346,14 @@ li.tag a {
         margin: 3px 1px 1px 1px;
         width: 120px;
 }
-.tagFilter {
+.tagFilter, .searchFilter {
         font-style: italic;
         margin: 5px 0px 15px 10px;
 }
+.searchFilter span {
+        font-weight: bold;
+}
+
 .tagFilter li.tag {
         display: inline;
 }

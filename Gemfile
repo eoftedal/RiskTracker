@@ -10,6 +10,7 @@ group :development do
 end
 group :production do
 	gem 'mysql2', '> 0.3'
+	gem 'thin'
 end
 
 gem 'json'

@@ -33,8 +33,8 @@ class Risk < ActiveRecord::Base
 
 
   def feed
-    comments_feed = root_comments.map { |c| 
-                {:user => c.user, :description => c.body_html, :created_at => c.created_at, :type => "comment" }
+    comments_feed = root_comments.select{|c| !c.deleted }.map { |c| 
+                {:user => c.user, :description => c.body_html, :created_at => c.created_at, :type => "comment", :id => c.id }
               }
     changes_feed = versions.select { |v| 
                 v.changeset != NIL && v.changeset.empty? == false

@@ -3,9 +3,13 @@ class RisksController < ApplicationController
   before_filter :ensure_approved  
 
 	def index
-    @tag = params[:tag]    
+    @tag = params[:tag]
+    @search = params[:search]    
     if (@tag) then
       @risks = current_project.risks.tagged_with(params[:tag])
+    elsif (@search) then
+      @s = @search.downcase
+      @risks = current_project.risks.select{|r| ([r.mitigation, r.description, r.title] + r.tag_list).join.downcase.include? @s }
     else 
       @risks = current_project.risks
     end

@@ -17,28 +17,15 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PUT
-  def update
-    @risk = Risk.find(params[:id])
-
-    respond_to do |format|
-      if @risk.update_attributes(params[:risk])
-        format.html { redirect_to(project_risk_path(current_project, @risk), :notice => 'Risk was successfully updated.') }
-        format.json  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json  { render :json => @risk.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE
   def destroy
-    @risk = Risk.find(params[:id])
-    @risk.destroy
-
+    @comment = Comment.find(params[:id])
+    @comment.deleted = true
+    @comment.save
+    
     respond_to do |format|
-      format.html { redirect_to(current_project) }
+        format.html { redirect_to(project_risk_path(current_project, current_risk), :notice => 'Comment was successfully deleted.') }
       format.json  { head :ok }
     end
   end
