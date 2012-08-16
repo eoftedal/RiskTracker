@@ -65,10 +65,12 @@ MochiKit.DOM.addLoadEvent(drawGraph);
 
 			%>
 			<td class="<%= weightclass %> <%= (count - count_overridden) > 0 && (risk_level.weight > impact.risk_level.weight ? "tooHigh" : "") %>">
-				<%= count - count_overridden %>
-				<% if (count_overridden > 0)  %>
-					+ <span><%= count_overridden %></span>
-				<% end %>
+				<a href="<%= project_risks_path(@project) %>?risklevel=<%= risk_level.id %>&impact=<%= impact.id %>">
+					<%= count - count_overridden %>
+					<% if (count_overridden > 0)  %>
+						+ <span><%= count_overridden %></span>
+					<% end %>
+				</a>
 			</td>
 		<% end %>
 	</tr>

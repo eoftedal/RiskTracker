@@ -5,14 +5,26 @@ class RisksController < ApplicationController
 	def index
     @tag = params[:tag]
     @search = params[:search]    
+    @risklevel = params[:risklevel]    
+    @impact = params[:impact]
+    @risks = current_project.risks    
     if (@tag) then
-      @risks = current_project.risks.tagged_with(params[:tag])
-    elsif (@search) then
-      @s = @search.downcase
-      @risks = current_project.risks.select{|r| ([r.mitigation, r.description, r.title] + r.tag_list).join.downcase.include? @s }
-    else 
-      @risks = current_project.risks
+      @risks = @risks.tagged_with(params[:tag])
     end
+    if (@search) then
+      @s = @search.downcase
+      @risks = @risks.select{|r| ([r.mitigation, r.description, r.title] + r.tag_list).join.downcase.include? @s }
+    end
+    if (@risklevel) then
+      @l = RiskLevel.find(@risklevel)
+      @risks = @risks.select{|r| r.risk_level == @l }
+    end
+    if (@impact) then
+      @i = Impact.find(@impact)
+      @risks = @risks.select{|r| r.impact == @i }
+    end
+
+
 		respond_to do |format|
 			format.html # show.html.erb
       format.json  { render :json => @risks }

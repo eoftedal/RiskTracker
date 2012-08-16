@@ -3,7 +3,7 @@ $(function() {
 	function setupTagList(tag_list) {
 		$(".tags").html("");
 		$.each(tag_list, function(i, tag) {
-			var li = $("<li>").addClass("tag").appendTo($(".tags")).click(function() { document.location = ".?tag=" + escape(tag); } );
+			var li = $("<li>").addClass("tag").appendTo($(".tags")).click(function() { document.location = ".?tag=" + encodeURIComponent(tag); } );
 			$("<span>").text(tag).appendTo(li);
 			$("<a>").addClass("delete").text("x").appendTo(li).click(function() {
 				li.remove();

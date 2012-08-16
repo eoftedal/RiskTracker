@@ -21,12 +21,19 @@ class CommentsController < ApplicationController
   # DELETE
   def destroy
     @comment = Comment.find(params[:id])
-    @comment.deleted = true
-    @comment.save
-    
-    respond_to do |format|
-        format.html { redirect_to(project_risk_path(current_project, current_risk), :notice => 'Comment was successfully deleted.') }
-      format.json  { head :ok }
+    if (@comment.user == current_user) then
+      @comment.deleted = true
+      @comment.save
+      
+      respond_to do |format|
+          format.html { redirect_to(project_risk_path(current_project, current_risk), :notice => 'Comment was successfully deleted.') }
+          format.json  { head :ok }
+      end
+    else 
+      respond_to do |format|
+          format.html { redirect_to(project_risk_path(current_project, current_risk), :notice => 'Not authorized.') }
+          format.json  { head 403 }
+      end      
     end
   end
 end

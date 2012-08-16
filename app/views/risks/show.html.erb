@@ -131,7 +131,7 @@ Risk-<%= @risk.id %>
       <%= raw c[:description] %>
     </div>
     <div class="date"><%= c[:created_at] %>
-      <% if c[:type] == "comment" then %>
+      <% if c[:type] == "comment" && c[:user] == current_user then %>
         <a data-method="delete" href="<%= polymorphic_path([current_project, @risk, Comment.find(c[:id])]) %>">Delete</a>
       <% end %>
     </div>

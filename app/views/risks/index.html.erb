@@ -20,6 +20,9 @@ Risks
 <% if (@search) then %>
   <div class="searchFilter">Showing <%= @risks.count %> risks containing: <span><%= @search %></span> &nbsp;&nbsp;<a href="<%= project_risks_path(current_project) %>">(show all)</a></div>
 <% end %>
+<% if (@risklevel && @impact) then %>
+  <div class="searchFilter">Showing <%= @risks.count %> risks with risk level <span><%= @l.name %></span> and impact <span><%= @i.name %></span> &nbsp;&nbsp;<a href="<%= project_risks_path(current_project) %>">(show all)</a></div>
+<% end %>
 <table class="risks">
   <thead>
   	<tr>
@@ -40,8 +43,7 @@ Risks
     <td><%= risk.risk_consequence.name %></td>
     <td><%= risk.risk_probability.name %></td>
     <td class="<%= risk.accepted ? "" : "tooHigh" %>"><%= risk.risk_level.name %></td>
-    <td><%= button_to 'Edit', edit_project_risk_path(current_project, risk), :method => :get %></td>
-    <td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td>
+    <!-- td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td -->
 
   </tr>
 <% end %>

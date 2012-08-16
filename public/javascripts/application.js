@@ -93,7 +93,7 @@ $(function() {
 			var url = document.location.href;
 			var parts = url.split("?");
 			var base = parts[0];
-			document.location = base + "?search=" + escape($("#search").val());
+			document.location = base + "?search=" + encodeURIComponent($("#search").val());
 		}
 	});
 
