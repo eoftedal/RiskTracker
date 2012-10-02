@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514122959) do
+ActiveRecord::Schema.define(:version => 20120910103737) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20120514122959) do
     t.string   "threat_agent"
     t.text     "mitigation"
     t.string   "comment"
+    t.boolean  "deleted",                            :default => false
   end
 
   create_table "taggings", :force => true do |t|
@@ -141,19 +142,8 @@ ActiveRecord::Schema.define(:version => 20120514122959) do
     t.string "name"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "identifier_url"
-    t.boolean  "approved",       :default => false
-    t.string   "time_zone"
-    t.string   "role"
-  end
-
-  add_index "users", ["identifier_url"], :name => "index_users_on_identifier_url", :unique => true
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'user' for column 'connected_to'
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",      :null => false

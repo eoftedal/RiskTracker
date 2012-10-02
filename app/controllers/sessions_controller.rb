@@ -1,17 +1,15 @@
+
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token
-  
+
   def new
-    response.headers['WWW-Authenticate'] = Rack::OpenID.build_header(
-        :identifier => "https://www.google.com/accounts/o8/id",
-        :required => ["http://axschema.org/contact/email",
-                      "http://axschema.org/namePerson/first",
-                      "http://axschema.org/namePerson/last"],
-        :return_to => session_url,
-        :method => 'POST')
-    head 401
+    redirect_to login_path
   end
+
+
   
+
+
   def create
     if openid = request.env[Rack::OpenID::RESPONSE]
       case openid.status
@@ -22,8 +20,18 @@ class SessionsController < ApplicationController
                               :email => ax.get_single('http://axschema.org/contact/email'),
                               :first_name => ax.get_single('http://axschema.org/namePerson/first'),
                               :last_name => ax.get_single('http://axschema.org/namePerson/last'))
-        session[:user_id] = user.id
         user.save
+        if (session[:user_id] != nil && session[:user_id] != user.id)
+            session[:connect_user] = user.id
+            redirect_to login_connect_path
+            return
+        end
+        if (user.connected_to)
+          session[:user_id] = user.connected_to
+        else
+          session[:user_id] = user.id
+        end
+
         if user.first_name.blank? || user.time_zone.blank?
           redirect_to(additional_infos_path())
         else

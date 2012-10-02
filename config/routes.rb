@@ -1,37 +1,50 @@
 Riskmanager::Application.routes.draw do
   
-
-
-  resources :projects do
-    get 'export', :on => :member
-    get 'tags', :on => :member
-    resources :risks do
-      resources :comments
-      resources :checklists do
-        resources :checklist_items
+    scope ENV['RAILS_RELATIVE_URL_ROOT'] do 
+      resources :projects do
+        get 'export', :on => :member
+        get 'tags', :on => :member
+        resources :risks do
+          resources :comments
+          resources :checklists do
+            resources :checklist_items
+          end
+          resources :attachments
+        end
       end
+
+
+      resources :risk_configurations do
+      	resources :impacts
+      	resources :risk_consequences
+      	resources :risk_probabilities
+      	resources :risk_levels
+      end
+
       resources :attachments
+
+      resources :users
+
+      resource :changes
+      resource :session
+      resource :not_approved
+      resource :additional_infos
+
+      get  "oauth/new"  => "oauth#new"
+      get  "oauth/code" => "oauth#code"
+
+      get  "login"                  => "login#index"
+      get  "login/google"           => "login#google"
+      get  "login/failed"           => "login#failed"
+      get  "login/connect"          => "login#connect"
+      post "login/connectaccounts"  => "login#connectaccounts"
+      get  "login/switch"           => "login#switch"
+
+      root :to => "home#index"
     end
-  end
 
-
-  resources :risk_configurations do
-  	resources :impacts
-  	resources :risk_consequences
-  	resources :risk_probabilities
-  	resources :risk_levels
-  end
-
-  resources :attachments
-
-  resources :users
-
-  resource :changes
-  resource :session
-  resource :not_approved
-  resource :additional_infos
-
-  root :to => "home#index"
+  match "*path" => "home#fix"
+  root :to => redirect("/risk/")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

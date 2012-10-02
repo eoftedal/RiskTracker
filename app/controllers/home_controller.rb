@@ -4,5 +4,11 @@ class HomeController < ApplicationController
 	
   	def index
   	end
-
+    def fix
+        if request.path.match("^/risk/") 
+            head 404
+            return
+        end
+        redirect_to "/risk" + request.path
+    end
 end

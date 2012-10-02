@@ -378,7 +378,12 @@ li.tag a {
         display: inline;
 }
 
-
+.graphContainer {
+        overflow: auto;
+        width: 800px;
+        height: 170px;
+        cursor: zoom;
+}
 
 /*
 .low {

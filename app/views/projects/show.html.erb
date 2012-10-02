@@ -1,9 +1,9 @@
 <% content_for :title, " - " << @project.name %>
-<script type="text/javascript" src="/javascripts/mochikit/MochiKit.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/Base.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/Layout.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/Canvas.js"></script>
-<script type="text/javascript" src="/javascripts/plotkit/SweetCanvas.js"></script>
+<script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/mochikit/MochiKit.js"></script>
+<script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/Base.js"></script>
+<script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/Layout.js"></script>
+<script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/Canvas.js"></script>
+<script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/SweetCanvas.js"></script>
 <%= javascript_include_tag :defaults %>
 
 <p id="notice"><%= notice %></p>
@@ -20,12 +20,38 @@
 </p>
 <% end %>
 
-<div>
+<div class="graphContainer">
 <canvas class="demo" id="graph" width="600"></canvas>
 </div>
 
 
 <script>
+
+
+var oldGraphWidth = $("#graph").attr("width");
+var oldScroll = -1;
+
+function toggleZoom() {
+    var days = <%= @project.days_since_creation %>;
+    var elm = $(".graphContainer");
+    var width = oldGraphWidth;
+    if (elm.hasClass("zoomed")) {
+        oldScroll = elm.scrollLeft();
+        elm.removeClass("zoomed");
+    } else {
+        elm.addClass("zoomed");
+        width = days * 10;
+    }
+    elm.text("");
+    $("<canvas>").attr("id", "graph").attr("width", width).appendTo(elm);
+    drawGraph();
+    elm.css({"width": "auto"});
+    if (elm.hasClass("zoomed")) {
+        elm.scrollLeft(oldScroll > -1 ? oldScroll : width);
+    }
+}
+
+$(".graphContainer").click(toggleZoom);
 
 function drawGraph() {
     var xTicks = [<%=x_ticks %>];

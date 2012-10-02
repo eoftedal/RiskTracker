@@ -1,0 +1,23 @@
+<% content_for :title, " - Login" %>
+
+<% if (current_user && @connect_user) %> 
+    <h1>Connect accounts?</h1>
+    You are already logged in as 
+    <table style="margin: 10px">
+        <tr><th>Name:</th><td><%= current_user.full_name %></td></tr>
+        <tr><th>Email:</th><td><%= current_user.email %></td></tr>
+        <tr><th>Identifier url:</th><td><%= current_user.identifier_url %></td></tr>
+    </table>
+    Do you want to connect this account to
+    <table style="margin: 10px">
+        <tr><th>Name:</th><td><%= @connect_user.full_name %></td></tr>
+        <tr><th>Email:</th><td><%= @connect_user.email %></td></tr>
+        <tr><th>Identifier url:</th><td><%= @connect_user.identifier_url %></td></tr>
+    </table>
+    <%= button_to 'Connect accounts', login_connectaccounts_path, :method => :post %>
+    <%= button_to 'Switch account', login_switch_path, :method => :get %>
+
+<% else %>
+    <h1>Account merge failed</h1>
+    Failed to show page for account merge.
+<% end %>
