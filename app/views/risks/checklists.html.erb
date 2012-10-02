@@ -1,0 +1,28 @@
+<% content_for :title, " - " << current_project.name << " Checklists" %>
+
+<%= link_to current_project.name, project_path(current_project) %>  &gt; 
+Risks
+
+<h1>
+  <%= current_project.name %> - Checklists
+</h1>
+<div class="checklist_overview">
+<% @risks.each do |r| %>  
+    <h2><%=  r.title %></h2>
+    <div id="checklists">
+      <% r.checklists.each do |c| %>  
+        <div class="checklist">
+            <h4><%= c.title %></h4>
+            <ul>
+              <% c.checklist_items.each do |item| %>
+                <li class="item">
+                  <input type="checkbox" value="1" class="saveOnChange" data-name="checklist_item[done]"<%= item.done? ? " checked" : ""%> data-uri="<%= polymorphic_path([current_project, r, c, item]) %>">
+                  <span><%= item.title %></span>
+                </li>
+              <% end %>
+            </ul>
+        </div>
+      <% end %>
+    </div>
+<% end %>
+</div>

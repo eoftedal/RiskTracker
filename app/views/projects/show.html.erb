@@ -20,8 +20,8 @@
 </p>
 <% end %>
 
-<div class="graphContainer">
-<canvas class="demo" id="graph" width="600"></canvas>
+<div class="graphContainer loading">
+<canvas class="demo" id="graph" width="800"></canvas>
 </div>
 
 
@@ -30,9 +30,10 @@
 
 var oldGraphWidth = $("#graph").attr("width");
 var oldScroll = -1;
+var graphData;
+var days = <%= @project.days_since_creation %>;
 
 function toggleZoom() {
-    var days = <%= @project.days_since_creation %>;
     var elm = $(".graphContainer");
     var width = oldGraphWidth;
     if (elm.hasClass("zoomed")) {
@@ -53,11 +54,17 @@ function toggleZoom() {
 
 $(".graphContainer").click(toggleZoom);
 
+
+
 function drawGraph() {
-    var xTicks = [<%=x_ticks %>];
+    var zoomed = $(".graphContainer").hasClass("zoomed");
+    var xTicks = graphData.week_ticks;
+    if (days > 100 && !zoomed) {
+        xTicks = graphData.month_ticks;
+    }
     var layout = new PlotKit.Layout("line", {yTickPrecision: 0, xTicks: xTicks });
-    layout.addDataset("Too high", [<%=total_risk %>]);
-    layout.addDataset("Accepted", [<%=accepted_risk %>]);
+    layout.addDataset("Too high", graphData.total_risk );
+    layout.addDataset("Accepted", graphData.accepted_risk);
     layout.evaluate();
     var canvas = MochiKit.DOM.getElement("graph");
     var plotter = new PlotKit.SweetCanvasRenderer(canvas, layout, {
@@ -65,7 +72,16 @@ function drawGraph() {
     });
     plotter.render();
 }
-MochiKit.DOM.addLoadEvent(drawGraph);
+
+function loadGraph() {
+    $.getJSON('<%= graph_project_path %>', function(data) {
+        graphData = data;
+        $(".graphContainer").removeClass("loading");
+        drawGraph();
+    });
+}
+
+MochiKit.DOM.addLoadEvent(loadGraph);
 </script>
 <table class="risk_list">
 	<tr>

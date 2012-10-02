@@ -382,7 +382,15 @@ li.tag a {
         overflow: auto;
         width: 800px;
         height: 170px;
-        cursor: zoom;
+        cursor: pointer;
+}
+.graphContainer.loading {
+        background: url('../images/ajax-loader.gif') center center no-repeat;
+}
+
+.checklist_overview .checklist {
+        margin-left: 20px;
+
 }
 
 /*

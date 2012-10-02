@@ -17,6 +17,8 @@ class ChecklistsController < ApplicationController
     end
   end
 
+
+
   def update
     @checklist = Checklist.find(params[:id])
 

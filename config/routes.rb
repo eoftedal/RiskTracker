@@ -3,8 +3,10 @@ Riskmanager::Application.routes.draw do
     scope ENV['RAILS_RELATIVE_URL_ROOT'] do 
       resources :projects do
         get 'export', :on => :member
-        get 'tags', :on => :member
+        get 'tags',   :on => :member
+        get 'graph',  :on => :member
         resources :risks do
+          get 'checklists', :on => :collection
           resources :comments
           resources :checklists do
             resources :checklist_items
@@ -12,7 +14,6 @@ Riskmanager::Application.routes.draw do
           resources :attachments
         end
       end
-
 
       resources :risk_configurations do
       	resources :impacts

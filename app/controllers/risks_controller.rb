@@ -35,6 +35,15 @@ class RisksController < ApplicationController
     render :json => current_project.risks.tag_counts.map{ |t| t.name }
   end
 
+  def checklists
+    @risks = current_project.risks.select{|r| r.checklists.length > 0 }.sort_by{|r| 
+        r.checklists.map{|l| l.checklist_items.select{|i| !i.done }.length }.flatten.reduce{|l1,l2| l1 + l2 } 
+      }.reverse
+    respond_to do |format|
+      format.html
+    end        
+  end
+
   # GET /risks/1
   # GET /risks/1.json
   def show

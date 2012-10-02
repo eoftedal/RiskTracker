@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_filter :ensure_signed_in
   before_filter :ensure_approved  
+  include ProjectsHelper
 
   
   # GET /projects
@@ -23,6 +24,20 @@ class ProjectsController < ApplicationController
       format.json  { render :json => @project }
     end
   end
+
+  def graph
+    @project = Project.find(params[:id])
+    respond_to do |format|
+      format.json  { render :json => { 
+          :week_ticks => week_ticks, 
+          :month_ticks => month_ticks, 
+          :total_risk => total_risk, 
+          :accepted_risk => accepted_risk 
+        } }
+    end    
+  end
+
+
 
   # GET /projects/new
   # GET /projects/new.json
