@@ -38,11 +38,11 @@ Risks
 <% @risks.sort_by{|r| [r.impact.name, r.title]}.each do |risk| %>
   <tr>
     <td><%= risk.impact.name %></td>
-    <td><%= risk.id %></td>
+    <td data-sort-key="<%= risk.id %>"><%= risk.id %></td>
     <td><%= link_to risk.title, project_risk_path(current_project, risk) %></td>
-    <td><%= risk.risk_consequence.name %></td>
-    <td><%= risk.risk_probability.name %></td>
-    <td class="<%= risk.accepted ? "" : "tooHigh" %>"><%= risk.risk_level.name %></td>
+    <td data-sort-key="<%= risk.risk_consequence.weight %>"><%= risk.risk_consequence.name %></td>
+    <td data-sort-key="<%= risk.risk_probability.weight %>"><%= risk.risk_probability.name %></td>
+    <td data-sort-key="<%= risk.risk_level.weight %>" class="<%= risk.accepted ? "" : "tooHigh" %>"><%= risk.risk_level.name %></td>
     <!-- td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td -->
 
   </tr>

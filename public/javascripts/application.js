@@ -98,8 +98,17 @@ $(function() {
 	});
 
 
+	var pad = "000000000000000000000000";
+	var sortable = function(node) {
+		var a = $(node).attr("data-sort-key");
+		if (a != null) {
+			a = pad.substring(0, 10 - a.length) + a;
+		}
 
-	$("table").tablesorter();
+		return a + "." + $(node).text();
+	}
+
+	$("table").tablesorter( { textExtraction: sortable } );
 
 
 
