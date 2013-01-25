@@ -1,5 +1,7 @@
 <h1>Risk manager</h1>
-<% if current_user.is_admin? then %>
-	<li><%= link_to "List available configurations", risk_configurations_path %><br>
-<% end %>
-<li><%= link_to "Projects", projects_path %>
+<ul>
+    <% if current_user.is_admin? then %>
+    	<li><%= link_to "List available configurations", risk_configurations_path %><br>
+    <% end %>
+    <li><%= link_to "Projects", projects_path %>
+</ul>

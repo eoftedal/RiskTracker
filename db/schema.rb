@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910103737) do
+ActiveRecord::Schema.define(:version => 20130125111640) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +77,15 @@ ActiveRecord::Schema.define(:version => 20120910103737) do
     t.integer  "risk_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "risk_at_days", :force => true do |t|
+    t.date     "date"
+    t.integer  "total"
+    t.integer  "accepted"
+    t.integer  "project_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "risk_configurations", :force => true do |t|

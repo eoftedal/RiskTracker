@@ -1,11 +1,11 @@
 module ProjectsHelper
 
     def total_risk
-		risk_versions.each_with_index.map{|r, i| [ i, r.count() ] }
+		risk_versions.each_with_index.map{|r, i| [ i, r.total ] }
 	end
     
     def accepted_risk
-		risk_versions.each_with_index.map{|r, i| [ i, r.map{|a| a[:accepted] }.count{|a| a } ]}
+		risk_versions.each_with_index.map{|r, i| [ i, r.accepted ]}
 	end
 
 	def month_ticks
@@ -33,19 +33,33 @@ module ProjectsHelper
 	
 	def risk_versions
 		days = @project.days_since_creation 
-		@risks_at_date = Rails.cache.fetch("risks_at_" + days.to_s()) do 
-			risk_at_dates(days)
-		end
-		@risks_at_date.push @project.risks.map{|r| { :accepted => r.accepted }}
-		@risks_at_date
+		risk = risk_at_dates(days)
+		current_risks = @project.risks.map{|r| { :accepted => r.accepted }}
+		risk.push RiskAtDay.new({ 
+			:date => Date.today, 
+			:total => current_risks.count(), 
+			:accepted => current_risks.map{|a| a[:accepted] }.count{|a| a } 
+			})
+		risk
 	end
 
 	def risk_at_dates(days)
-			risk_at_date = []
-			days.times do |i| 
-				risk_at_date.push @project.risks_at(Date.today - (days - i) + 1).select{|rr| rr != NIL}.map{|r| { :accepted => r.accepted }}
+		risk_at_date = RiskAtDay.where({:project_id => @project.id})
+		days.times do |i| 
+			date = Date.today - (days - i) + 1 
+			if (!risk_at_date.any? { |r| r.date == date })
+				ra = @project.risks_at(Date.today - (days - i) + 1).select{|rr| rr != NIL}.map{|r| { :accepted => r.accepted }}
+				risks = RiskAtDay.new({ 
+					:date => date, 
+					:total => ra.count(), 
+					:accepted => ra.map{|a| a[:accepted] }.count{|a| a },
+					:project_id => @project.id
+				})		
+				risks.save
+				risk_at_date.push risks
 			end
-			risk_at_date
+		end
+		risk_at_date
 	end
 
 end

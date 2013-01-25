@@ -130,7 +130,7 @@ td , th{
 }
 
 .risk_list {
-	margin: 30px 0px 20px 30px;
+	margin: 0 auto;
 	border-collapse: collapse;
 }
 
