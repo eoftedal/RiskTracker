@@ -113,6 +113,10 @@ class ProjectsController < ApplicationController
     else 
       @risks = @project.risks
     end
+    @date = Date.parse(params[:at]) rescue NIL
+    if (@date) then
+      @risks = @risks.collect{|r| r.version_at(@date)}.reject{|r| r == nil}
+    end
     respond_to do |format|
       format.html { render :layout => 'export_layout' }
     end

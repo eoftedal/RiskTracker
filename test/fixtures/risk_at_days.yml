@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2013-01-25
+  total: 1
+  accepted: 1
+
+two:
+  date: 2013-01-25
+  total: 1
+  accepted: 1

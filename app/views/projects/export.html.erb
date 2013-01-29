@@ -7,7 +7,9 @@
 <title><%= @project.name %></title>
 </head>
 <body>
-	<header class="date"><%= Date.today %> - <%= current_user.full_name %> <% if (@tag) then %> - tag: <%= @tag %> <% end %></header>
+	<header class="date">Eksportert: <%= Date.today %> - <%= current_user.full_name %> <% if (@tag) then %> - tag: <%= @tag %> <% end %>
+		<% if (@date) %> - Dato: <%= @date %> <% end %>
+	</header>
 	<h1><%= @project.name %></h1>
 	<table class="risk_list">
 		<tr>
