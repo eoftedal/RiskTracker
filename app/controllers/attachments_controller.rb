@@ -5,7 +5,7 @@ class AttachmentsController < ApplicationController
 
   def show
     @attachment = Attachment.find(params[:id])
-    send_file @attachment.file.path(params[:style]), :type => @attachment.file_content_type, :disposition => 'attachment'
+    send_file @attachment.file.path(params[:style] || "original"), :type => @attachment.file_content_type, :disposition => 'attachment'
   end
 
 
