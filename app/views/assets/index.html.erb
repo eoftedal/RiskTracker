@@ -7,23 +7,26 @@ Assets
 <h1>Assets</h1>
 
 <table>
-  <tr>
-    <th>Name</th>
-    <th>Value</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @assets.each do |asset| %>
-  <tr>
-    <td><%= link_to asset.name, [current_project, asset] %></td>
-    <td><%= asset.asset_value.name %></td>
-    <td><%= asset.description %></td>
-    <td><%= button_to 'Edit', edit_project_asset_path(current_project, asset), :method => :get %></td>
-    <td><%= button_to 'Delete', [current_project, asset], :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @assets.sort_by{|a| a.name }.each do |asset| %>
+      <tr>
+        <td data-sort-key="<%= asset.name %>"><%= link_to asset.name, [current_project, asset] %></td>
+        <td data-sort-key="<%= asset.asset_value.weight %>"><%= asset.asset_value.name %></td>
+        <td><%= asset.description %></td>
+        <td><%= button_to 'Edit', edit_project_asset_path(current_project, asset), :method => :get %></td>
+        <td><%= button_to 'Delete', [current_project, asset], :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <br />
