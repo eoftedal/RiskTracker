@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  asset_value: 
+  title: MyString
+  description: MyString
+
+two:
+  asset_value: 
+  title: MyString
+  description: MyString

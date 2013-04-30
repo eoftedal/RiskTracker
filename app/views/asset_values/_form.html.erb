@@ -1,0 +1,25 @@
+<%= form_for([current_risk_configuration, @asset_value]) do |f| %>
+  <% if @asset_value.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@asset_value.errors.count, "error") %> prohibited this risk level from being saved:</h2>
+
+      <ul>
+      <% @asset_value.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

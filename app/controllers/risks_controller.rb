@@ -2,6 +2,29 @@ class RisksController < ApplicationController
   before_filter :ensure_signed_in
   before_filter :ensure_approved  
 
+
+  def assets
+    render :json => Risk.find(params[:id]).assets
+  end
+
+  def assign_asset
+    asset = Asset.find(params[:asset_id])
+    risk = Risk.find(params[:id])
+    puts risk.assets.grep(asset)
+    if (risk.assets.grep(asset).length == 0) then
+      risk.assets.push(asset)
+    end
+    head :ok
+  end
+
+  def unassign_asset
+    asset = Asset.find(params[:asset_id])
+    risk = Risk.find(params[:id])
+    risk.assets.delete(asset)
+    head :ok
+  end
+
+
 	def index
     @tag = params[:tag]
     @search = params[:search]    
@@ -113,4 +136,10 @@ class RisksController < ApplicationController
       format.json  { head :ok }
     end
   end
+
+
+
+
+
+
 end

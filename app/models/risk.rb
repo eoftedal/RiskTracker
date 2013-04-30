@@ -5,6 +5,7 @@ class Risk < ActiveRecord::Base
   belongs_to :risk_consequence
   belongs_to :risk_probability
   belongs_to :impact
+  has_and_belongs_to_many :assets
   has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :impact_id, :risk_level_id, :title, :description, :mitigation]
   acts_as_taggable
   acts_as_commentable

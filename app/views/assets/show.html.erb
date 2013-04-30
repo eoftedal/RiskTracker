@@ -1,0 +1,43 @@
+<%= content_for :title, " - " << @asset.project.name << " \\ " << @asset.name %>
+
+<p id="notice"><%= notice %></p>
+
+<%= link_to @asset.project.name, project_path(current_project) %>  &gt; 
+<%= link_to "Assets", project_assets_path(current_project) %> &gt;
+<%= @asset.name %>
+
+<h1><%= @asset.name %></h1>
+
+<div id="description">
+  <%= @asset.description %>
+</div>
+
+
+<h3>Risks assigned to this asset:</h3>
+<table class="risks">
+  <thead>
+    <tr>
+      <th>Impact</th>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Consequence</th>
+      <th>Probability</th>
+      <th>Risk level</th>
+    </tr>
+  </thead>
+  <tbody>
+<% @asset.risks.sort_by{|r| [r.impact.name, r.title]}.each do |risk| %>
+  <tr>
+    <td><%= risk.impact.name %></td>
+    <td data-sort-key="<%= risk.id %>"><%= risk.id %></td>
+    <td><%= link_to risk.title, project_risk_path(current_project, risk) %></td>
+    <td data-sort-key="<%= risk.risk_consequence.weight %>"><%= risk.risk_consequence.name %></td>
+    <td data-sort-key="<%= risk.risk_probability.weight %>"><%= risk.risk_probability.name %></td>
+    <td data-sort-key="<%= risk.risk_level.weight %>" class="<%= risk.accepted ? "" : "tooHigh" %>"><%= risk.risk_level.name %></td>
+    <!-- td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td -->
+
+  </tr>
+<% end %>
+</tbody>
+</table>
+

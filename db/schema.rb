@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125111640) do
+ActiveRecord::Schema.define(:version => 20130430082059) do
+
+  create_table "asset_values", :force => true do |t|
+    t.string   "name"
+    t.integer  "weight"
+    t.integer  "risk_configuration_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "assets", :force => true do |t|
+    t.integer  "asset_value_id"
+    t.integer  "project_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "assets", ["asset_value_id"], :name => "index_assets_on_asset_value_id"
+
+  create_table "assets_risks", :id => false, :force => true do |t|
+    t.integer "risk_id",  :null => false
+    t.integer "asset_id", :null => false
+  end
+
+  add_index "assets_risks", ["risk_id", "asset_id"], :name => "index_assets_risks_on_risk_id_and_asset_id", :unique => true
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"

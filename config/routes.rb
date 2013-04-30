@@ -5,8 +5,14 @@ Riskmanager::Application.routes.draw do
         get 'export', :on => :member
         get 'tags',   :on => :member
         get 'graph',  :on => :member
+
+        resources :assets
+
         resources :risks do
           get 'checklists', :on => :collection
+          get 'assets', :on => :member
+          post 'assign_asset', :on => :member
+          post 'unassign_asset', :on => :member
           resources :comments
           resources :checklists do
             resources :checklist_items
@@ -20,6 +26,7 @@ Riskmanager::Application.routes.draw do
       	resources :risk_consequences
       	resources :risk_probabilities
       	resources :risk_levels
+        resources :asset_values
       end
 
       resources :attachments

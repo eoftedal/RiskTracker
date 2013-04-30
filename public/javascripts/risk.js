@@ -1,9 +1,9 @@
 $(function() {
 	"use strict";
 	function setupTagList(tag_list) {
-		$(".tags").html("");
+		$("#tags").html("");
 		$.each(tag_list, function(i, tag) {
-			var li = $("<li>").addClass("tag").appendTo($(".tags")).click(function() { document.location = ".?tag=" + encodeURIComponent(tag); } );
+			var li = $("<li>").addClass("tag").appendTo($("#tags")).click(function() { document.location = ".?tag=" + encodeURIComponent(tag); } );
 			$("<span>").text(tag).appendTo(li);
 			$("<a>").addClass("delete").text("x").appendTo(li).click(function() {
 				li.remove();
@@ -15,7 +15,7 @@ $(function() {
 
 	function saveTags(success, newTag) {
 			var tagList = [];
-			$(".tags li").each(function(i, elm) {
+			$("#tags li").each(function(i, elm) {
 				tagList.push($(elm).children("span").text());
 			});
 			if (newTag !== null) {
@@ -61,4 +61,80 @@ $(function() {
 			}
 		}
 	});
+
+
+
+	function loadAssets() {
+		$.getJSON(document.location.pathname + "/assets", function(data) {
+			setupAssetList(data);
+		});
+	}
+
+	function setupAssetList(assets) {
+		$("#assets").html("");
+		$.each(assets, function(i, asset) {
+			var li = $("<li>").addClass("tag").appendTo($("#assets")).click(function() { 
+				document.location = "../assets/" + encodeURIComponent(asset.id); 
+			});
+			$("<span>").text(asset.name).appendTo(li);
+			$("<a>").addClass("delete").text("x").appendTo(li).click(function() {
+				$.post(document.location.pathname + "/unassign_asset", {"asset_id" : asset.id }, function(data) {
+						li.remove();
+				});
+				return false;			
+			});
+
+		});
+	}
+
+	function saveasset(id) {
+		$("#asset_field").val("");
+		$.post(document.location.pathname + "/assign_asset", {"asset_id" : id }, function(data) {
+			$("#asset_field").val("");
+			loadAssets();
+		});
+	}
+
+	$("#asset_field").autocomplete({
+		source: function(request, response) { 
+			$.getJSON("../assets?term=" + escape(request.term), function(data) {
+				var values = [];
+				for(var i in data) {
+					values.push({"label" : data[i].name, "value" : data[i].id})
+				}
+				response(values);
+			});
+		},
+		minLength: 1,
+		select: function(event, ui) {
+			if (ui.item) {
+				$("#asset_field").val("");
+				saveasset(ui.item.value);
+			}
+		}
+	});
+
+	loadAssets();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

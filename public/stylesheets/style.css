@@ -342,7 +342,7 @@ li.tag a {
         padding: 0;
         list-style: none;
 }
-#tag_field {
+#tag_field, #asset_field {
         margin: 3px 1px 1px 1px;
         width: 120px;
 }
