@@ -1,10 +1,21 @@
 <% content_for :title, " - " << @project.name %>
+
+<% content_for :sidebar do %>
+    <li class="nav-header">Content</li>
+    <li><%= link_to "List risks", project_risks_path(@project) %></li>
+    <li><%= link_to "Assets", project_assets_path(@project) %></li>
+    <% if current_user.is_admin? then %>
+        <li class="nav-header">Project</li>
+        <li><%= link_to 'Edit project', edit_project_path(@project) %></li>
+        <li><%= link_to 'Export', export_project_path(@project) %></li>
+    <% end %>
+<% end%>
+
 <script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/mochikit/MochiKit.js"></script>
 <script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/Base.js"></script>
 <script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/Layout.js"></script>
 <script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/Canvas.js"></script>
 <script type="text/javascript" src="<%= ENV['RAILS_RELATIVE_URL_ROOT'] %>/javascripts/plotkit/SweetCanvas.js"></script>
-<%= javascript_include_tag :defaults %>
 
 <p id="notice"><%= notice %></p>
 
@@ -20,69 +31,8 @@
 </p>
 <% end %>
 
-<div class="graphContainer loading">
-<canvas class="demo" id="graph" width="800"></canvas>
-</div>
 
 
-<script>
-
-
-var oldGraphWidth = $("#graph").attr("width");
-var oldScroll = -1;
-var graphData;
-var days = <%= @project.days_since_creation %>;
-
-function toggleZoom() {
-    var elm = $(".graphContainer");
-    var width = oldGraphWidth;
-    if (elm.hasClass("zoomed")) {
-        oldScroll = elm.scrollLeft();
-        elm.removeClass("zoomed");
-    } else {
-        elm.addClass("zoomed");
-        width = days * 10;
-    }
-    elm.text("");
-    $("<canvas>").attr("id", "graph").attr("width", width).appendTo(elm);
-    drawGraph();
-    elm.css({"width": "auto"});
-    if (elm.hasClass("zoomed")) {
-        elm.scrollLeft(oldScroll > -1 ? oldScroll : width);
-    }
-}
-
-$(".graphContainer").click(toggleZoom);
-
-
-
-function drawGraph() {
-    var zoomed = $(".graphContainer").hasClass("zoomed");
-    var xTicks = graphData.week_ticks;
-    if (days > 100 && !zoomed) {
-        xTicks = graphData.month_ticks;
-    }
-    var layout = new PlotKit.Layout("line", {yTickPrecision: 0, xTicks: xTicks });
-    layout.addDataset("Too high", graphData.total_risk );
-    layout.addDataset("Accepted", graphData.accepted_risk);
-    layout.evaluate();
-    var canvas = MochiKit.DOM.getElement("graph");
-    var plotter = new PlotKit.SweetCanvasRenderer(canvas, layout, {
-    	"colorScheme": [Color.fromRGB(1, 0.0, 0.0, 0.5), Color.fromRGB(0.0, 1, 0.0, 0.5)]
-    });
-    plotter.render();
-}
-
-function loadGraph() {
-    $.getJSON('<%= graph_project_path %>', function(data) {
-        graphData = data;
-        $(".graphContainer").removeClass("loading");
-        drawGraph();
-    });
-}
-
-MochiKit.DOM.addLoadEvent(loadGraph);
-</script>
 <table class="risk_list">
 	<tr>
 		<th></th>
@@ -119,14 +69,77 @@ MochiKit.DOM.addLoadEvent(loadGraph);
 <% end %>
 </table>
 
-<%= link_to "List risks", project_risks_path(@project) %><br>
-<%= link_to "Assets", project_assets_path(@project) %>
-<br />
-<br />
 
-<div class="buttonBar">
-<% if current_user.is_admin? then %>
-<%= button_to 'Edit', edit_project_path(@project), :method => :get %>
-<%= button_to 'Export', export_project_path(@project), :method => :get %>
-<% end %>
+
+
+<div class="graphContainer loading">
+<canvas class="demo" id="graph"></canvas>
 </div>
+
+
+
+
+
+<script>
+
+var oldGraphWidth = -1;
+var oldScroll = -1;
+var graphData;
+var days = <%= @project.days_since_creation %>;
+
+
+function toggleZoom() {
+    var elm = $(".graphContainer");
+    var width = oldGraphWidth;
+    if (elm.hasClass("zoomed")) {
+        oldScroll = elm.scrollLeft();
+        elm.removeClass("zoomed");
+    } else {
+        elm.addClass("zoomed");
+        width = days * 10;
+    }
+    elm.text("");
+    $("<canvas>").attr("id", "graph").attr("width", width).appendTo(elm);
+    drawGraph();
+    elm.css({"width": "auto"});
+    if (elm.hasClass("zoomed")) {
+        elm.scrollLeft(oldScroll > -1 ? oldScroll : width);
+    }
+}
+
+
+
+function drawGraph() {
+    var zoomed = $(".graphContainer").hasClass("zoomed");
+    var xTicks = graphData.week_ticks;
+    if (days > 100 && !zoomed) {
+        xTicks = graphData.month_ticks;
+    }
+    var layout = new PlotKit.Layout("line", {yTickPrecision: 0, xTicks: xTicks });
+    layout.addDataset("Too high", graphData.total_risk );
+    layout.addDataset("Accepted", graphData.accepted_risk);
+    layout.evaluate();
+    var canvas = MochiKit.DOM.getElement("graph");
+    var plotter = new PlotKit.SweetCanvasRenderer(canvas, layout, {
+        "colorScheme": [Color.fromRGB(0.87, 0.32, 0.30, 1), Color.fromRGB(0.37, 0.73, 0.37, 1)]
+    });
+    plotter.render();
+}
+
+function loadGraph() {
+    if (oldGraphWidth == -1) {
+        //oldGraphWidth = $("#graph").attr("width");
+        oldGraphWidth = $(".graphContainer").width();
+        $("#graph").attr("width", oldGraphWidth)
+        $(".graphContainer").click(toggleZoom);
+    }
+    $.getJSON('<%= graph_project_path %>', function(data) {
+        graphData = data;
+        $(".graphContainer").removeClass("loading");
+        drawGraph();
+    });
+}
+
+MochiKit.DOM.addLoadEvent(loadGraph);
+</script>
+

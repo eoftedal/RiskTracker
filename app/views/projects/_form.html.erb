@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :risk_configuration %><br />
+    <%= f.label :risk_configuration %>
     <%= select("project", "risk_configuration_id", RiskConfiguration.all.sort_by{|c| c.name }.collect{|c| [c.name, c.id] } ) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => "btn btn-primary" %>
   </div>
 <% end %>

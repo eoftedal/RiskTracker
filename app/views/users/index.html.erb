@@ -1,5 +1,5 @@
 <h1>Users</h1>
-<table>
+<table class="table table-striped">
 	<% User.find(:all).each do |u| %>
 		<tr>
 			<td><%= u.id %></td>
@@ -9,10 +9,10 @@
 			<% if (u != current_user) then %>
 			<td>
 				<% if (u.approved?) then %>
-					<button class="xhrButton" data-name="user[approved]" data-value="0"
+					<button class="xhrButton btn btn-small" data-name="user[approved]" data-value="0"
 						data-uri="<%= polymorphic_path(u) %>"%>Revoke access</button>
 				<% else %>
-					<button class="xhrButton" data-name="user[approved]" data-value="1"
+					<button class="xhrButton btn btn-small" data-name="user[approved]" data-value="1"
 						data-uri="<%= polymorphic_path(u) %>"%>Grant access</button>
 				<% end %> 
 			</td>

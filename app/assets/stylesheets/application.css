@@ -1,0 +1,185 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree .
+*/
+
+.userinfo img {
+    margin: 2px 10px; 
+}
+.button_to {
+    margin: 0;
+}
+
+.graphContainer {
+        overflow: auto;
+        height: 176px;
+        cursor: pointer;
+        margin-top: 20px;
+}
+.graphContainer.loading {
+        background: url('../images/ajax-loader.gif') center center no-repeat;
+}
+
+.tooHigh, .tooHigh a {
+    color: #dd0000;
+        font-weight: bold;
+}
+
+
+.risk_list {
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.risk_list tr:first-child th{
+    border-bottom: 1px solid #999;
+}
+.risk_list tr th:first-child{
+    border-right: 1px solid #999;
+}
+
+.risk_list td span{
+    color: #009900;
+}
+
+
+.risk_list th.impact {
+    text-align: center;
+}
+
+.risk_list td {
+    text-align: right;
+    min-width: 55px;
+    padding-right:45px;
+}
+
+.tagFilter, .searchFilter {
+        font-style: italic;
+        margin: 5px 0px 15px 10px;
+}
+.searchFilter span {
+        font-weight: bold;
+}
+
+.tagFilter li.tag {
+        display: inline;
+}
+
+
+.checklist ul {
+        padding: 0;
+        list-style: none;
+}
+
+.checklist h4 {
+        margin-bottom: 0px;
+}
+
+.checklist ul li {
+        margin: 0;
+        padding: 0;        
+}
+.checklist input[type="checkbox"]:checked + span{
+        font-style: italic;
+        text-decoration: line-through;
+        color: #999;
+}
+
+
+.action {
+        margin: 5px 0px 10px 0px;
+        padding-left: 50px;
+}
+.action img.avatar {
+        float: left;
+        margin-left: -50px;
+}
+.action .attachment img {
+        display: block;
+}
+
+.action .author {
+        font-weight: bold;
+        font-size: 110%;
+}
+.action .date {
+        font-style: italic;
+        color: #999;
+}
+.action .comment {
+        font-style: italic;
+}
+.action .change p, .action .change ul, .action .comment p {
+        margin: 0;
+        padding: 0;
+}
+.action .change ul {
+        margin-left: 20px;
+}
+.action .change ul li {
+        padding: 0;
+        margin: 0;
+}
+
+.versions , .versions td, .versions th{
+    margin-top: 20px;
+    color: #888;
+    font-size: 90%;
+}
+.versions td, .versions th {
+    padding-right: 10px;
+}
+
+i.delete {
+    margin-left: 5px;
+}
+.tags span, .tags i.delete {
+    cursor: pointer;
+}
+#tag_field, #asset_field {
+    margin-top: 5px;
+}
+
+
+
+p[contenteditable] {
+        margin: 0;
+        padding: 1em;
+}
+
+
+[contenteditable]:active,[contenteditable]:focus, textarea {
+        border: 1px solid #999;
+        padding: 3px;
+        outline: none;
+
+}
+[contenteditable] + button.edit {
+        display: none;
+}
+[contenteditable]:active + button.edit, [contenteditable]:focus + button.edit,
+button.edit:active, button.active:focus {
+        display: block;
+}
+#descriptioneditor textarea, #mitigationeditor textarea {
+        width: 78%;
+        height: 6em;
+}
+
+#descriptioneditor button, #mitigationeditor button {
+        display: block;
+}
+
+form.comment {
+    margin-bottom: 2em;
+}
+form.comment input {
+    display: block;
+}
+
+.ui-autocomplete li a {
+    cursor: pointer;
+}

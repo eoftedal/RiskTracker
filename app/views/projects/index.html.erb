@@ -2,14 +2,15 @@
 
 <h1>Projects</h1>
 
-<table>
+<table class="table">
   <% if current_user.is_admin? then %>
     <tr>
       <th>Name</th>
         <th>Risk configuration</th>
+    <% if current_user.is_admin? then %>
         <th></th>
         <th></th>
-        <th></th>
+    <% end %>
     </tr>
   <% end %>
 
@@ -18,15 +19,15 @@
     <td><%= link_to project.name, project %></td>
     <% if current_user.is_admin? then %>
       <td><%= project.risk_configuration.name %></td>
-      <td><%= button_to 'Edit', edit_project_path(project), :method => :get %></td>
-      <td><%= button_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= button_to 'Edit', edit_project_path(project), :method => :get, :class => "btn btn-small" %></td>
+
+      <td><%= button_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-small" %></td>
     <% end %>
   </tr>
 <% end %>
 </table>
 
-<br />
 
 <% if current_user.is_admin? then %>
-  <%= button_to 'New Project', new_project_path, :method => :get %>
+  <a href="<%= new_project_path %>" class="btn"><i class="icon-plus"></i> New Project</a>
 <% end %>

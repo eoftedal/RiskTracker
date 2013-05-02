@@ -8,7 +8,7 @@ Risks
 <div style="float: right; text-align: right">
   <input type="text" id="search" name="search" placeholder="search" value="<%= @search %>"><br>
 
-  <%= button_to 'New risk', new_project_risk_path(current_project), :method => :get %>
+  <a href="<%= new_project_risk_path(current_project) %>" class="btn"><i class="icon-plus"></i> New risk</a>
 </div>
 <h1>
   <%= current_project.name %>
@@ -23,7 +23,8 @@ Risks
 <% if (@risklevel && @impact) then %>
   <div class="searchFilter">Showing <%= @risks.count %> risks with risk level <span><%= @l.name %></span> and impact <span><%= @i.name %></span> &nbsp;&nbsp;<a href="<%= project_risks_path(current_project) %>">(show all)</a></div>
 <% end %>
-<table class="risks">
+
+<table class="risks table table-striped table-condensed">
   <thead>
   	<tr>
   		<th>Impact</th>

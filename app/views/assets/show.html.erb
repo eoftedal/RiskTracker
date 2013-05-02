@@ -13,8 +13,8 @@
 </div>
 
 
-<h3>Risks assigned to this asset:</h3>
-<table class="risks">
+<h3>Risks associated with this asset:</h3>
+<table class="risks table table-striped table-condensed">
   <thead>
     <tr>
       <th>Impact</th>
@@ -34,8 +34,7 @@
     <td data-sort-key="<%= risk.risk_consequence.weight %>"><%= risk.risk_consequence.name %></td>
     <td data-sort-key="<%= risk.risk_probability.weight %>"><%= risk.risk_probability.name %></td>
     <td data-sort-key="<%= risk.risk_level.weight %>" class="<%= risk.accepted ? "" : "tooHigh" %>"><%= risk.risk_level.name %></td>
-    <!-- td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td -->
-
+    
   </tr>
 <% end %>
 </tbody>

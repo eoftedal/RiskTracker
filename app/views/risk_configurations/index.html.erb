@@ -2,10 +2,9 @@
 
 <h1>Risk Configurations</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -13,12 +12,11 @@
 <% @risk_configurations.each do |risk_configuration| %>
   <tr>
     <td><%= link_to risk_configuration.name, risk_configuration %></td>
-    <td><%= button_to 'Rename', edit_risk_configuration_path(risk_configuration), :method => :get %></td>
-    <td><%= button_to 'Delete', risk_configuration, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= button_to 'Rename', edit_risk_configuration_path(risk_configuration), :method => :get, :class => "btn btn-small" %></td>
+    <td><%= button_to 'Delete', risk_configuration, :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-small" %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
 
-<%= button_to 'New Risk configuration', new_risk_configuration_path, :method => :get %>
+<a href="<%= new_risk_configuration_path %>" class="btn"><i class="icon-plus"></i> New Risk configuration</a>

@@ -12,20 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :rows => 5 %>
   </div>  
 
   <div class="field">
-    <%= f.label :asset_value %><br />
+    <%= f.label :asset_value %>
   <%= select("asset", "asset_value_id", current_project.risk_configuration.asset_values.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class =>"btn btn-primary" %>
   </div>
 <% end %>

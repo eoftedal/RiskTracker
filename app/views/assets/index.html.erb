@@ -6,7 +6,7 @@ Assets
 
 <h1>Assets</h1>
 
-<table>
+<table class="table table-condensed table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -29,6 +29,5 @@ Assets
   </tbody>
 </table>
 
-<br />
 
-<%= button_to 'New asset', new_project_asset_path(current_project), :method => :get %>
+<a href="<%= new_project_asset_path(current_project) %>"  class="btn"><i class="icon-plus"></i> New asset</a>

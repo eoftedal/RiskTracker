@@ -3,7 +3,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="infocontainer">
+<% content_for :sidebar do %>
   <p>
     <label>Impact:</label>
     <%= select("risk", "impact_id", 
@@ -38,21 +38,23 @@
   </p>
 
   <p>
-    <label>Assets:</label>
-    <ul class="tags" id="assets">
-    </ul>
+    <li class="nav-header">Assets</li>
+    <div class="tags" id="assets">
+    </div>
     <input type="text" id="asset_field" />
   </p>
 
 
 
   <p>
-    <label>Labels:</label>
-    <ul class="tags" id="tags">
-    </ul>
+    <li class="nav-header">Labels</li>
+    <div class="tags" id="tags">
+    </div>
     <input type="text" id="tag_field" />
   </p>
-</div>
+<% end %>
+
+
 <div class="riskbody">
 
 <%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
@@ -89,21 +91,21 @@ Risk-<%= @risk.id %>
           <% c.checklist_items.each do |item| %>
             <li class="item">
               <input type="checkbox" value="1" class="saveOnChange" data-name="checklist_item[done]"<%= item.done? ? " checked" : ""%> data-uri="<%= polymorphic_path([current_project, @risk, c, item]) %>">
-              <span><%= item.title %></span>
+              <span><%= item.title %></span></input>
             </li>
           <% end %>
           <li>
-            <%= form_tag(polymorphic_path([current_project, @risk, c, ChecklistItem.new]), {:class => "add_button", "data-add-name" => "Add item"}) do  -%>
+            <%= form_tag(polymorphic_path([current_project, @risk, c, ChecklistItem.new]), {:class => "add_button form-inline", "data-add-name" => "Add item"}) do  -%>
               <%= text_field_tag 'checklist_item[title]' %>
-              <%= submit_tag "Save item" %>
+              <%= submit_tag "Save item", :class => "btn" %>
             <% end %>
           </li>
         </ul>
     </div>
   <% end %>
-  <%= form_tag(polymorphic_path([current_project, @risk, Checklist.new]), {:class => "add_button", "data-add-name" => "Add checklist"}) do  -%>
+  <%= form_tag(polymorphic_path([current_project, @risk, Checklist.new]), {:class => "add_button form-inline", "data-add-name" => "Add checklist"}) do  -%>
     <%= text_field_tag 'checklist[title]' %>
-    <%= submit_tag "Save checklist" %>
+    <%= submit_tag "Save checklist", :class => "btn" %>
   <% end %>
 </div>
 
@@ -115,9 +117,9 @@ Risk-<%= @risk.id %>
         <li><a href="<%= al.attachment.file.url %>"><%= al.attachment.file_file_name %></a></li>
       <% end %>        
     </ul>
-    <%= form_for([current_project, @risk, Attachment.new]) do |f| %>
+    <%= form_for([current_project, @risk, Attachment.new], {:class => "form-inline"}) do |f| %>
       <%= f.file_field :file %>
-      <%= f.submit "Upload" %>
+      <%= f.submit "Upload", :class => "btn" %>
     <% end %>
   </div>
 
@@ -125,8 +127,10 @@ Risk-<%= @risk.id %>
 
 <h3>Activity</h3>
 <%= form_tag(polymorphic_path([current_project, @risk, Comment.new]), {:class => "comment"}) do -%>
-  <%= text_area_tag 'body' %>
-  <%= submit_tag "Add comment" %>
+  <fieldset>
+    <%= text_area_tag 'body', "", { :class => "span7" } %>
+    <%= submit_tag "Add comment", :class => "btn" %>
+  </fieldset>
 <% end %>
 
 
