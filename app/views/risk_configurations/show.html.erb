@@ -4,7 +4,7 @@
 
 <div class="span4">
 <h2>Consequences</h2>
-<table>
+<table class="table">
 <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.reverse().each do |risk_consequence| %>
   <tr>
     <th><%= risk_consequence.name %></th>
@@ -23,7 +23,7 @@
 
 <div class="span4">
 <h2>Probabilities</h2>
-<table>
+<table class="table">
 <% @risk_configuration.risk_probabilities.sort_by{|p| p.weight}.reverse().each do |risk_probability| %>
   <tr>
     <th><%= risk_probability.name %></th>
@@ -43,7 +43,7 @@
 
 <div class="span4">
 <h2>Risk levels</h2>
-<table>
+<table class="table">
 
 <% @risk_configuration.risk_levels.sort_by{|p| p.weight}.reverse().each do |risk_level| %>
   <tr>
@@ -81,7 +81,7 @@
 
 <div class="span4">
 <h2>Impacts</h2>
-<table>
+<table class="table">
 
 <% @risk_configuration.impacts.sort_by{|c| c.name}.each do |impact| %>
   <tr>
@@ -101,7 +101,7 @@
 
 <div class="span4">
 <h2>Asset values</h2>
-<table>
+<table class="table">
 
 <% @risk_configuration.asset_values.sort_by{|c| c.weight}.reverse().each do |asset_value| %>
   <tr>

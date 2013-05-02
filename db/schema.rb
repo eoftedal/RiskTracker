@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430082059) do
+ActiveRecord::Schema.define(:version => 20130502105914) do
 
   create_table "asset_values", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130430082059) do
     t.integer  "risk_configuration_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+    t.string   "description"
   end
 
   create_table "assets", :force => true do |t|
@@ -125,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130430082059) do
     t.integer  "risk_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "risk_levels", :force => true do |t|
@@ -141,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20130430082059) do
     t.integer  "risk_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   create_table "risks", :force => true do |t|

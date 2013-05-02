@@ -22,7 +22,7 @@ class AssetValuesController < ApplicationController
     @asset_value.risk_configuration = current_risk_configuration
     respond_to do |format|
       if @asset_value.save
-        format.html { redirect_to(current_risk_configuration, :notice => 'Risk level was successfully created.') }
+        format.html { redirect_to(current_risk_configuration, :notice => 'Asset value was successfully created.') }
         format.json  { render :json => @asset_value, :status => :created, :location => @asset_value }
       else
         format.html { render :action => "new" }
@@ -36,7 +36,7 @@ class AssetValuesController < ApplicationController
 
     respond_to do |format|
       if @asset_value.update_attributes(params[:asset_value])
-        format.html { redirect_to(current_risk_configuration, :notice => 'Risk level was successfully updated.') }
+        format.html { redirect_to(current_risk_configuration, :notice => 'Asset value was successfully updated.') }
         format.json  { head :ok }
       else
         format.html { render :action => "edit" }

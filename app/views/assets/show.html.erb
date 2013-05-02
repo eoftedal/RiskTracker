@@ -8,9 +8,14 @@
 
 <h1><%= @asset.name %></h1>
 
+<h5>Value</h5> 
+<%= @asset.asset_value.name %> - <%= @asset.asset_value.description %>
+
 <div id="description">
+<h5>Description</h5> 
   <%= @asset.description %>
 </div>
+
 
 
 <h3>Risks associated with this asset:</h3>

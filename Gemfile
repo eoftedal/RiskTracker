@@ -24,9 +24,11 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer'
   gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'twitter-bootstrap-rails'
+
 
 gem 'paper_trail'
 
