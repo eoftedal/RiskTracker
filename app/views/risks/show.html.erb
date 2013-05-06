@@ -38,6 +38,12 @@
   </p>
 
   <p>
+    <label>Accepted:</label>
+      <%= check_box("risk", "accepted_override",
+          {:class => "saveOnChange", "data-name" => "risk[accepted_override]"}) %>
+  </p>
+
+  <p>
     <li class="nav-header">Assets</li>
     <div class="tags" id="assets">
     </div>

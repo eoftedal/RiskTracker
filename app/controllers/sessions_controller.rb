@@ -41,7 +41,6 @@ class SessionsController < ApplicationController
           redirect_to(session[:redirect_to] || root_path)
         end
       when :failure
-#        session[:user_id] = 1
         render :action => 'problem', :layout => 'notloggedin'
       end
     else

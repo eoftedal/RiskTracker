@@ -6,7 +6,8 @@ class Risk < ActiveRecord::Base
   belongs_to :risk_probability
   belongs_to :impact
   has_and_belongs_to_many :risk_assets
-  has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :impact_id, :risk_level_id, :title, :description, :mitigation]
+  has_paper_trail :only => [:risk_consequence_id, :risk_probability_id, :impact_id, :risk_level_id, 
+                            :title, :description, :mitigation, :accepted_override]
   acts_as_taggable
   acts_as_commentable
   has_many :checklists
@@ -68,6 +69,8 @@ class Risk < ActiveRecord::Base
           s += " risk consequence from \"" + RiskConsequence.find(changeset[0]).name + "\" to \"" + RiskConsequence.find(changeset[1]).name + "\". "
         elsif (k == "impact_id" || k == "category_id") then
           s += " impact from \"" + Impact.find(changeset[0]).name + "\" to \"" + Impact.find(changeset[1]).name + "\". "
+        elsif (k == "accepted_override") then
+          s = changeset[1] ? " Risk accepted." : "Risk no longer accepted"
         else
           s += k + ". "
         end
