@@ -1,5 +1,10 @@
 $(function() {
 	"use strict";
+	if (document.location.pathname.indexOf("/risks/") == -1) {
+		return;
+	}
+
+
 	function setupTagList(tag_list) {
 		$("#tags").html("");
 		$.each(tag_list, function(i, tag) {
@@ -65,6 +70,8 @@ $(function() {
 	$("#tag_field").autocomplete("widget").addClass("dropdown-menu")
 
 
+// -------- Assets
+
 
 
 	function loadAssets() {
@@ -82,7 +89,7 @@ $(function() {
 			$("<span>").text(asset.name).appendTo(elm);
 			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function() {
 				$.post(document.location.pathname + "/unassign_asset", {"asset_id" : asset.id }, function(data) {
-						li.remove();
+						elm.remove();
 				});
 				return false;			
 			});
@@ -100,7 +107,7 @@ $(function() {
 
 	$("#asset_field").autocomplete({
 		source: function(request, response) { 
-			$.getJSON("../assets?term=" + escape(request.term), function(data) {
+			$.getJSON("../risk_assets?term=" + escape(request.term), function(data) {
 				var values = [];
 				for(var i in data) {
 					values.push({"label" : data[i].name, "value" : data[i].id})

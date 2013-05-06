@@ -4,23 +4,23 @@ class RisksController < ApplicationController
 
 
   def assets
-    render :json => Risk.find(params[:id]).assets
+    render :json => Risk.find(params[:id]).risk_assets
   end
 
   def assign_asset
-    asset = Asset.find(params[:asset_id])
+    asset = RiskAsset.find(params[:asset_id])
     risk = Risk.find(params[:id])
-    puts risk.assets.grep(asset)
-    if (risk.assets.grep(asset).length == 0) then
-      risk.assets.push(asset)
+    puts risk.risk_assets.grep(asset)
+    if (risk.risk_assets.grep(asset).length == 0) then
+      risk.risk_assets.push(asset)
     end
     head :ok
   end
 
   def unassign_asset
-    asset = Asset.find(params[:asset_id])
+    asset = RiskAsset.find(params[:asset_id])
     risk = Risk.find(params[:id])
-    risk.assets.delete(asset)
+    risk.risk_assets.delete(asset)
     head :ok
   end
 

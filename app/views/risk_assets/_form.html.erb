@@ -21,8 +21,8 @@
   </div>  
 
   <div class="field">
-    <%= f.label :asset_value %>
-  <%= select("asset", "asset_value_id", current_project.risk_configuration.asset_values.sort_by{|l| l.weight }.reverse().collect{|l| [l.name + " - " + (l.description || ""), l.id] } ) %>
+    <%= f.label :risk_asset_value %>
+  <%= select("risk_asset", "risk_asset_value_id", current_project.risk_configuration.risk_asset_values.sort_by{|l| l.weight }.reverse().collect{|l| [l.name + " - " + (l.description || ""), l.id] } ) %>
   </div>
 
   <div class="actions">

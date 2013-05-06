@@ -4,7 +4,7 @@
 <% content_for :sidebar do %>
   <li class="nav-header">Value Definitions</li>
     <table class="table">
-      <% current_project.risk_configuration.asset_values.sort_by{|v| v.weight}.reverse.each do |v| %>
+      <% current_project.risk_configuration.risk_asset_values.sort_by{|v| v.weight}.reverse.each do |v| %>
         <tr>
           <th><%= v.name %></th>
           <td><%= v.description %></td>
@@ -33,9 +33,9 @@ Assets
     <% @assets.sort_by{|a| a.name }.each do |asset| %>
       <tr>
         <td data-sort-key="<%= asset.name %>"><%= link_to asset.name, [current_project, asset] %></td>
-        <td data-sort-key="<%= asset.asset_value.weight %>" title="<%= asset.asset_value.description %>"><%= asset.asset_value.name %></td>
+        <td data-sort-key="<%= asset.risk_asset_value.weight %>" title="<%= asset.risk_asset_value.description %>"><%= asset.risk_asset_value.name %></td>
         <td><%= asset.description %></td>
-        <td><%= button_to 'Edit', edit_project_asset_path(current_project, asset), :method => :get %></td>
+        <td><%= button_to 'Edit', edit_project_risk_asset_path(current_project, asset), :method => :get %></td>
         <td><%= button_to 'Delete', [current_project, asset], :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
     <% end %>
@@ -43,4 +43,4 @@ Assets
 </table>
 
 
-<a href="<%= new_project_asset_path(current_project) %>"  class="btn"><i class="icon-plus"></i> New asset</a>
+<a href="<%= new_project_risk_asset_path(current_project) %>"  class="btn"><i class="icon-plus"></i> New asset</a>

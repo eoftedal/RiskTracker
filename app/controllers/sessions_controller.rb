@@ -12,6 +12,9 @@ class SessionsController < ApplicationController
 
   def create
     if openid = request.env[Rack::OpenID::RESPONSE]
+      puts openid.contact
+      puts openid.message
+      puts openid.reference
       case openid.status
       when :success
         ax = OpenID::AX::FetchResponse.from_success_response(openid)
@@ -38,7 +41,8 @@ class SessionsController < ApplicationController
           redirect_to(session[:redirect_to] || root_path)
         end
       when :failure
-        render :action => 'problem'
+#        session[:user_id] = 1
+        render :action => 'problem', :layout => 'notloggedin'
       end
     else
       redirect_to new_session_path

@@ -3,7 +3,7 @@
 <% content_for :sidebar do %>
     <li class="nav-header">Content</li>
     <li><%= link_to "List risks", project_risks_path(@project) %></li>
-    <li><%= link_to "Assets", project_assets_path(@project) %></li>
+    <li><%= link_to "Assets", project_risk_assets_path(@project) %></li>
     <% if current_user.is_admin? then %>
         <li class="nav-header">Project</li>
         <li><%= link_to 'Edit project', edit_project_path(@project) %></li>

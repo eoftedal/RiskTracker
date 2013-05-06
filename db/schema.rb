@@ -10,34 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130502105914) do
-
-  create_table "asset_values", :force => true do |t|
-    t.string   "name"
-    t.integer  "weight"
-    t.integer  "risk_configuration_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.string   "description"
-  end
-
-  create_table "assets", :force => true do |t|
-    t.integer  "asset_value_id"
-    t.integer  "project_id"
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "assets", ["asset_value_id"], :name => "index_assets_on_asset_value_id"
-
-  create_table "assets_risks", :id => false, :force => true do |t|
-    t.integer "risk_id",  :null => false
-    t.integer "asset_id", :null => false
-  end
-
-  add_index "assets_risks", ["risk_id", "asset_id"], :name => "index_assets_risks_on_risk_id_and_asset_id", :unique => true
+ActiveRecord::Schema.define(:version => 20130506142210) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -104,6 +77,33 @@ ActiveRecord::Schema.define(:version => 20130502105914) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "risk_asset_values", :force => true do |t|
+    t.string   "name"
+    t.integer  "weight"
+    t.integer  "risk_configuration_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "description"
+  end
+
+  create_table "risk_assets", :force => true do |t|
+    t.integer  "risk_asset_value_id"
+    t.integer  "project_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "risk_assets", ["risk_asset_value_id"], :name => "index_assets_on_asset_value_id"
+
+  create_table "risk_assets_risks", :id => false, :force => true do |t|
+    t.integer "risk_id",       :null => false
+    t.integer "risk_asset_id", :null => false
+  end
+
+  add_index "risk_assets_risks", ["risk_id", "risk_asset_id"], :name => "index_assets_risks_on_risk_id_and_asset_id", :unique => true
 
   create_table "risk_at_days", :force => true do |t|
     t.date     "date"

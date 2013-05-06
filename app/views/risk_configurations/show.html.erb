@@ -103,17 +103,17 @@
 <h2>Asset values</h2>
 <table class="table">
 
-<% @risk_configuration.asset_values.sort_by{|c| c.weight}.reverse().each do |asset_value| %>
+<% @risk_configuration.risk_asset_values.sort_by{|c| c.weight}.reverse().each do |asset_value| %>
   <tr>
     <th><%= asset_value.name %></th>
     <td><%= asset_value.weight %></td>
-    <td><%= button_to 'Edit', edit_risk_configuration_asset_value_path(@risk_configuration, asset_value), :method => :get, :class => "btn btn-small" %></td>
-    <td><%= button_to 'Delete', risk_configuration_asset_value_path(@risk_configuration, asset_value), :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-small" %></td>
+    <td><%= button_to 'Edit', edit_risk_configuration_risk_asset_value_path(@risk_configuration, asset_value), :method => :get, :class => "btn btn-small" %></td>
+    <td><%= button_to 'Delete', risk_configuration_risk_asset_value_path(@risk_configuration, asset_value), :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-small" %></td>
   </tr>
 <% end %>
   <tr>
   <td>
-    <%= button_to 'Add', new_risk_configuration_asset_value_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
+    <%= button_to 'Add', new_risk_configuration_risk_asset_value_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
   </td>
   </tr>
 </table>

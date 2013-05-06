@@ -72,7 +72,6 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.23)
     multi_json (1.7.2)
-    mysql2 (0.3.11)
     paper_trail (2.6.3)
       activerecord (~> 3.0)
       railties (~> 3.0)
@@ -157,7 +156,6 @@ DEPENDENCIES
   jquery-rails
   json
   less-rails
-  mysql2 (> 0.3)
   paper_trail
   paperclip (~> 2.7)
   rack-openid

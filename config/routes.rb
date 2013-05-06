@@ -6,7 +6,7 @@ Riskmanager::Application.routes.draw do
         get 'tags',   :on => :member
         get 'graph',  :on => :member
 
-        resources :assets
+        resources :risk_assets
 
         resources :risks do
           get 'checklists', :on => :collection
@@ -26,7 +26,7 @@ Riskmanager::Application.routes.draw do
       	resources :risk_consequences
       	resources :risk_probabilities
       	resources :risk_levels
-        resources :asset_values
+        resources :risk_asset_values
       end
 
       resources :attachments

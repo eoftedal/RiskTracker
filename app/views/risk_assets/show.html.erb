@@ -3,13 +3,13 @@
 <p id="notice"><%= notice %></p>
 
 <%= link_to @asset.project.name, project_path(current_project) %>  &gt; 
-<%= link_to "Assets", project_assets_path(current_project) %> &gt;
+<%= link_to "Assets", project_risk_assets_path(current_project) %> &gt;
 <%= @asset.name %>
 
 <h1><%= @asset.name %></h1>
 
 <h5>Value</h5> 
-<%= @asset.asset_value.name %> - <%= @asset.asset_value.description %>
+<%= @asset.risk_asset_value.name %> - <%= @asset.risk_asset_value.description %>
 
 <div id="description">
 <h5>Description</h5> 

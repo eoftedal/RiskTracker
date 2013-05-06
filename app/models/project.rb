@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :risk_configuration
   has_many :risks
-  has_many :assets
+  has_many :risk_assets
   has_paper_trail
   
   def days_since_creation
