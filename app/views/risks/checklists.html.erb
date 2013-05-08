@@ -8,11 +8,11 @@ Risks
 </h1>
 <div class="checklist_overview">
 <% @risks.each do |r| %>  
-    <h2><%=  r.title %></h2>
+    <h4>Risk: <a href="<%= polymorphic_path([current_project, r]) %>"><%=  r.title %></a></h4>
     <div id="checklists">
       <% r.checklists.each do |c| %>  
         <div class="checklist">
-            <h4><%= c.title %></h4>
+            <h5><%= c.title %></h5>
             <ul>
               <% c.checklist_items.each do |item| %>
                 <li class="item">
@@ -24,5 +24,6 @@ Risks
         </div>
       <% end %>
     </div>
+    <hr />
 <% end %>
 </div>

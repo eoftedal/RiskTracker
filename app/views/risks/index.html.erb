@@ -15,7 +15,7 @@ Risks
 </h1>
 <div style="clear: both;"></div>
 <% if (@tag) then %>
-  <div class="tagFilter">Showing <%= @risks.count %> risks tagged with: <li class="tag"><%= @tag %><a href="<%= project_risks_path(current_project) %>">x</a></li></div>
+  <div class="tagFilter">Showing <%= @risks.count %> risks tagged with: <li class="tag badge badge-info"><%= @tag %><a href="<%= project_risks_path(current_project) %>">x</a></li></div>
 <% end %>
 <% if (@search) then %>
   <div class="searchFilter">Showing <%= @risks.count %> risks containing: <span><%= @search %></span> &nbsp;&nbsp;<a href="<%= project_risks_path(current_project) %>">(show all)</a></div>
