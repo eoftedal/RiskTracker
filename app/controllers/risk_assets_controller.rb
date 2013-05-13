@@ -6,7 +6,7 @@ class RiskAssetsController < ApplicationController
     if (params[:term]) then
       @assets = current_project.risk_assets.where("name LIKE :term", {:term => params[:term] + "%"})
     else
-      @assets = current_project.risk_assets.sort_by{|a| a.risk_asset_value.name }
+      @assets = current_project.risk_assets
     end
 
     respond_to do |format|

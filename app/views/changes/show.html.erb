@@ -1,5 +1,5 @@
 <table class="table table-condensed">
-	<% Version.find(:all).reverse().each do |v| %>
+	<% @versions.each do |v| %>
 		<tr>
 			<td><%= v.created_at %></td>
 			<td><%= to_user(v) ? to_user(v).full_name : "-" %></td>
@@ -9,3 +9,5 @@
 		</tr>
 	<% end %>
 </table>
+
+<%= will_paginate @versions %>

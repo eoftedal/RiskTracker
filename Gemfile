@@ -42,6 +42,7 @@ gem 'rack-openid'
 gem 'jquery-rails'
 gem 'bluecloth'
 
+gem 'bootstrap-will_paginate'
 
 gem 'paperclip', '~> 2.7'
 
