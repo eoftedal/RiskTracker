@@ -54,9 +54,11 @@
               <li><%= link_to "Changes", changes_path %></li>
               <% end %>
             </ul>
-            <div class="userinfo pull-right">
-              <%= current_user.full_name %><img src="<%= current_user.gravatar_url(32) %>">
-            </div>
+            <ul class="nav pull-right">
+            <li><a style="padding-right: 40px; background: url(<%= current_user.gravatar_url(32) %>) right center no-repeat">
+              <%= current_user.full_name %><img src="">
+            </a></li>
+          </ul>
 
           </div><!--/.nav-collapse -->
         </div>

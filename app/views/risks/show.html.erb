@@ -120,7 +120,7 @@ Risk-<%= @risk.id %>
     <h3>Attachments:</h3>
     <ul>
       <% @risk.attachment_links.each do |al| %>
-        <li><a href="<%= al.attachment.file.url %>"><%= al.attachment.file_file_name %></a></li>
+        <li><a href="<%= al.attachment.file.url %>"><i class="icon-file"></i> <%= al.attachment.file_file_name %></a></li>
       <% end %>        
     </ul>
     <%= form_for([current_project, @risk, Attachment.new], {:class => "form-inline"}) do |f| %>

@@ -10,7 +10,8 @@ $(function() {
 		$.each(tag_list, function(i, tag) {
 			var elm = $("<li>").addClass("tag badge badge-info").appendTo($("#tags")).click(function() { document.location = ".?tag=" + encodeURIComponent(tag); } );
 			$("<span>").text(tag).appendTo(elm);
-			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function() {
+			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function(evt) {
+				evt.stopPropagation();
 				li.remove();
 				saveTags(function() {}, null);
 			});
@@ -87,7 +88,8 @@ $(function() {
 				document.location = "../assets/" + encodeURIComponent(asset.id); 
 			});
 			$("<span>").text(asset.name).appendTo(elm);
-			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function() {
+			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function(evt) {
+				evt.stopPropagation();
 				$.post(document.location.pathname + "/unassign_asset", {"asset_id" : asset.id }, function(data) {
 						elm.remove();
 				});
