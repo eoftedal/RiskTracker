@@ -12,7 +12,7 @@ $(function() {
 			$("<span>").text(tag).appendTo(elm);
 			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function(evt) {
 				evt.stopPropagation();
-				li.remove();
+				elm.remove();
 				saveTags(function() {}, null);
 			});
 
