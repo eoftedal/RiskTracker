@@ -85,7 +85,7 @@ $(function() {
 		$("#assets").html("");
 		$.each(assets, function(i, asset) {
 			var elm = $("<li>").addClass("tag badge badge-inverse").appendTo($("#assets")).click(function() { 
-				document.location = "../assets/" + encodeURIComponent(asset.id); 
+				document.location = "../risk_assets/" + encodeURIComponent(asset.id); 
 			});
 			$("<span>").text(asset.name).appendTo(elm);
 			$("<i>").addClass("delete icon-remove").appendTo(elm).click(function(evt) {
