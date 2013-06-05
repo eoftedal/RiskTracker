@@ -8,7 +8,7 @@
     <li class="nav-header">Impact:</li>
     <%= select("risk", "impact_id", 
           current_project.risk_configuration.impacts.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
-          {:disabled =>  current_project.risk_configuration.impacts.where("hidden IS ?", true).collect{|c| c.id}},
+          {:disabled =>  current_project.risk_configuration.hidden_impacts.collect{|c| c.id}},
           {:class => "saveOnChange", "data-name" => "risk[impact_id]"}) %>
   </p>
 
