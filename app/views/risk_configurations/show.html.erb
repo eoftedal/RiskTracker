@@ -88,8 +88,8 @@
 <h2>Impacts</h2>
 <table class="table">
 
-<% @risk_configuration.impacts.sort_by{|c| c.name}.each do |impact| %>
-  <tr>
+<% @risk_configuration.impacts.sort_by{|c| [c.hidden ? 1 : 0, c.name]}.each do |impact| %>
+  <tr class="<%= impact.hidden ? "muted" : "" %>">
     <th><%= impact.name %></th>
     <td><%= impact.risk_level.name %></td>
     <td><%= button_to 'Edit', edit_risk_configuration_impact_path(@risk_configuration, impact), :method => :get, :class => "btn btn-small" %></td>
