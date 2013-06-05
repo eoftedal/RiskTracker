@@ -27,14 +27,23 @@ class ProjectsController < ApplicationController
 
   def graph
     @project = Project.find(params[:id])
+    rv = risk_versions
     respond_to do |format|
       format.json  { render :json => { 
-          :week_ticks => week_ticks, 
-          :month_ticks => month_ticks, 
-          :total_risk => total_risk, 
-          :accepted_risk => accepted_risk 
+          :week_ticks => week_ticks(rv), 
+          :month_ticks => month_ticks(rv), 
+          :total_risk => total_risk (rv), 
+          :accepted_risk => accepted_risk(rv) 
         } }
     end    
+  end
+
+  def risk_levels
+    @project = Project.find(params[:id])
+    @risk_configuration = @project.risk_configuration
+    respond_to do |format|
+      format.html # risk_levels.html.erb
+    end
   end
 
 

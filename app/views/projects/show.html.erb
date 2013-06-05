@@ -5,6 +5,7 @@
     <li><%= link_to "List risks", project_risks_path(@project) %></li>
     <li><%= link_to "List assets", project_risk_assets_path(@project) %></li>
     <li><%= link_to "Show checklists", checklists_project_risks_path(@project) %></li>
+    <li><%= link_to "Risk levels", risk_levels_project_path(@project) %></li>
     <% if current_user.is_admin? then %>
         <li class="nav-header">Project</li>
         <li><%= link_to 'Edit project', edit_project_path(@project) %></li>
@@ -41,8 +42,8 @@
 			<th class="impact"><%= risk_level.name %></th>
 		<% end %>
 	</tr>
-<% @project.risk_configuration.impacts.sort_by(&:name).each do |impact| %>
-	<tr>
+<% @project.visible_impacts.each do |impact| %>
+	<tr class="<%= impact.hidden ? "muted" : "" %>">
 		<th><%= impact.name %></th>
 		<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
 			<% 

@@ -58,6 +58,15 @@ $(function() {
         var elm = $(evt.currentTarget);
         doUpdate(elm, function() {});
     });
+    $(".saveAndUpdateLevel").change(function(evt) {
+        var elm = $(evt.currentTarget);
+        doUpdate(elm, function(risk) {  
+            $(".risk_level").text(risk.risk_level.name);
+        });
+    });
+
+
+
     function extractValue(editable) {
         if (editable.attr("data-value")) {
             return editable.attr("data-value");
@@ -113,6 +122,9 @@ $(function() {
 
     $("table").tablesorter( { textExtraction: sortable } );
 
+    $(".risk_levels").click(function(evt) {
+
+    });
 
 
 

@@ -2,7 +2,7 @@
 
 <h1><b>Configuration:</b> <%= @risk_configuration.name %></h1>
 
-<div class="span4">
+<div class="span5">
 <h2>Consequences</h2>
 <table class="table">
 <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.reverse().each do |risk_consequence| %>
@@ -14,14 +14,14 @@
   </tr>
 <% end %>
   <tr>
-	<td>
+	<td colspan=4>
 		<%= button_to 'Add', new_risk_configuration_risk_consequence_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
 	</td>
   </tr>	
 </table>
 </div>
 
-<div class="span4">
+<div class="span5">
 <h2>Probabilities</h2>
 <table class="table">
 <% @risk_configuration.risk_probabilities.sort_by{|p| p.weight}.reverse().each do |risk_probability| %>
@@ -33,7 +33,7 @@
   </tr>
 <% end %>
   <tr>
-	<td>
+	<td colspan=4>
 		<%= button_to 'Add', new_risk_configuration_risk_probability_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
 	</td>
   </tr>
@@ -41,7 +41,7 @@
 </div>
 
 
-<div class="span4">
+<div class="span5">
 <h2>Risk levels</h2>
 <table class="table">
 
@@ -54,14 +54,16 @@
   </tr>
 <% end %>
   <tr>
-	<td>
+	<td colspan=4>
 		<%= button_to 'Add', new_risk_configuration_risk_level_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
 	</td>
   </tr>
 </table>
 </div>
 
-<!-- table>
+<div class="span5">
+<h2>Calculated risk levels</h2>
+<table class="table">
   <tr>
     <th> </th>
     <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.each do |rc| %>
@@ -72,14 +74,17 @@
   <tr>
     <th><%= rp.name %></th>
     <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.each do |rc| %>
-      <td data-weight="<%= rp.weight * rc.weight %>"><%= find_level(@risk_configuration, rp, rc).name %></td>
+      <% rl = @risk_configuration.find_level(rp, rc) %>
+      <td title="<%= rp.weight * rc.weight %>" class="risk_level_<%= rl.color %>"><%= rl.name %></td>
     <% end %>
   </tr>
 <% end %>
-</table -->
+</table>
+</div>
 
 
-<div class="span4">
+
+<div class="span5">
 <h2>Impacts</h2>
 <table class="table">
 
@@ -92,14 +97,14 @@
   </tr>
 <% end %>
   <tr>
-	<td>
+	<td colspan=4>
 		<%= button_to 'Add', new_risk_configuration_impact_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
 	</td>
   </tr>
 </table>
 </div>
 
-<div class="span4">
+<div class="span5">
 <h2>Asset values</h2>
 <table class="table">
 
@@ -112,7 +117,7 @@
   </tr>
 <% end %>
   <tr>
-  <td>
+  <td colspan=4>
     <%= button_to 'Add', new_risk_configuration_risk_asset_value_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
   </td>
   </tr>

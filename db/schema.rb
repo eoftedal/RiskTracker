@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130506142210) do
+ActiveRecord::Schema.define(:version => 20130605085821) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130506142210) do
     t.integer  "risk_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hidden"
   end
 
   create_table "projects", :force => true do |t|
@@ -135,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20130506142210) do
     t.integer  "risk_configuration_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "color"
   end
 
   create_table "risk_probabilities", :force => true do |t|

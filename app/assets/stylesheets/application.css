@@ -15,7 +15,7 @@
 
 .graphContainer {
         overflow: auto;
-        height: 176px;
+        height: 180px;
         cursor: pointer;
         margin-top: 20px;
 }
@@ -34,6 +34,7 @@
     border-collapse: collapse;
 }
 
+
 .risk_list tr:first-child th{
     border-bottom: 1px solid #999;
 }
@@ -50,11 +51,65 @@
     text-align: center;
 }
 
+.risk_list th {
+    padding-left: 5px;
+    padding-right: 5px;    
+}
+
 .risk_list td {
     text-align: right;
     min-width: 55px;
     padding-right:45px;
 }
+
+.not_visible {
+    visibility: hidden
+}
+
+.risk_level_ok {
+    background-color: #dff0d8
+}
+.risk_level_fail {
+    background-color: #f2dede;
+}
+.risk_level_warning {
+    background-color: #fcf8e3;
+}
+.risk_level_other {
+    background-color: #d9edf7;
+}
+
+.risk_level_selector label.radio {
+    border: 1px solid #cccccc;
+}
+.risk_level_selector label.radio input {
+    margin-left: -15px;
+}
+
+
+
+.vertical_label label {
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg); 
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.risk_levels.table th, .risk_levels.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.risk_levels.table tr:first-child th:first-child, .vertical_label {
+    width: 20px;
+    overflow: hidden;
+}
+.risk_levels.table tr:first-child th {
+    border: none;
+}
+.risk_levels.table .vertical_label {
+    border: none;
+}
+
 
 .tagFilter, .searchFilter {
         font-style: italic;
@@ -141,6 +196,7 @@ i.delete {
 }
 #tag_field, #asset_field {
     margin-top: 5px;
+    display: block;
 }
 
 

@@ -5,40 +5,42 @@
 
 <% content_for :sidebar do %>
   <p>
-    <label>Impact:</label>
+    <li class="nav-header">Impact:</li>
     <%= select("risk", "impact_id", 
           current_project.risk_configuration.impacts.sort_by{|c| c.name }.collect{|c| [c.name, c.id] },
-          {},
+          {:disabled =>  current_project.risk_configuration.impacts.where("hidden IS ?", true).collect{|c| c.id}},
           {:class => "saveOnChange", "data-name" => "risk[impact_id]"}) %>
   </p>
 
 
   <p>
-    <label>Risk consequence:</label>
+    <li class="nav-header">Risk consequence:</li>
     <%= select("risk", "risk_consequence_id", 
           current_project.risk_configuration.risk_consequences.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
           {},
-          {:class => "saveOnChange", "data-name" => "risk[risk_consequence_id]"}) %>
+          {:class => "saveAndUpdateLevel", "data-name" => "risk[risk_consequence_id]"}) %>
   </p>
 
   <p>
-    <label>Risk probability:</label>
+    <li class="nav-header">Risk probability:</li>
       <%= select("risk", "risk_probability_id", 
           current_project.risk_configuration.risk_probabilities.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] }, 
           {},
-          {:class => "saveOnChange", "data-name" => "risk[risk_probability_id]"}) %>
+          {:class => "saveAndUpdateLevel", "data-name" => "risk[risk_probability_id]"}) %>
 
   </p>
   <p>
-    <label>Risk level:</label>
+    <li class="nav-header">Risk level:</li>
+    <span class="risk_level"><%= @risk.risk_level.name %></span>
+    <!--
       <%= select("risk", "risk_level_id", 
           current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] },
           {},
-          {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %>
+          {:class => "saveOnChange", "data-name" => "risk[risk_level_id]"}) %> -->
   </p>
 
   <p>
-    <label>Accepted:</label>
+    <li class="nav-header">Accepted:</li>
       <%= check_box("risk", "accepted_override",
           {:class => "saveOnChange", "data-name" => "risk[accepted_override]"}) %>
   </p>

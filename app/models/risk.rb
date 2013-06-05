@@ -17,7 +17,7 @@ class Risk < ActiveRecord::Base
 
   def as_json(options={})
     super(:only => [:description, :mitigation, :title, :id, :risk_consequence_id], 
-      :methods => [:feed, :description_html, :mitigation_html, :tag_list])
+      :methods => [:feed, :description_html, :mitigation_html, :tag_list, :risk_level])
   end
 
   
@@ -32,6 +32,9 @@ class Risk < ActiveRecord::Base
 	 risk_level.weight <= impact.risk_level.weight || accepted_override
   end
 
+  def risk_level
+    project.risk_configuration.find_level(risk_probability, risk_consequence)
+  end
 
 
   def feed

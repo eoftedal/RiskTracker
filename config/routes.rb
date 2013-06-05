@@ -2,16 +2,17 @@ Riskmanager::Application.routes.draw do
   
     scope ENV['RAILS_RELATIVE_URL_ROOT'] do 
       resources :projects do
-        get 'export', :on => :member
-        get 'tags',   :on => :member
-        get 'graph',  :on => :member
+        get 'export',      :on => :member
+        get 'tags',        :on => :member
+        get 'graph',       :on => :member
+        get 'risk_levels', :on => :member
 
         resources :risk_assets
 
         resources :risks do
-          get 'checklists', :on => :collection
-          get 'assets', :on => :member
-          post 'assign_asset', :on => :member
+          get 'checklists',      :on => :collection
+          get 'assets',          :on => :member
+          post 'assign_asset',   :on => :member
           post 'unassign_asset', :on => :member
           resources :comments
           resources :checklists do

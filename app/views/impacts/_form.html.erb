@@ -12,13 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :risk_level, "Risk acceptance level" %><br />
+    <%= f.label :risk_level, "Risk acceptance level" %>
     <%= select("impact", "risk_level_id", current_risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
   </div>
+
+  <div class="field">
+    <label class="checkbox">
+      <%= f.check_box :hidden %> hidden
+    </label>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>

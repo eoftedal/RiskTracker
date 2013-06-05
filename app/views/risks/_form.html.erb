@@ -12,32 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :impact %><br />
-	<%= select("risk", "impact_id", current_project.risk_configuration.impacts.sort_by{|c| c.name }.collect{|c| [c.name, c.id] } ) %>
+    <%= f.label :impact %>
+	<%= select("risk", "impact_id", current_project.risk_configuration.impacts.sort_by{|c| 
+    [c.hidden ? "1" : "0", c.name] }.collect{|c| [c.name , c.id] }, 
+    {:disabled =>  current_project.risk_configuration.impacts.where("hidden IS ?", true).collect{|c| c.id} } ) %>
   </div>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description, :rows => 5 %>
   </div>
   <div class="field">
-    <%= f.label :risk_consequence %><br />
+    <%= f.label :risk_consequence %>
 	<%= select("risk", "risk_consequence_id", current_project.risk_configuration.risk_consequences.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
   </div>
   <div class="field">
-    <%= f.label :risk_probability %><br />
+    <%= f.label :risk_probability %>
 	<%= select("risk", "risk_probability_id", current_project.risk_configuration.risk_probabilities.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
   </div>
-  <div class="field">
+  <!--div class="field">
     <%= f.label :risk_level %><br />
 	<%= select("risk", "risk_level_id", current_project.risk_configuration.risk_levels.sort_by{|l| l.weight }.reverse().collect{|l| [l.name, l.id] } ) %>
-  </div>
+  </div-->
   <div class="field">
-    <%= f.label :accepted_override, "Mark as accepted" %><br />
+    <%= f.label :accepted_override, "Mark as accepted" %>
 	<%= f.check_box :accepted_override %>
   </div>
   

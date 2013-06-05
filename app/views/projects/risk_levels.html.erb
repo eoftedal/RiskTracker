@@ -1,0 +1,32 @@
+<% content_for :title, " - " << @project.name %>
+
+<%= link_to @project.name, project_path(@project) %>  &gt; 
+Risk levels
+
+<h1>Risk levels</h1>
+
+<div class="span6">
+<table class="table risk_levels">
+  <tr>
+    <th> </th>
+    <th> </th>
+    <th colspan="<%= @risk_configuration.risk_consequences.count %>"><label>Consequences</label></th>
+  </tr>
+  <tr>
+    <th rowspan="<%= @risk_configuration.risk_probabilities.count + 1 %>" class="vertical_label"><br><br><label>Probabilities</label></th>
+    <th> </th>
+    <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.each do |rc| %>
+      <th><%= rc.name %></th>
+    <% end %>
+  </tr>
+<% @risk_configuration.risk_probabilities.sort_by{|p| p.weight}.each do |rp| %>
+  <tr>
+    <th><%= rp.name %></th>
+    <% @risk_configuration.risk_consequences.sort_by{|p| p.weight}.each do |rc| %>
+      <% rl = @risk_configuration.find_level(rp, rc) %>
+      <td class="risk_level_<%= rl.color %>"><%= rl.name %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+</div>

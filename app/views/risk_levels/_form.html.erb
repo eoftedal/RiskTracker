@@ -10,16 +10,33 @@
       </ul>
     </div>
   <% end %>
-
+  <fieldset>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :weight %><br />
+    <%= f.label :weight %>
     <%= f.text_field :weight %>
   </div>
+
+  <div class="field risk_level_selector">
+    <%= f.label :color %>
+
+    <label class="radio input-small">
+       <input type="radio" name="risk_level[color]" value="blank" <%= @risk_level.color == :blank ? "checked" : "" %>>
+    </label>
+    <% [:ok, :warning, :fail, :other].each do |c| %>
+      <label class="radio risk_level_<%= c %> input-small">
+        <input type="radio" name="risk_level[color]" value="<%= c %>" <%= @risk_level.color == c ? "checked" : "" %>>
+      </label>
+    <% end %>
+  </div>
+
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
+  </fieldset>
 <% end %>

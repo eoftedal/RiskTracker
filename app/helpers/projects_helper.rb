@@ -1,16 +1,16 @@
 module ProjectsHelper
 
-    def total_risk
-		risk_versions.each_with_index.map{|r, i| [ i, r.total ] }
+    def total_risk(versions)
+		versions.each_with_index.map{|r, i| [ i, r.total ] }
 	end
     
-    def accepted_risk
-		risk_versions.each_with_index.map{|r, i| [ i, r.accepted ]}
+    def accepted_risk(versions)
+		versions.each_with_index.map{|r, i| [ i, r.accepted ]}
 	end
 
-	def month_ticks
+	def month_ticks(versions)
 		days = @project.days_since_creation 
-		risk_versions.each_with_index.map{|r, i|
+		versions.each_with_index.map{|r, i|
 			d = (Date.today - (days - i))
 			if (d == (d.beginning_of_month + 15)) then
 				{ :v => i, :label => d.strftime("%b") }
@@ -19,9 +19,9 @@ module ProjectsHelper
 			end
 		}.reject{|d| d == {}}
 	end
-	def week_ticks
+	def week_ticks(versions)
 		days = @project.days_since_creation 
-		risk_versions.each_with_index.map{|r, i|
+		versions.each_with_index.map{|r, i|
 			d = (Date.today - (days - i))
 			if (d == d.beginning_of_week) then
 				{ :v => i, :label => d.strftime("%d.%m") }
