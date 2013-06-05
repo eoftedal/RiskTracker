@@ -7,7 +7,7 @@ class RiskConfiguration < ActiveRecord::Base
 	has_paper_trail
 
 	def visible_impacts
-		impacts.where("hidden IS NOT ?", true)
+		impacts.where("hidden IS NULL OR hidden = 0")
 	end
 
     def find_level(probability, consequence)
