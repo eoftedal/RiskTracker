@@ -15,7 +15,8 @@
 <% end %>
   <tr>
 	<td colspan=4>
-		<%= button_to 'Add', new_risk_configuration_risk_consequence_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
+        <a href="<%= new_risk_configuration_risk_consequence_path(@risk_configuration) %>" 
+    class="btn btn-small"><i class="icon-plus"></i> Add</a>
 	</td>
   </tr>	
 </table>
@@ -34,7 +35,8 @@
 <% end %>
   <tr>
 	<td colspan=4>
-		<%= button_to 'Add', new_risk_configuration_risk_probability_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
+		<a href="<%= new_risk_configuration_risk_probability_path(@risk_configuration) %>" 
+    class="btn btn-small"><i class="icon-plus"></i> Add</a>
 	</td>
   </tr>
 </table>
@@ -55,7 +57,8 @@
 <% end %>
   <tr>
 	<td colspan=4>
-		<%= button_to 'Add', new_risk_configuration_risk_level_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
+    <a href="<%= new_risk_configuration_risk_level_path(@risk_configuration) %>" 
+    class="btn btn-small"><i class="icon-plus"></i> Add</a>
 	</td>
   </tr>
 </table>
@@ -98,7 +101,8 @@
 <% end %>
   <tr>
 	<td colspan=4>
-		<%= button_to 'Add', new_risk_configuration_impact_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
+    <a href="<%= new_risk_configuration_impact_path(@risk_configuration) %>" 
+    class="btn btn-small"><i class="icon-plus"></i> Add</a>
 	</td>
   </tr>
 </table>
@@ -118,7 +122,8 @@
 <% end %>
   <tr>
   <td colspan=4>
-    <%= button_to 'Add', new_risk_configuration_risk_asset_value_path(@risk_configuration), :method => :get, :class => "btn btn-small" %>
+    <a href="<%= new_risk_configuration_risk_asset_value_path(@risk_configuration) %>" 
+    class="btn btn-small"><i class="icon-plus"></i> Add</a>
   </td>
   </tr>
 </table>
