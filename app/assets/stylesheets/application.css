@@ -32,6 +32,7 @@
 .risk_list {
     margin: 0 auto;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 
@@ -45,6 +46,22 @@
 .risk_list td span{
     color: #009900;
 }
+
+
+.risk_list.risk_levels tr:first-child th, .risk_list.risk_levels tr th:first-child {
+    border-bottom: none !important;
+} 
+.risk_list.risk_levels tr:nth-child(2) th {
+    border-bottom: 1px solid #999;
+} 
+
+
+.risk_list.risk_levels tr:nth-child(-n+2) th:first-child {
+    border-right: none !important;
+} 
+.risk_list.risk_levels tr th:nth-child(1), .risk_list.risk_levels tr:nth-child(2) th:nth-child(2)  {
+    border-right: 1px solid #999;
+} 
 
 
 .risk_list th.impact {
