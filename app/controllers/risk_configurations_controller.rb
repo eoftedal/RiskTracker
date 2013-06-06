@@ -48,10 +48,25 @@ class RiskConfigurationsController < ApplicationController
 
     respond_to do |format|
       if @risk_configuration.save
-		create_defaults(RiskLevel, @risk_configuration)
-		create_defaults(RiskProbability, @risk_configuration)
-		create_defaults(RiskConsequence, @risk_configuration)
-		
+
+        @risk_configuration.risk_levels.create [
+          {:name => "High", :weight => 5000}, {:name => "Medium", :weight => 2500}, {:name => "Low", :weight => 500} 
+        ]
+        @risk_configuration.risk_probabilities.create [
+          {:name => "High", :weight => 100}, {:name => "Medium", :weight => 50}, {:name => "Low", :weight => 10} 
+        ]
+        @risk_configuration.risk_consequences.create [
+          {:name => "High", :weight => 100}, {:name => "Medium", :weight => 50}, {:name => "Low", :weight => 10} 
+        ]
+        @risk_configuration.risk_asset_values.create [
+          {:name => "High", :weight => 100}, {:name => "Medium", :weight => 50}, {:name => "Low", :weight => 10} 
+        ]
+        low_risk = @risk_configuration.risk_levels.where({:weight => 500}).first
+		    @risk_configuration.impacts.create [
+          {:name => "Confidentiality", :risk_level => low_risk}, 
+          {:name => "Integrity", :risk_level => low_risk}, 
+          {:name => "Availability", :risk_level => low_risk} 
+        ]
         format.html { redirect_to(@risk_configuration, :notice => 'Risk configuration was successfully created.') }
         format.json  { render :json => @risk_configuration, :status => :created, :location => @risk_configuration }
       else

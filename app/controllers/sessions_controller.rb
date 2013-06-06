@@ -12,9 +12,6 @@ class SessionsController < ApplicationController
 
   def create
     if openid = request.env[Rack::OpenID::RESPONSE]
-      puts openid.contact
-      puts openid.message
-      puts openid.reference
       case openid.status
       when :success
         ax = OpenID::AX::FetchResponse.from_success_response(openid)
