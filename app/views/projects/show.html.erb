@@ -74,12 +74,11 @@
 
 <table class="risk_list risk_levels">
   <tr>
-    <th> </th>
+    <th rowspan="<%= @project.risk_configuration.risk_probabilities.count + 2 %>" class="vertical_label"><br><br><label>Probabilities</label></th>
     <th> </th>
     <th colspan="<%= @project.risk_configuration.risk_consequences.count %>"><label>Consequences</label></th>
   </tr>
   <tr>
-    <th rowspan="<%= @project.risk_configuration.risk_probabilities.count + 1 %>" class="vertical_label"><br><br><label>Probabilities</label></th>
     <th> </th>
     <% @project.risk_configuration.risk_consequences.sort_by{|p| p.weight}.each do |rc| %>
       <th><%= rc.name %></th>
