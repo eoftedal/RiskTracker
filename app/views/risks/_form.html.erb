@@ -15,7 +15,7 @@
     <%= f.label :impact %>
 	<%= select("risk", "impact_id", current_project.risk_configuration.impacts.sort_by{|c| 
     [c.hidden ? "1" : "0", c.name] }.collect{|c| [c.name , c.id] }, 
-    {:disabled =>  current_project.risk_configuration.impacts.where("hidden IS ?", true).collect{|c| c.id} } ) %>
+    {:disabled =>  current_project.risk_configuration.hidden_impacts.collect{|c| c.id} } ) %>
   </div>
 
   <div class="field">
