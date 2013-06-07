@@ -32,7 +32,7 @@ class ProjectsController < ApplicationController
       format.json  { render :json => { 
           :week_ticks => week_ticks(rv), 
           :month_ticks => month_ticks(rv), 
-          :total_risk => total_risk (rv), 
+          :total_risk => total_risk(rv), 
           :accepted_risk => accepted_risk(rv) 
         } }
     end    
