@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	end
 
 	def gravatar_url(size = 60)
-		"http://www.gravatar.com/avatar/" + Digest::MD5.hexdigest(email.strip.downcase) + "?s=" + size.to_s
+		"https://www.gravatar.com/avatar/" + Digest::MD5.hexdigest(email.strip.downcase) + "?s=" + size.to_s
 	end
 
 	def is_admin?
