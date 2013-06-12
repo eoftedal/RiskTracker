@@ -126,6 +126,6 @@ $(function() {
 
     });
 
-
+    $('abbr').tooltip();
 
 });
