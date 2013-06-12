@@ -1,9 +1,9 @@
-<% content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
+<% content_for :title, " - " << @risk.project.name << " \\ " << @risk.risk_id.to_s %>
 <p id="notice"><%= notice %></p>
 
 <%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
 <%= link_to "Risks", project_risks_path(@project) %> &gt;
-Risk-<%= @risk.id %> &gt; 
+Risk-<%= @risk.risk_id %> &gt; 
 Edit
 
 <h1>Editing risk</h1>

@@ -1,4 +1,4 @@
-<%= content_for :title, " - " << @risk.project.name << " \\ " << @risk.id.to_s %>
+<%= content_for :title, " - " << @risk.project.name << " \\ " << @risk.risk_id.to_s %>
 <% javascript 'risk' %>
 
 <p id="notice"><%= notice %></p>
@@ -67,7 +67,7 @@
 
 <%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
 <%= link_to "Risks", project_risks_path(current_project) %> &gt;
-Risk-<%= @risk.id %>
+Risk-<%= @risk.risk_id %>
 
 <h1><div contenteditable class="editable" data-name="risk[title]"><%= @risk.title %></div></h1>
 

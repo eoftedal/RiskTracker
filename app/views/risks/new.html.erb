@@ -1,4 +1,4 @@
-<% content_for :title, " - " << current_project.name << " \\ " << @risk.id.to_s %>
+<% content_for :title, " - " << current_project.name << " \\ " << @risk.risk_id.to_s %>
 <p id="notice"><%= notice %></p>
 
 <%= link_to current_project.name, project_path(current_project) %>  &gt; New risk

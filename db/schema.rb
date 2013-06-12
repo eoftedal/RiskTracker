@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130605085821) do
+ActiveRecord::Schema.define(:version => 20130612121155) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20130605085821) do
     t.text     "mitigation"
     t.string   "comment"
     t.boolean  "deleted",                            :default => false
+    t.string   "risk_id"
   end
 
   create_table "taggings", :force => true do |t|
