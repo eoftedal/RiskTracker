@@ -27,6 +27,11 @@
     color: #dd0000;
         font-weight: bold;
 }
+.accepted {
+    color: #00dd00;
+    font-weight: bold;
+}
+
 
 
 .risk_list {
