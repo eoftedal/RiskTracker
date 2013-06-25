@@ -43,7 +43,7 @@ class Risk < ActiveRecord::Base
     changes_feed = versions.select { |v| 
                 v.changeset != NIL && v.changeset.empty? == false
               }.map { |v| 
-                {:user => to_user(v), :description => markdown_to_html(to_action(v)), :created_at => v.created_at, :type => "change" }
+                {:user => to_user(v), :description => markdown_to_html(Risk.to_action(v)), :created_at => v.created_at, :type => "change" }
               }
     attachments_feed = attachment_links.map { |l| 
                 {:user => l.user, :description => "Attachment uploaded: \"<a href=\"" + l.attachment.file.url() + "\">" + 
@@ -77,6 +77,8 @@ class Risk < ActiveRecord::Base
           s += " impact from \"" + Impact.find(changeset[0]).name + "\" to \"" + Impact.find(changeset[1]).name + "\". "
         elsif (k == "accepted_override") then
           s = changeset[1] ? " Risk accepted." : "Risk no longer accepted"
+        elsif (k == "title") then
+          s += ' title from "' + changeset[0] + '" to "' + changeset[1] + '"'  
         else
           s += k + ". "
         end
