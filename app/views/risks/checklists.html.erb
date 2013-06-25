@@ -1,7 +1,9 @@
 <% content_for :title, " - " << current_project.name << " Checklists" %>
 
-<%= link_to current_project.name, project_path(current_project) %>  &gt; 
-Risks
+<% @breadcrumbs.push(["Checklists", ""]) %>
+<%= render 'layouts/breadcrumb' %>
+
+
 
 <h1>
   <%= current_project.name %> - Checklists

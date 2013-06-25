@@ -65,9 +65,9 @@
 
 <div class="riskbody">
 
-<%= link_to @risk.project.name, project_path(current_project) %>  &gt; 
-<%= link_to "Risks", project_risks_path(current_project) %> &gt;
-Risk-<%= @risk.risk_id %>
+<% @breadcrumbs.push(["Risks", project_risks_path(current_project)]) %>
+<% @breadcrumbs.push(["Risk-" + @risk.risk_id.to_s, ""]) %>
+<%= render 'layouts/breadcrumb' %>
 
 <h1><div contenteditable class="editable" data-name="risk[title]"><%= @risk.title %></div></h1>
 

@@ -1,0 +1,9 @@
+
+
+
+<ul class="breadcrumb">
+  <% @breadcrumbs.take(@breadcrumbs.length - 1).each{|b| %>
+	  <li><a href="<%= b[1] %>"><%= b[0] %></a> <span class="divider">/</span></li>
+  <% } %>	
+  <li class="active"><%= @breadcrumbs.last[0] %></li>
+</ul>

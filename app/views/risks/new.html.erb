@@ -1,7 +1,11 @@
 <% content_for :title, " - " << current_project.name << " \\ " << @risk.risk_id.to_s %>
 <p id="notice"><%= notice %></p>
 
-<%= link_to current_project.name, project_path(current_project) %>  &gt; New risk
+<% @breadcrumbs.push(["Risks", project_risks_path(current_project)]) %>
+<% @breadcrumbs.push(["New", ""]) %>
+<%= render 'layouts/breadcrumb' %>
+
+
 <h1>New risk</h1>
 
 <%= render 'form' %>

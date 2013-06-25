@@ -14,8 +14,8 @@
 <% end %>
 
 
-<%= link_to current_project.name, project_path(current_project) %>  &gt; 
-Assets
+<% @breadcrumbs.push(["Assets", ""]) %>
+<%= render 'layouts/breadcrumb' %>
 
 <div style="float: right; text-align: right">
 

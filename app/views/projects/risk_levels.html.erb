@@ -1,7 +1,7 @@
 <% content_for :title, " - " << @project.name %>
 
-<%= link_to @project.name, project_path(@project) %>  &gt; 
-Risk levels
+<% @breadcrumbs.push(["Risk levels", ""]) %>
+<%= render 'layouts/breadcrumb' %>
 
 <h1>Risk levels</h1>
 

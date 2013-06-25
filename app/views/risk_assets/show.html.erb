@@ -2,9 +2,12 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= link_to @asset.project.name, project_path(current_project) %>  &gt; 
-<%= link_to "Assets", project_risk_assets_path(current_project) %> &gt;
-<%= @asset.name %>
+
+
+<% @breadcrumbs.push(["Assets", project_risk_assets_path(current_project)]) %>
+<% @breadcrumbs.push([@asset.name, ""]) %>
+<%= render 'layouts/breadcrumb' %>
+
 
 <h1><%= @asset.name %></h1>
 
