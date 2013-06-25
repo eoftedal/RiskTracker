@@ -44,7 +44,7 @@
     <td><%= link_to risk.title, project_risk_path(current_project, risk) %></td>
     <td data-sort-key="<%= risk.risk_consequence.weight %>"><%= risk.risk_consequence.name %></td>
     <td data-sort-key="<%= risk.risk_probability.weight %>"><%= risk.risk_probability.name %></td>
-    <td data-sort-key="<%= risk.risk_level.weight %>" class="<%= risk.accepted ? "accepted" : "tooHigh" %>"><%= risk.risk_level.name %></td>
+    <td data-sort-key="<%= risk.risk_level.weight %>" class="<%= !risk.accepted ? "tooHigh" : (risk.accepted_override ? "accepted" : "") %>"><%= risk.risk_level.name %></td>
     <!-- td><%= button_to 'Delete', project_risk_path(current_project, risk), :confirm => 'Are you sure?', :method => :delete %></td -->
 
   </tr>
