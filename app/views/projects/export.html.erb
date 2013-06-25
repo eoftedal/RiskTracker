@@ -18,7 +18,7 @@
 				<th class="impact"><%= risk_level.name %></th>
 			<% end %>
 		</tr>
-	<% @project.risk_configuration.impacts.sort_by(&:name).each do |impact| %>
+	<% @project.visible_impacts.each do |impact| %>
 		<tr>
 			<th><%= impact.name %></th>
 			<% @project.risk_configuration.risk_levels.sort_by(&:weight).each do |risk_level| %>
