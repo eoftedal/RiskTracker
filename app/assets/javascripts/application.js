@@ -71,7 +71,7 @@ $(function() {
         if (editable.attr("data-value")) {
             return editable.attr("data-value");
         } else if (editable.is(":checkbox")) {
-            return editable.attr("checked") ? 1 : 0;
+            return editable.is(":checked") ? 1 : 0;
         } else if(editable.is("input") || editable.is("textarea") || editable.is("select")) {
             return editable.val();
         } else {
