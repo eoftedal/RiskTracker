@@ -261,3 +261,9 @@ form.comment input {
 .ui-autocomplete li a {
     cursor: pointer;
 }
+
+.changes em {
+    color: #999999;
+}
+
+

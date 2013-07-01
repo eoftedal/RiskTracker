@@ -31,7 +31,7 @@ class Comment < ActiveRecord::Base
   end
 
   def body_html
-    BlueCloth.new(body, { :escape_html => true }).to_html
+    ApplicationHelper.markdown_to_html(body)
   end
 
 

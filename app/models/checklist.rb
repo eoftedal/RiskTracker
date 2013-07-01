@@ -8,7 +8,7 @@ class Checklist < ActiveRecord::Base
   def self.to_change_string(version)
     if (version.event == "create") then
       c = Checklist.find(version.item_id)
-      s = "New checklist for Risk #{c.risk.risk_id}: <br><em>" + ERB::Util.html_escape(c.title) + "</em>"
+      s = "New checklist for Risk #{c.risk.risk_id}: <em>" + ERB::Util.html_escape(c.title) + "</em>"
       s.html_safe
     else
       result = []

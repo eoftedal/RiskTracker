@@ -34,7 +34,7 @@ module ApplicationHelper
 		end
 	end
 
-	def markdown_to_html(markdown)
-		BlueCloth.new(markdown).to_html
+	def self.markdown_to_html(markdown)
+		BlueCloth.new(markdown, { :escape_html => true }).to_html
 	end
 end
