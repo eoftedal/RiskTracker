@@ -30,11 +30,11 @@ end
 gem 'twitter-bootstrap-rails'
 
 
-gem 'paper_trail'
+gem 'paper_trail', '~> 2.7.1'
 
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
-gem 'acts_as_commentable_with_threading'
+gem 'acts_as_commentable_with_threading', '~> 1.1.3'
 
 gem 'ruby-openid'
 gem 'rack-openid'

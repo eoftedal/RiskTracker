@@ -57,7 +57,7 @@ class Risk < ActiveRecord::Base
     User.find(version.whodunnit || version.originator)
   end
 
-  def self.as_string(version)
+  def self.to_change_string(version)
     to_action(version)
   end
   

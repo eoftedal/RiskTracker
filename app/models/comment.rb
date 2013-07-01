@@ -31,8 +31,10 @@ class Comment < ActiveRecord::Base
   end
 
   def body_html
-    BlueCloth.new(body).to_html
+    BlueCloth.new(body, { :escape_html => true }).to_html
   end
+
+
 
   # Helper class method to lookup all comments assigned
   # to all commentable types for a given user.
@@ -51,4 +53,17 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
+
+  def self.to_change_string(version)
+    if (version.event == "create") then
+      c = Comment.find(version.item_id)
+      s = "New comment on #{c.commentable_type} " + Risk.find(c.commentable_id).risk_id.to_s + ": <br><em>#{c.body_html}</em>"
+      s.html_safe
+    else
+      version.to_json
+    end
+  end
+
+
+
 end
