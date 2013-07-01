@@ -64,7 +64,7 @@ class Risk < ActiveRecord::Base
   def self.to_action(version)
     result = []
     version.changeset.keys.each{|k| 
-      changeset = version.changeset[k];
+      changeset = version.changeset[k]
       s = "Changed "
       begin 
         if (k == "risk_level_id") then        
