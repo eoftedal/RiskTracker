@@ -156,9 +156,13 @@
 }
 
 .checklist ul li {
-        margin: 0;
+        margin: 2px;
         padding: 0;        
 }
+.checklist input[type="checkbox"] {
+    margin-top: 0px;
+}
+
 .checklist input[type="checkbox"]:checked + span{
         font-style: italic;
         text-decoration: line-through;
