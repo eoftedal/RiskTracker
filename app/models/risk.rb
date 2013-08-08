@@ -63,7 +63,7 @@ class Risk < ActiveRecord::Base
   
   def self.to_action(version)
     result = []
-    if (version.event == "create") return "Risk created"
+    if (version.event == "create") then return "Risk created"
     version.changeset.keys.each{|k| 
       changeset = version.changeset[k]
       s = "Changed "
