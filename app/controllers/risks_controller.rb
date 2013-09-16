@@ -98,7 +98,7 @@ class RisksController < ApplicationController
   def create
     @risk = Risk.new(params[:risk])
 	  @risk.project = current_project
-    @risk.risk_id = current_project.risks.map{|r| r.risk_id.to_i}.max + 1
+    @risk.risk_id = (current_project.risks.map{|r| r.risk_id.to_i}.max || 0) + 1
     respond_to do |format|
       if @risk.save
         format.html { redirect_to(project_risk_path(current_project, @risk), :notice => 'Risk was successfully created.') }
