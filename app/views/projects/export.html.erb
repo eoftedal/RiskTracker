@@ -61,11 +61,13 @@
 				<%= r.mitigation_html.html_safe %>
 
 			</div>
-			<%  r.root_comments.sort_by{ |f1| f1[:created_at] }.reverse.each do |c| %>
-				<div class="comment">
-					<label><%=c.user.full_name %> - <%= c.created_at.strftime("%d.%m %H:%M") %> :</label>
-					<%= c.body_html.html_safe %>
-				</div>
+			<% if (@include_comments) %>
+				<%  r.root_comments.sort_by{ |f1| f1[:created_at] }.reverse.each do |c| %>
+					<div class="comment">
+						<label><%=c.user.full_name %> - <%= c.created_at.strftime("%d.%m %H:%M") %> :</label>
+						<%= c.body_html.html_safe %>
+					</div>
+				<% end %>
 			<% end %>
 	  	</div>
 	 </div>

@@ -116,6 +116,7 @@ class ProjectsController < ApplicationController
 
   def export
     @project = Project.find(params[:id])    
+    @include_comments = params[:include_comments]
     @tag = params[:tag]    
     if (@tag) then
       @risks = @project.risks.tagged_with(params[:tag])
