@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612192814) do
+ActiveRecord::Schema.define(:version => 20131029210557) do
 
   create_table "attachment_links", :force => true do |t|
     t.integer  "user_id"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130612192814) do
     t.string   "description"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "owner"
   end
 
   add_index "risk_assets", ["risk_asset_value_id"], :name => "index_assets_on_asset_value_id"
