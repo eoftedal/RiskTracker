@@ -45,7 +45,7 @@ class ImpactsController < ApplicationController
         format.json  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.json  { render :json => @impact.errors, :status => :unprocessable_entity }
+        format.json { render :json => @impact.errors, :status => :unprocessable_entity }
       end
     end
   end
