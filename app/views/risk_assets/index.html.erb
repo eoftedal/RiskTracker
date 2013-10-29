@@ -29,6 +29,7 @@
     <tr>
       <th>Name</th>
       <th>Value</th>
+      <th>Owner</th>
       <th>Description</th>
       <th></th>
       <th></th>
@@ -39,6 +40,7 @@
       <tr>
         <td data-sort-key="<%= asset.name %>"><%= link_to asset.name, [current_project, asset] %></td>
         <td data-sort-key="<%= asset.risk_asset_value.weight %>"><abbr title="<%= asset.risk_asset_value.description %>"><%= asset.risk_asset_value.name %></abbr></td>
+        <td><%= asset.owner %></td>
         <td><%= asset.description %></td>
         <td><%= button_to 'Edit', edit_project_risk_asset_path(current_project, asset), :method => :get, :class => "btn btn-small" %></td>
         <td><%= button_to 'Delete', [current_project, asset], :confirm => 'Are you sure?', :method => :delete, :class => "btn btn-small" %></td>
