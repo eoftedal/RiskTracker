@@ -2,7 +2,7 @@ class RiskAsset < ActiveRecord::Base
   belongs_to :risk_asset_value
   belongs_to :project
   has_and_belongs_to_many :risks
-  attr_accessible :description, :name, :risk_asset_value_id
+  attr_accessible :description, :name, :risk_asset_value_id, :owner
   has_paper_trail
 
   def self.to_change_string(version)
