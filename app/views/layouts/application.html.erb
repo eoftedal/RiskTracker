@@ -55,9 +55,10 @@
               <% end %>
             </ul>
             <ul class="nav pull-right">
-            <li><a style="padding-right: 40px; background: url(<%= current_user.gravatar_url(32) %>) right center no-repeat">
-              <%= current_user.full_name %><img src="">
+            <li><a style="padding-right: 40px; background: url(<%= current_user.gravatar_url(32) %>) right center no-repeat" href="<%= additional_infos_path %>">
+              <%= current_user.full_name %>
             </a></li>
+            <li><%= link_to("Logout", session_path, :method => :delete) %></li>
           </ul>
 
           </div><!--/.nav-collapse -->

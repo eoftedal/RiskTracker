@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-require 'rack/openid'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -50,9 +49,6 @@ module Riskmanager
     config.assets.version = '1.0'
 
     config.assets.prefix = File.join((config.relative_url_root || '/'), 'assets')
-
-
-    config.middleware.use 'Rack::OpenID'
 
     config.cache_store = :memory_store
   end

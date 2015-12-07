@@ -35,19 +35,21 @@ Riskmanager::Application.routes.draw do
       resources :users
 
       resource :changes
-      resource :session
       resource :not_approved
       resource :additional_infos
+      resource :session
 
       get  "oauth/new"  => "oauth#new"
       get  "oauth/code" => "oauth#code"
 
       get  "login"                  => "login#index"
-      get  "login/google"           => "login#google"
       get  "login/failed"           => "login#failed"
       get  "login/connect"          => "login#connect"
       post "login/connectaccounts"  => "login#connectaccounts"
       get  "login/switch"           => "login#switch"
+
+      get '/auth/:provider/callback' => 'sessions#create'
+      match '/auth/failure' => 'sessions#failure'
 
       root :to => "home#index"
     end

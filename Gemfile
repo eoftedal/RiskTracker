@@ -27,6 +27,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'omniauth'
+gem "omniauth-google-oauth2"
+gem 'ruby-openid'
+
 gem 'twitter-bootstrap-rails'
 
 
@@ -35,9 +39,6 @@ gem 'paper_trail', '~> 2.7.1'
 gem 'acts-as-taggable-on', '~> 2.2.2'
 
 gem 'acts_as_commentable_with_threading', '~> 1.1.3'
-
-gem 'ruby-openid'
-gem 'rack-openid'
 
 gem 'jquery-rails'
 gem 'bluecloth'

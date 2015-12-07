@@ -1,4 +1,3 @@
-
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
@@ -6,47 +5,45 @@ class SessionsController < ApplicationController
     redirect_to login_path
   end
 
-
-  
-
-
   def create
-    if openid = request.env[Rack::OpenID::RESPONSE]
-      case openid.status
-      when :success
-        ax = OpenID::AX::FetchResponse.from_success_response(openid)
-        user = User.where(:identifier_url => openid.display_identifier).first
-        user ||= User.create!(:identifier_url => openid.display_identifier,
-                              :email => ax.get_single('http://axschema.org/contact/email'),
-                              :first_name => ax.get_single('http://axschema.org/namePerson/first'),
-                              :last_name => ax.get_single('http://axschema.org/namePerson/last'))
-        user.save
-        if (session[:user_id] != nil && session[:user_id] != user.id)
-            session[:connect_user] = user.id
-            redirect_to login_connect_path
-            return
-        end
-        if (user.connected_to)
-          session[:user_id] = user.connected_to
-        else
-          session[:user_id] = user.id
-        end
+    auth_hash = request.env["omniauth.auth"]
+    auth_id = "#{auth_hash.provider}:#{auth_hash.uid}"
+    user = User.where(:identifier_url => auth_id).first
+    user ||= User.create!(:identifier_url => auth_id,
+                          :email => auth_hash.info.email,
+                          :first_name => auth_hash.info.first_name,
+                          :last_name => auth_hash.info.last_name)
+    user.save
 
-        if user.first_name.blank? || user.time_zone.blank?
-          redirect_to(additional_infos_path())
-        else
-          redirect_to(session[:redirect_to] || root_path)
-        end
-      when :failure
-        render :action => 'problem', :layout => 'notloggedin'
-      end
+    if session[:user_id].present? && session[:user_id] != user.id
+      session[:connect_user] = user.id
+      redirect_to login_connect_path
+      return
+    end
+    if user.connected_to
+      session[:user_id] = user.connected_to
     else
-      redirect_to new_session_path
+      session[:user_id] = user.id
+    end
+
+    if user.first_name.blank? || user.time_zone.blank?
+      redirect_to additional_infos_path
+    else
+      redirect_to(session[:redirect_to] || root_path)
     end
   end
-  
+
   def destroy
     session[:user_id] = nil
+    reset_session
     redirect_to root_path
+  end
+  
+  def failure
+    redirect_to root_path
+  end
+  
+  def logout
+    destroy
   end
 end
