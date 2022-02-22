@@ -1,3 +1,5 @@
+! Not maintained !!
+
 Risk tracker
 ============
 A small system for tracking results of risk analysis/threat modelling over time.
